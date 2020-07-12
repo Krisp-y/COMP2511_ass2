@@ -386,7 +386,8 @@ Fill in here.
 
 ### Week-06
 
-Fill in here.
+- Zac + Kristin: Had a meeting to divide tasks between each other for completing the issue board on gitlab
+- Zac: Wrote epic stories and user stories for maze, treasure, enemies and goals
 
 ### Week-07
 
