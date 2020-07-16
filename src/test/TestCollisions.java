@@ -121,10 +121,9 @@ class TestCollisions {
             assertEquals(3, player_.getX());
             assertEquals(3, player_.getY());
 
-             // Check that the wall at(3,2) has also not moved.
-             assertEquals(3, walls.get(0).getX());
-             assertEquals(2, walls.get(0).getY());
+            // Check that the wall at(3,2) has also not moved.
+            assertEquals(3, walls.get(0).getX());
+            assertEquals(2, walls.get(0).getY());
         }
-
     }
 }
