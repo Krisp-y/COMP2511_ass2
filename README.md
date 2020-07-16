@@ -382,11 +382,13 @@ Marks will be deducted for poor git and GitLab usage. For example, meaningless c
 
 ### Week-05
 
-Fill in here.
+- Zac + Kristin: read and understood spec/watched relevant lecture 
 
 ### Week-06
 
-Fill in here.
+- Zac + Kristin: Had a meeting to divide tasks between each other for completing the issue board on gitlab
+- Zac: Wrote epic stories and user stories for maze, treasure, enemies and goals
+- Kristin: wrote epic and user stories for weapons, potions, doors and portals
 
 ### Week-07
 
