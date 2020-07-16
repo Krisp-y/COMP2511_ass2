@@ -47,6 +47,9 @@ public class DungeonControllerLoader extends DungeonLoader {
         addEntity(wall, view);
     }
 
+    // TODO: Add onload methods for other entities
+    
+
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         entities.add(view);
