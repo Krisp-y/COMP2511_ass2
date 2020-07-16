@@ -4,4 +4,3 @@ hs_err_pid*
 /bin/
 /lib/
 /.vscode/
-lib/symlink_javafx
