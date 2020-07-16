@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.BeforeEach;
 
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.DungeonTestLoader;
+import unsw.dungeon.DungeonLoader;
 import unsw.dungeon.Player;
 import unsw.dungeon.Wall;
 
@@ -19,8 +23,6 @@ import unsw.dungeon.Wall;
 class TestCollisions {
     Dungeon d;
     Player player_;
-    
-
     @Nested
     @DisplayName("testing wall collisions")
     class TestWallCollisions {
@@ -28,14 +30,24 @@ class TestCollisions {
 
         @BeforeEach
         void createDungeon() {
-            d = new Dungeon(5, 5);
-            walls = Arrays.asList( 
-                new Wall(2,2), //Walls[0]
-                new Wall(3,2) // Walls[1]
-            );
-            for (Wall wall_ : walls) {
-                d.addEntity(wall_);
-            }
+            JSONObject simpleDungeon = new JSONObject()
+                .put("width", 5)
+                .put("height", 5)
+                .put("entities", new JSONArray()
+                    .put(new JSONObject()
+                        .put("x", 2)
+                        .put("y", 2)
+                        .put("type", "wall")
+                    )
+                    .put(new JSONObject()
+                        .put("x", 3)
+                        .put("y", 2)
+                        .put("type", "wall")
+                    )
+                        
+                );
+            DungeonLoader dl = new DungeonTestLoader(simpleDungeon);
+            d = dl.load();
             // Put player in the top left corner
             player_ = new Player(d, 0, 0);
             d.setPlayer(player_);

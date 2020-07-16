@@ -23,6 +23,10 @@ public abstract class DungeonLoader {
     public DungeonLoader(String filename) throws FileNotFoundException {
         json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));
     }
+    
+    public DungeonLoader(JSONObject dungeon_json) {
+        this.json = dungeon_json;
+    }
 
     /**
      * Parses the JSON to create a dungeon.
