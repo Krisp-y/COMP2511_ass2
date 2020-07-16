@@ -5,7 +5,7 @@ package unsw.dungeon;
  * @author Robert Clifton-Everest
  *
  */
-public class Player extends Moveable implements CollisionStrategy {
+public class Player extends Moveable {
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -14,11 +14,5 @@ public class Player extends Moveable implements CollisionStrategy {
     public Player(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
     }
-
-    @Override
-    public void handleCollision() {
-        return;
-    }
-    
     
 }

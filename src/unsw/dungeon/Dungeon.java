@@ -48,10 +48,22 @@ public class Dungeon {
         entities.add(entity);
     }
     
-    // TODO: willCollide(int x, int y) {
-    //  
-    // }
-    
-    // 
-    
+    /**
+     * Used by moveable objects to determine if they are colliding with
+     * collidable objects. The function returns a reference to the an
+     * entity IF the entity is collidable AND the entities coordinates are
+     * (x, y). 
+     *
+     * @param x x-coordinate in the dungeon
+     * @param y y-coordinate in the dungeon
+     * @return reference to colliding entity.
+     */
+    public Collider getCollidingObject(int x, int y) {
+        for (Entity e: entities) {
+            if (e instanceof Collider && e.getX() == x && e.getY() == y) {
+                return (Collider) e;
+            }
+        }
+        return null;
+    }
 }
