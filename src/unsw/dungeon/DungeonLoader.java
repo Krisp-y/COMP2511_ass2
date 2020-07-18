@@ -79,4 +79,7 @@ public abstract class DungeonLoader {
     
     // TODO Create additional abstract methods for the other entities
     public abstract void onLoad(Boulder boulder);
+    
+    public abstract void onLoad(Portal portal);
+
 }

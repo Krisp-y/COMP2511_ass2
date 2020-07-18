@@ -47,6 +47,10 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
+
+    public List<Entity> getEntities() {
+        return entities;
+    }
     
     /**
      * Used by moveable objects to determine if they are colliding with

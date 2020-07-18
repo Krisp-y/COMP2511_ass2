@@ -22,4 +22,9 @@ public class DungeonTestLoader extends DungeonLoader {
     public void onLoad(Boulder boulder) {
         return;
     }
+
+    @Override
+    public void onLoad(Portal portal) {
+        return;
+    }
 }
