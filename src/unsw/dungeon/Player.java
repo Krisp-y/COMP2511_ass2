@@ -13,6 +13,5 @@ public class Player extends Moveable {
      */
     public Player(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
-    }
-    
+    }   
 }

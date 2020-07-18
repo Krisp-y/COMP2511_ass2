@@ -9,12 +9,17 @@ public class DungeonTestLoader extends DungeonLoader {
     }
     
     @Override
-    public void onLoad(Entity player) {
+    public void onLoad(Player player) {
         return;
     }
 
     @Override
     public void onLoad(Wall wall) {
+        return;
+    }
+    
+    @Override
+    public void onLoad(Boulder boulder) {
         return;
     }
 }

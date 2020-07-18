@@ -58,7 +58,7 @@ public class Dungeon {
      * @param y y-coordinate in the dungeon
      * @return reference to colliding entity.
      */
-    public Collider getCollidingObject(int x, int y) {
+    public Collider getCollidingEntity(int x, int y) {
         for (Entity e: entities) {
             if (e instanceof Collider && e.getX() == x && e.getY() == y) {
                 return (Collider) e;

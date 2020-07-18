@@ -1,7 +1,7 @@
 package unsw.dungeon;
 
 public class Moveable extends Entity {
-    private Dungeon dungeon;
+    protected Dungeon dungeon;
     
     // Moveable is trying to move in direction d.
     // Necessary for resolving collisions with objects whose collision
@@ -21,8 +21,8 @@ public class Moveable extends Entity {
     }
     
     /**
-     * Function for moveable objects to attempt moving if it's possible in the
-     * the direction of d one adjacent tile to the right. Moveable object checks 
+     * Function for moveable objects to attempt moving to the next adjacent tile
+     * In the directino of d. Moveable object checks 
      * if there is a collision with a collidable object, and calls the 
      * handleCollision function of that object to resolve any state changes as 
      * a result of the collision. In the case where there is no collision, 
@@ -36,16 +36,20 @@ public class Moveable extends Entity {
         } else if (d == Direction.DOWN) {
             tryMoveDown();
         } else if (d == Direction.LEFT) {
-           tryMoveLeft();
+            tryMoveLeft();
         } else if (d == Direction.RIGHT) {
             tryMoveRight();
         }
     }
     
+    public Direction getDirection() {
+        return direction;
+    }
+    
     /** Attempts to move Moveable up, changes state on collision. */
-    public void tryMoveUp() {        
+    public void  tryMoveUp() {        
         direction = Direction.UP;
-        Collider c = dungeon.getCollidingObject(getX(), getY() - 1);
+        Collider c = dungeon.getCollidingEntity(getX(), getY() - 1);
         if (c == null) {
             moveUp();
         } else { // There is a collision
@@ -56,18 +60,19 @@ public class Moveable extends Entity {
     /** Attempts to move Moveable down, changes state on collision. */
     public void tryMoveDown() {
         direction = Direction.DOWN;
-        Collider c = dungeon.getCollidingObject(getX(), getY() + 1);
+        Collider c = dungeon.getCollidingEntity(getX(), getY() + 1);
         if (c == null) {
             moveDown();
         } else { // There is a collision
             c.handleCollision(this);
+
         }
     }
     
     /** Attempts to move Moveable left, changes state on collision. */
-    public void tryMoveLeft() {
+    public void  tryMoveLeft() {
         direction = Direction.LEFT;
-        Collider c = dungeon.getCollidingObject(getX() - 1, getY());
+        Collider c = dungeon.getCollidingEntity(getX() - 1, getY());
         if (c == null) {
             moveLeft();
         } else { // There is a collision
@@ -78,7 +83,7 @@ public class Moveable extends Entity {
     /** Attempts to move Moveable right, changes state on collision. */
     public void tryMoveRight() {
         direction = Direction.RIGHT;
-        Collider c = dungeon.getCollidingObject(getX() + 1, getY());
+        Collider c = dungeon.getCollidingEntity(getX() + 1, getY());
         if (c == null) {
             moveRight();
         } else { // There is a collision
