@@ -2,6 +2,7 @@ package unsw.dungeon;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,7 +44,18 @@ public abstract class DungeonLoader {
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
+        
+        JSONObject goals = json.getJSONObject("goal-condition");
+        Goal mainGoal = loadGoals(goals);
+        dungeon.setMainGoal(mainGoal);
         return dungeon;
+    }
+    
+    private Goal loadGoals(JSONObject goals) {
+        
+        
+        // Stub generated code
+        return new BoulderGoal(new ArrayList<Entity>());
     }
 
     private void loadEntity(Dungeon dungeon, JSONObject json) {
