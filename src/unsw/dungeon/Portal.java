@@ -1,4 +1,7 @@
 package unsw.dungeon;
+import javafx.beans.property.IntegerProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Portal extends Entity implements Collider {
     private int pID;
@@ -33,7 +36,7 @@ public class Portal extends Entity implements Collider {
      * @param p
      */
 
-    private void portalCollision(Player p) {
+    private void portalCollision(Player p, Portal pl) {
         Direction playerMoveDirection = p.getDirection();
         Collider collidingEntity;
 
@@ -41,6 +44,18 @@ public class Portal extends Entity implements Collider {
 
         //if collided with by player, yeet player to portal with matching ID
         //update the x and y of player to match other portal
+        List<Entity> entities = dungeon.getEntities();
+        for (Entity e: entities) {
+            if (e instanceof Portal) {
+                Portal port = (Portal)e;
+                if(port.getID() == pl.getID()) {
+                    p.setX(port.getX());
+                    p.setY(port.getY())
+                    //move player to port location
+
+                }
+            }
+        }
 
     }
 }
