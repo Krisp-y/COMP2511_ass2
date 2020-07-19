@@ -13,7 +13,6 @@ import unsw.dungeon.Dungeon;
 import unsw.dungeon.DungeonTestLoader;
 import unsw.dungeon.DungeonLoader;
 import unsw.dungeon.Player;
-import unsw.dungeon.Portal;
 
 
 @DisplayName("testing portal functionality")

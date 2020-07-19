@@ -39,8 +39,7 @@ class TestCollisions {
                         .put("x", 3)
                         .put("y", 2)
                         .put("type", "wall")
-                    )
-                        
+                    )      
                 );
             DungeonLoader dl = new DungeonTestLoader(simpleDungeon);
             d = dl.load();

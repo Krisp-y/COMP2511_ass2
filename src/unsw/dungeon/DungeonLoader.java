@@ -25,7 +25,6 @@ import org.json.JSONTokener;
 public abstract class DungeonLoader {
 
     private JSONObject json;
-    private int numPortals;
 
     public DungeonLoader(String filename) throws FileNotFoundException {
         json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));
@@ -33,7 +32,6 @@ public abstract class DungeonLoader {
     
     public DungeonLoader(JSONObject dungeon_json) {
         this.json = dungeon_json;
-        this.numPortals = 0;
     }
 
     /**
@@ -48,27 +46,44 @@ public abstract class DungeonLoader {
 
         JSONArray jsonEntities = json.getJSONArray("entities");
         Map<String, List<Entity>> entitiesMap = loadEntities(dungeon, jsonEntities);
-        
-        JSONObject goals = json.getJSONObject("goal-condition");
-        Goal mainGoal = loadGoals(entitiesMap, dungeon, goals);
-        dungeon.setMainGoal(mainGoal);
+        // Only try and greate a goal condition if it is specified in json.
+        if (json.has("goal-condition")) {
+            JSONObject goals = json.getJSONObject("goal-condition");
+            System.out.println(entitiesMap);
+            Goal mainGoal = loadGoals(entitiesMap, dungeon, goals);
+            dungeon.setMainGoal(mainGoal);
+        }
         return dungeon;
     }
     
-    private Goal loadGoals(Map<String, List<Entity>> entitiesMap, Dungeon dungeon, JSONObject goals) {
+    private Goal loadGoals(Map<String, List<Entity>> entitiesMap, Dungeon dungeon, JSONObject goals)
+            throws InvalidGoalException {
         
         String goalType = goals.getString("goal");
         
         switch(goalType) {
-            // Leaf Goals are here. Base case of the recursion.
+            // Leaf Goals are here. Base case of the recursion. Fail loudly when
+            // there are no entities available to complete the goals.
             case "exit":
+                if (entitiesMap.get("exit") == null) {
+                    throw new InvalidGoalException("there are no floorSwitches specified.");
+                }
                 return new ExitGoal(dungeon, entitiesMap.get("exit"));
             case "boulders":
-                return new BoulderGoal(dungeon, entitiesMap.get("exit"));
+                if (entitiesMap.get("floorSwitches") == null) {
+                    throw new InvalidGoalException("there are no floorSwitches specified.");
+                }
+                return new BoulderGoal(dungeon, entitiesMap.get("floorSwitches"));
             case "enemies":
-                return new EnemyGoal(dungeon, entitiesMap.get("exit"));
+                if (entitiesMap.get("enemies") == null) {
+                    throw new InvalidGoalException("there are no floorSwitches specified.");
+                }
+                return new EnemyGoal(dungeon, entitiesMap.get("enemies"));
             case "treasure":
-                return new TreasureGoal(dungeon, entitiesMap.get("exit"));
+                if (entitiesMap.get("treasure") == null) {
+                    throw new InvalidGoalException("there are no floorSwitches specified.");
+                }
+                return new TreasureGoal(dungeon, entitiesMap.get("treasure"));
                 
             // Composite goals are here. Loop through all the subgoals
             // in the conjunction and recursively call loadGoals on each
@@ -106,7 +121,7 @@ public abstract class DungeonLoader {
             // Fill the dictionary of "type": "List<Entities>"
             String type = entityJson.getString("type");
             if (entitiesMap.get(type) == null) {
-                entitiesMap.put(type, Arrays.asList(e));
+                entitiesMap.put(type, new ArrayList<Entity>(Arrays.asList(e)));
             } else {
                 entitiesMap.get(type).add(e);
             }
@@ -141,13 +156,13 @@ public abstract class DungeonLoader {
             Exit exit = new Exit(x, y);
             onLoad(exit);
             entity = exit;
+            break;
         case "portal":
             //portal id is given as JSON object 
             int id = json.getInt("id");
             Portal portal = new Portal(dungeon, x, y, id);
             onLoad(portal);
             entity = portal;
-            this.numPortals++;
             break;
         }
         return entity;
@@ -159,12 +174,9 @@ public abstract class DungeonLoader {
     
     // TODO Create additional abstract methods for the other entities
     public abstract void onLoad(Boulder boulder);
-<<<<<<< HEAD
     
     public abstract void onLoad(Exit exit);
-=======
 
     public abstract void onLoad(Portal portal);
 
->>>>>>> portals
 }

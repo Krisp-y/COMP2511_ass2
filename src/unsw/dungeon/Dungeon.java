@@ -87,7 +87,8 @@ public class Dungeon implements GoalSubscriber {
 
     @Override
     public void update() {
-        if (mainGoal.isComplete()) {
+        // mainGoal is null iff it has not been specified in the json.
+        if (mainGoal != null && mainGoal.isComplete()) {
             endGame();
         }
     }
