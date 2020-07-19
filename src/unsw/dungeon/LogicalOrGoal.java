@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class LogicalOrGoal extends ConjunctionGoal {
 
-    public LogicalOrGoal(ArrayList<Goal> subGoals) {
-        super(subGoals);
+    public LogicalOrGoal() {
+        super();
     }
 
     @Override

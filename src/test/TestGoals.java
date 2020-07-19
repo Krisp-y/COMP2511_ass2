@@ -101,7 +101,7 @@ public class TestGoals {
             Dungeon d = dl.load();
             
             Goal mainGoal = d.getMainGoal();
-            assertEquals("(treasure AND enemies)", mainGoal.toString());
+            assertEquals("(enemies AND treasure)", mainGoal.toString());
             
             json = new JSONObject()
                 .put("width", 3)
@@ -198,6 +198,8 @@ public class TestGoals {
                             .put("subgoals", new JSONArray()
                                 .put(new JSONObject()
                                     .put("goal", "enemies")
+                                )
+                                .put(new JSONObject()
                                     .put("goal", "treasure")
                                 )
                             )
@@ -222,6 +224,8 @@ public class TestGoals {
                             .put("subgoals", new JSONArray()
                                 .put(new JSONObject()
                                     .put("goal", "exit")
+                                )
+                                .put(new JSONObject()
                                     .put("goal", "treasure")
                                 )
                             )
@@ -231,6 +235,8 @@ public class TestGoals {
                             .put("subgoals", new JSONArray()
                                 .put(new JSONObject()
                                     .put("goal", "enemies")
+                                )
+                                .put(new JSONObject()
                                     .put("goal", "treasure")
                                 )
                             )
@@ -284,7 +290,7 @@ public class TestGoals {
             Dungeon d = dl.load();
             
             Goal mainGoal = d.getMainGoal();
-            assertEquals("(exit AND (enemies AND (treasure AND boulders))", mainGoal.toString());
+            assertEquals("(exit AND (enemies AND (treasure AND boulders)))", mainGoal.toString());
             
             json = new JSONObject()
                 .put("width", 3)
@@ -336,7 +342,7 @@ public class TestGoals {
             dl = new DungeonTestLoader(json);
             d = dl.load();
             mainGoal = d.getMainGoal();
-            assertEquals("((exit AND (enemies OR boulders)) AND" 
+            assertEquals("((exit AND (enemies OR boulders)) AND " 
                 + "(enemies AND (treasure OR boulders)))", mainGoal.toString());
             
             
@@ -413,10 +419,16 @@ public class TestGoals {
             dl = new DungeonTestLoader(json);
             d = dl.load();
             mainGoal = d.getMainGoal();
-            assertEquals("((treasure OR exit) AND (enemies AND boulders exit)) AND" 
-                + "(enemies AND exit) AND (treasure OR boulders OR exit)))", mainGoal.toString());
+            assertEquals("(((treasure OR exit) AND (enemies AND boulders AND exit)) AND " 
+                + "((enemies AND exit) AND (treasure OR boulders OR exit)))", mainGoal.toString());
             
         }
+        
+    }
+    
+    @Nested
+    @DisplayName("testing goal completion")
+    class TestGoalCompletion {
         
     }
 }

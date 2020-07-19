@@ -22,6 +22,6 @@ public class BoulderGoal extends BasicGoal {
     
     @Override
     public String toString() {
-        return "boulder";
+        return "boulders";
     }
 }

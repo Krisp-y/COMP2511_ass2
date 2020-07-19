@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -53,9 +54,43 @@ public abstract class DungeonLoader {
     
     private Goal loadGoals(JSONObject goals) {
         
+        String goalType = goals.getString("goal");
         
-        // Stub generated code
-        return new BoulderGoal(new ArrayList<Entity>());
+        switch(goalType) {
+            // Leaf Goals are here. Base case of the recursion.
+            case "exit":
+                return new ExitGoal(new ArrayList<Entity>());
+            case "boulders":
+                return new BoulderGoal(new ArrayList<Entity>());
+            case "enemies":
+                return new EnemyGoal(new ArrayList<Entity>());
+            case "treasure":
+                return new TreasureGoal(new ArrayList<Entity>());
+                
+            // Composite goals are here. Loop through all the subgoals
+            // in the conjunction and recursively call loadGoals on each
+            // of the children, adding the resulting goal to each child.
+            case "AND":
+                JSONArray subGoals = goals.getJSONArray("subgoals");
+                LogicalAndGoal andGoal = new LogicalAndGoal();
+                for (int i = 0; i < subGoals.length(); i++) {
+                    // Recursive goal creation
+                    Goal subGoal = loadGoals(subGoals.getJSONObject(i));
+                    andGoal.addSubGoal(subGoal);
+                }
+                return andGoal;
+            case "OR":
+                subGoals = goals.getJSONArray("subgoals");
+                LogicalOrGoal orGoal = new LogicalOrGoal();
+                for (int i = 0; i < subGoals.length(); i++) {
+                    // Recursive goal creation
+                    Goal subGoal = loadGoals(subGoals.getJSONObject(i));
+                    orGoal.addSubGoal(subGoal);
+                }
+                return orGoal;
+            default:
+                throw new JSONException("Invalid goal type entered.");
+        }
     }
 
     private void loadEntity(Dungeon dungeon, JSONObject json) {
