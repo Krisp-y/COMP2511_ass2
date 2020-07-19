@@ -27,4 +27,9 @@ public class DungeonTestLoader extends DungeonLoader {
     public void onLoad(Exit exit) {
         return;
     }
+    
+    @Override
+    public void onLoad(Portal portal) {
+        return;
+    }
 }

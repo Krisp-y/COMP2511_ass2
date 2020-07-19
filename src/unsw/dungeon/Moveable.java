@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class Moveable extends Entity {
+public abstract class Moveable extends Entity {
     protected Dungeon dungeon;
     
     // Moveable is trying to move in direction d.

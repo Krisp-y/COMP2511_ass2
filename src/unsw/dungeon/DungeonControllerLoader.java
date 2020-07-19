@@ -28,6 +28,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image wallImage;
     private Image boulderImage;
     private Image exitImage;
+    private Image portalImage;
 
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
@@ -37,6 +38,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         wallImage = new Image((new File("images/brick_brown_0.png")).toURI().toString());
         boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
         exitImage = new Image((new File("images/exit.png")).toURI().toString());
+        portalImage = new Image((new File("images/portal.png")).toURI().toString());
     }
     
     @Override
@@ -64,6 +66,11 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
 
 
+    @Override
+    public void onLoad(Portal portal) {
+        ImageView view = new ImageView(portalImage);
+        addEntity(portal, view);
+    }
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         entities.add(view);
