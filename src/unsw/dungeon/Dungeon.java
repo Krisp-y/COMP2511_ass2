@@ -15,18 +15,20 @@ import java.util.List;
  * @author Robert Clifton-Everest
  *
  */
-public class Dungeon {
+public class Dungeon implements GoalSubscriber {
 
     private int width, height;
     private List<Entity> entities;
     private Player player;
     private Goal mainGoal;
+    private boolean isGameEnded;
      
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
         this.player = null;
+        this.isGameEnded = false;
     }
 
     public int getWidth() {
@@ -74,5 +76,21 @@ public class Dungeon {
             }
         }
         return null;
+    }
+
+    @Override
+    public void update() {
+        if (mainGoal.isComplete()) {
+            endGame();
+        }
+    }
+    
+    // TODO: do stuff to correctly handle the ending of the game.
+    public void endGame() {
+        this.isGameEnded = true;
+    }
+    
+    public boolean isGameEnded() {
+        return isGameEnded;
     }
 }

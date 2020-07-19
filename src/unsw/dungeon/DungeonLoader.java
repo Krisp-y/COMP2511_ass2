@@ -3,6 +3,10 @@ package unsw.dungeon;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,31 +45,28 @@ public abstract class DungeonLoader {
         Dungeon dungeon = new Dungeon(width, height);
 
         JSONArray jsonEntities = json.getJSONArray("entities");
-
-        for (int i = 0; i < jsonEntities.length(); i++) {
-            loadEntity(dungeon, jsonEntities.getJSONObject(i));
-        }
+        Map<String, List<Entity>> entitiesMap = loadEntities(dungeon, jsonEntities);
         
         JSONObject goals = json.getJSONObject("goal-condition");
-        Goal mainGoal = loadGoals(goals);
+        Goal mainGoal = loadGoals(entitiesMap, dungeon, goals);
         dungeon.setMainGoal(mainGoal);
         return dungeon;
     }
     
-    private Goal loadGoals(JSONObject goals) {
+    private Goal loadGoals(Map<String, List<Entity>> entitiesMap, Dungeon dungeon, JSONObject goals) {
         
         String goalType = goals.getString("goal");
         
         switch(goalType) {
             // Leaf Goals are here. Base case of the recursion.
             case "exit":
-                return new ExitGoal(new ArrayList<Entity>());
+                return new ExitGoal(dungeon, entitiesMap.get("exit"));
             case "boulders":
-                return new BoulderGoal(new ArrayList<Entity>());
+                return new BoulderGoal(dungeon, entitiesMap.get("exit"));
             case "enemies":
-                return new EnemyGoal(new ArrayList<Entity>());
+                return new EnemyGoal(dungeon, entitiesMap.get("exit"));
             case "treasure":
-                return new TreasureGoal(new ArrayList<Entity>());
+                return new TreasureGoal(dungeon, entitiesMap.get("exit"));
                 
             // Composite goals are here. Loop through all the subgoals
             // in the conjunction and recursively call loadGoals on each
@@ -75,7 +76,7 @@ public abstract class DungeonLoader {
                 LogicalAndGoal andGoal = new LogicalAndGoal();
                 for (int i = 0; i < subGoals.length(); i++) {
                     // Recursive goal creation
-                    Goal subGoal = loadGoals(subGoals.getJSONObject(i));
+                    Goal subGoal = loadGoals(entitiesMap, dungeon, subGoals.getJSONObject(i));
                     andGoal.addSubGoal(subGoal);
                 }
                 return andGoal;
@@ -84,7 +85,7 @@ public abstract class DungeonLoader {
                 LogicalOrGoal orGoal = new LogicalOrGoal();
                 for (int i = 0; i < subGoals.length(); i++) {
                     // Recursive goal creation
-                    Goal subGoal = loadGoals(subGoals.getJSONObject(i));
+                    Goal subGoal = loadGoals(entitiesMap, dungeon, subGoals.getJSONObject(i));
                     orGoal.addSubGoal(subGoal);
                 }
                 return orGoal;
@@ -92,8 +93,26 @@ public abstract class DungeonLoader {
                 throw new JSONException("Invalid goal type entered.");
         }
     }
-
-    private void loadEntity(Dungeon dungeon, JSONObject json) {
+    
+    private Map<String, List<Entity>> loadEntities(Dungeon dungeon, 
+        JSONArray jsonEntities) {
+        Map<String, List<Entity>> entitiesMap = new HashMap<String, List<Entity>>();
+        for (int i = 0; i < jsonEntities.length(); i++) {
+            JSONObject entityJson = jsonEntities.getJSONObject(i);
+            Entity e = loadEntity(dungeon, entityJson);
+            dungeon.addEntity(e);
+            // Fill the dictionary of "type": "List<Entities>"
+            String type = entityJson.getString("type");
+            if (entitiesMap.get(type) == null) {
+                entitiesMap.put(type, Arrays.asList(e));
+            } else {
+                entitiesMap.get(type).add(e);
+            }
+        }
+        return entitiesMap;
+    }
+    
+    private Entity loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");
         int x = json.getInt("x");
         int y = json.getInt("y");
@@ -116,8 +135,13 @@ public abstract class DungeonLoader {
             onLoad(boulder);
             entity = boulder;
             break;
+        case "exit":
+            Exit exit = new Exit(x, y);
+            onLoad(exit);
+            entity = exit;
+            break;
         }
-        dungeon.addEntity(entity);
+        return entity;
     }
 
     public abstract void onLoad(Player player);
@@ -126,4 +150,6 @@ public abstract class DungeonLoader {
     
     // TODO Create additional abstract methods for the other entities
     public abstract void onLoad(Boulder boulder);
+    
+    public abstract void onLoad(Exit exit);
 }

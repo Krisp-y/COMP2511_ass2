@@ -1,12 +1,13 @@
 package unsw.dungeon;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ExitGoal extends BasicGoal {
     
+    private GoalSubscriber dungeon;
     private boolean isComplete;
-    public ExitGoal(ArrayList<Entity> exitSwitch) {
-        super(exitSwitch);
+    public ExitGoal(GoalSubscriber dungeon, List<Entity> exitSwitches) {
+        super(dungeon, exitSwitches);
         this.isComplete = false;
     }
 
@@ -16,12 +17,33 @@ public class ExitGoal extends BasicGoal {
     }
 
     @Override
-    public void tryComplete() {
-        isComplete = true;
+    public void setComplete(boolean isComplete) {
+        this.isComplete = isComplete;
     }
     
     @Override
     public String toString() {
         return "exit";
+    }
+
+    @Override
+    public void update() {
+        setComplete(true);
+        notifySubscribers();
+    }
+
+    @Override
+    public void subscribe(GoalSubscriber gs) {
+        dungeon = gs;
+    }
+
+    @Override
+    public void unsubscribe(GoalSubscriber gs) {
+       dungeon = null;
+    }
+
+    @Override
+    public void notifySubscribers() {
+        dungeon.update();
     }
 }

@@ -1,12 +1,12 @@
 package unsw.dungeon;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class BoulderGoal extends BasicGoal {
     
     private boolean isComplete;
-    public BoulderGoal(ArrayList<Entity> floorSwitches) {
-        super(floorSwitches);
+    public BoulderGoal(GoalSubscriber dungeon, List<Entity> floorSwitches) {
+        super(dungeon, floorSwitches);
         this.isComplete = false;
     }
 
@@ -16,12 +16,36 @@ public class BoulderGoal extends BasicGoal {
     }
 
     @Override
-    public void tryComplete() {
-        isComplete = true;
+    public void setComplete(boolean isComplete) {
+        this.isComplete = isComplete;
     }
     
     @Override
     public String toString() {
         return "boulders";
+    }
+
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void subscribe(GoalSubscriber gs) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void unsubscribe(GoalSubscriber gs) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void notifySubscribers() {
+        // TODO Auto-generated method stub
+
     }
 }
