@@ -41,15 +41,22 @@ public class Portal extends Entity implements Collider {
         //if collided with by player, yeet player to portal with matching ID
         //update the x and y of player to match other portal
         List<Entity> entities = dungeon.getEntities();
+        int newX = -1;
+        int newY = -1;
+
         for (Entity e: entities) {
             if (e instanceof Portal) {
                 Portal port = (Portal)e;
                 if(port.getID() == this.getID() && !this.equals(port)) {
-                    p.teleport(port.getX(),port.getY());
-
+                    newX = port.getX();
+                    newY = port.getY();
+                    break;
                 }
             }
         }
+        
+        dungeon.removePortal(this.getID());
+        p.teleport(newX,newY);
 
     }
 
