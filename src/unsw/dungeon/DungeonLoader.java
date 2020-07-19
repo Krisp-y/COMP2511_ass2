@@ -19,6 +19,7 @@ import org.json.JSONTokener;
 public abstract class DungeonLoader {
 
     private JSONObject json;
+    private int numPortals;
 
     public DungeonLoader(String filename) throws FileNotFoundException {
         json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));
@@ -26,6 +27,7 @@ public abstract class DungeonLoader {
     
     public DungeonLoader(JSONObject dungeon_json) {
         this.json = dungeon_json;
+        this.numPortals = 0;
     }
 
     /**
@@ -70,9 +72,12 @@ public abstract class DungeonLoader {
             entity = boulder;
             break;
         case "portal":
-            Portal portal = new Portal(dungeon, x, y, pID);
-            onLoad(boulder);
-            entity = boulder;
+            //portal id is given as JSON object 
+            int id = json.getInt("id");
+            Portal portal = new Portal(dungeon, x, y, id);
+            onLoad(portal);
+            entity = portal;
+            this.numPortals++;
             break;
         }
         dungeon.addEntity(entity);
