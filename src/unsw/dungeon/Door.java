@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Door extends Moveable implements Collider {
     private int ID;
-    public Door(int x, int y, int ID, Dungeon dungeon) {
+    public Door(Dungeon dungeon, int x, int y, int ID) {
         super(dungeon, x, y);
         this.ID = ID;
 
@@ -24,22 +24,22 @@ public class Door extends Moveable implements Collider {
         switch (playerMoveDirection) {
             case UP:
                 collidingEntity = dungeon.getCollidingEntity(getX(), getY() - 1);
-                // If there is no colliding entity above the door, move it up
-                // and move the player up.
+                // If there is no colliding entity above the door, move the player up
                 if (collidingEntity == null) {
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveUp();
+                        p.useKey();
                     }
                     
                 }
                 break;
             case DOWN:
                 collidingEntity = dungeon.getCollidingEntity(getX(), getY() + 1);
-                // If there is no colliding entity below the boulder, move the
-                // boulder down and the player down
+                // If there is no colliding entity below the door, move the player down
                 if (collidingEntity == null) {
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveDown();
+                        p.useKey();
                     }
                     
                 }
@@ -51,6 +51,7 @@ public class Door extends Moveable implements Collider {
                 if (collidingEntity == null) {
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveLeft();
+                        p.useKey();
                     }
                     
                 }
@@ -62,6 +63,7 @@ public class Door extends Moveable implements Collider {
                 if (collidingEntity == null) {
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveRight();
+                        p.useKey();
                     }
                     
                 }

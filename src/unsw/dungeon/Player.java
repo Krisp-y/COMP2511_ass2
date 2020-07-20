@@ -50,6 +50,14 @@ public class Player extends Moveable {
                 return key.getKeyID();
             }
         }
-        return 0;
+        return -1;
+    }
+
+    public void useKey() {
+        for (Entity e: inventory) {
+            if (e instanceof Key) {
+                inventory.remove(e);
+            }
+        }
     }
 }
