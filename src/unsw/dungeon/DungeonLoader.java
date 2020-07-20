@@ -180,7 +180,7 @@ public abstract class DungeonLoader {
             case "key":
                 //portal id is given as JSON object 
                 int kid = json.getInt("id");
-                Key key = new Key(dungeon, x, y, kid);
+                Key key = new Key(x, y, kid);
                 onLoad(key);
                 entity = key;
                 break;

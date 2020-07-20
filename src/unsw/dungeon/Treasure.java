@@ -1,12 +1,9 @@
 package unsw.dungeon;
 
 public class Treasure extends Entity implements Collider{
-        Dungeon dungeon;
 
-        public Treasure(Dungeon dungeon, int x, int y) {
+        public Treasure(int x, int y) {
             super(x, y);
-            this.dungeon = dungeon;
-
         }
     
     @Override
@@ -19,6 +16,5 @@ public class Treasure extends Entity implements Collider{
 
     private void treasureCollision(Player p) {
         p.collectItem(this);
-        dungeon.removeEntity(this);
     }
 }

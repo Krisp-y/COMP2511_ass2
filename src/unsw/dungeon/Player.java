@@ -28,9 +28,11 @@ public class Player extends Moveable {
     public List<Entity> getInventory() {
         return this.inventory;
     }
-
+    
+    /** Moves an item from the dungeon entity list to the player inventory. */
     public void collectItem(Entity e) {
         inventory.add(e);
+        dungeon.removeEntity(e);
     }
 
     public void removeCollectable(Entity e) {

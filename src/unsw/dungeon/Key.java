@@ -1,12 +1,10 @@
 package unsw.dungeon;
 
 public class Key extends Entity implements Collider {
-    Dungeon dungeon;
     int kID;
 
-    public Key(Dungeon dungeon, int x, int y, int kID) {
+    public Key(int x, int y, int kID) {
         super(x, y);
-        this.dungeon = dungeon;
         this.kID = kID;
     }
     
@@ -31,7 +29,5 @@ public class Key extends Entity implements Collider {
             return;
         }
         p.collectItem(this);
-        dungeon.removeKey(this.getKeyID());
-        
     }
 }
