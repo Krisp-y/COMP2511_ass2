@@ -13,7 +13,7 @@ public class DungeonApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Dungeon");
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("boulders.json");
+        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("maze.json");
         DungeonController controller = dungeonLoader.loadController();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
         

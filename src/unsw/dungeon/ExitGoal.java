@@ -4,21 +4,20 @@ import java.util.List;
 
 public class ExitGoal extends BasicGoal {
     
-    private GoalSubscriber dungeon;
-    private boolean isComplete;
-    public ExitGoal(GoalSubscriber dungeon, List<Entity> exitSwitches) {
+    private List<Entity> exitSwitches;
+    public ExitGoal(Dungeon dungeon, List<Entity> exitSwitches) {
         super(dungeon, exitSwitches);
-        this.isComplete = false;
+        this.exitSwitches = exitSwitches;
     }
 
     @Override
     public boolean isComplete() {
-        return isComplete;
-    }
-
-    @Override
-    public void setComplete(boolean isComplete) {
-        this.isComplete = isComplete;
+        for (Entity exitSwitch : exitSwitches) {
+            if (dungeon.isPlayerOn(exitSwitch)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     @Override
@@ -28,22 +27,7 @@ public class ExitGoal extends BasicGoal {
 
     @Override
     public void update() {
-        setComplete(true);
         notifySubscribers();
     }
 
-    @Override
-    public void subscribe(GoalSubscriber gs) {
-        dungeon = gs;
-    }
-
-    @Override
-    public void unsubscribe(GoalSubscriber gs) {
-       dungeon = null;
-    }
-
-    @Override
-    public void notifySubscribers() {
-        dungeon.update();
-    }
 }

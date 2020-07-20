@@ -5,7 +5,7 @@ import java.util.List;
 public class EnemyGoal extends BasicGoal {
     
     private boolean isComplete;
-    public EnemyGoal(GoalSubscriber dungeon, List<Entity> enemies) {
+    public EnemyGoal(Dungeon dungeon, List<Entity> enemies) {
         super(dungeon, enemies);
         this.isComplete = false;
     }
@@ -13,11 +13,6 @@ public class EnemyGoal extends BasicGoal {
     @Override
     public boolean isComplete() {
         return isComplete;
-    }
-
-    @Override
-    public void setComplete(boolean isComplete) {
-        this.isComplete = isComplete;
     }
     
     @Override

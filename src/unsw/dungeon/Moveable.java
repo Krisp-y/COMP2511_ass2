@@ -91,21 +91,41 @@ public abstract class Moveable extends Entity {
         }
     }
     
+    /**
+     * Forces a move in the direction d - used when trying to override collision events. E.g players moving over switches.
+     * @param d Direction of movement.
+     */
+    public void move(Direction d) {
+        if (d == Direction.UP) {
+            moveUp();
+        } else if (d == Direction.DOWN) {
+            moveDown();
+        } else if (d == Direction.LEFT) {
+            moveLeft();
+        } else if (d == Direction.RIGHT) {
+            moveRight();
+        }
+    }
+    
+    /** Moves moveable upwards */
     public void moveUp() {    
         if (getY() > 0)
             y().set(getY() - 1);
     }
-
+    
+    /** Moves moveable downwards */
     public void moveDown() {
         if (getY() < dungeon.getHeight() - 1)
             y().set(getY() + 1);
     }
-
+    
+    /** Moves moveable left */
     public void moveLeft() {
         if (getX() > 0)
             x().set(getX() - 1);
     }
-
+    
+    /** Moves moveable downwards */
     public void moveRight() {
         if (getX() < dungeon.getWidth() - 1)
             x().set(getX() + 1);

@@ -5,7 +5,7 @@ import java.util.List;
 public class TreasureGoal extends BasicGoal {
     
     private boolean isComplete;
-    public TreasureGoal(GoalSubscriber dungeon, List<Entity> treasures) {
+    public TreasureGoal(Dungeon dungeon, List<Entity> treasures) {
         super(dungeon, treasures);
         this.isComplete = false;
     }
@@ -13,11 +13,6 @@ public class TreasureGoal extends BasicGoal {
     @Override
     public boolean isComplete() {
         return isComplete;
-    }
-
-    @Override
-    public void setComplete(boolean isComplete) {
-        this.isComplete = isComplete;
     }
     
     @Override

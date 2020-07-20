@@ -27,46 +27,70 @@ public class Boulder extends Moveable implements Collider {
     private void handlePlayerCollision(Player p) {
         Direction playerMoveDirection = p.getDirection();
         Collider collidingEntity;
-        
+
         switch (playerMoveDirection) {
             case UP:
                 collidingEntity = dungeon.getCollidingEntity(getX(), getY() - 1);
                 // If there is no colliding entity above the boulder, move it up
                 // and move the player up.
-                if (collidingEntity == null) {
+                if (canMoveInto(collidingEntity)) {
                     moveUp();
                     p.moveUp();
                 }
+                
+                if (collidingEntity instanceof FloorSwitch) {
+                    collidingEntity.handleCollision(this);
+                }
+                
                 break;
             case DOWN:
                 collidingEntity = dungeon.getCollidingEntity(getX(), getY() + 1);
-                // If there is no colliding entity below the boulder, move the
-                // boulder down and the player down
-                if (collidingEntity == null) {
+                // If there is no colliding entity below the boulder, or the colliding entity is a switch
+                // move the boulder down and the player down
+                if (canMoveInto(collidingEntity)) {
                     moveDown();
                     p.moveDown();
+                } 
+                
+                if (collidingEntity instanceof FloorSwitch) {
+                    collidingEntity.handleCollision(this);
                 }
+                
                 break;
             case LEFT:
                 collidingEntity = dungeon.getCollidingEntity(getX() - 1, getY());
                 // If there is no colliding entity left of the boulder, move the
                 // boulder left and the player left
-                if (collidingEntity == null) {
+                if (canMoveInto(collidingEntity)) {
                     moveLeft();
                     p.moveLeft();
+                } 
+                
+                if (collidingEntity instanceof FloorSwitch) {
+                    collidingEntity.handleCollision(this);
                 }
+                
                 break;
             case RIGHT:
                 // If there is no colliding entity right of  the boulder, move the
                 // boulder right and the player right
                 collidingEntity = dungeon.getCollidingEntity(getX() + 1, getY());
-                if (collidingEntity == null) {
+                if (canMoveInto(collidingEntity)) {
                     moveRight();
                     p.moveRight();
                 }
+                
+                if (collidingEntity instanceof FloorSwitch) {
+                    collidingEntity.handleCollision(this);
+                }
+                
                 break;
             default:
                 return;
         }
+    }
+    
+    private boolean canMoveInto(Collider collidingEntity) {
+        return collidingEntity == null || collidingEntity instanceof FloorSwitch;
     }
 }

@@ -10,7 +10,10 @@ public class Exit extends Entity implements Collider, GoalPublisher {
 
     @Override
     public void handleCollision(Moveable m) {
-        notifySubscribers();
+        if (m instanceof Player) {
+            m.move(m.getDirection());
+            notifySubscribers();
+        }
     }
 
     @Override

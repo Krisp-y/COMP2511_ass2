@@ -1,35 +1,47 @@
 package unsw.dungeon;
 
-import java.util.List;
-
 public class FloorSwitch extends Entity implements Collider, GoalPublisher {
     
-    private GoalSubscriber floorSwitchGoal;
-    public FloorSwitch(int x, int y) {
+    private GoalSubscriber boulderGoal;
+    private Dungeon dungeon;
+    
+    public FloorSwitch(Dungeon dungeon, int x, int y) {
         super(x, y);
-        // TODO Auto-generated constructor stub
+        this.boulderGoal = null;
+        this.dungeon = dungeon;
     }
 
     @Override
     public void subscribe(GoalSubscriber gs) {
-        
+        boulderGoal = gs;
     }
 
     @Override
     public void unsubscribe(GoalSubscriber gs) {
-        // TODO Auto-generated method stub
-
+        boulderGoal = null;
     }
 
     @Override
     public void notifySubscribers() {
-        // TODO Auto-generated method stub
-
+        boulderGoal.update();
     }
 
     @Override
     public void handleCollision(Moveable m) {
-        // TODO Auto-generated method stub
+        // If there is a boulder collision, notify the floor switch goal that a boulder moved
+        // on top of the switch.
+        if (m instanceof Boulder) {
+            notifySubscribers();
+        }
+        // If the collision is with a player, let them move through if there is no boulder on top. If there is a boulder
+        // on top, then handle the collision through the boulder.
+        if (m instanceof Player) {
+            Boulder b = dungeon.getCollidingBoulder(getX(), getY());
+            if (b == null) {
+                m.move(m.getDirection());
+            } else {
+                b.handleCollision(m);
+            }
+        }
     }
-    
 }

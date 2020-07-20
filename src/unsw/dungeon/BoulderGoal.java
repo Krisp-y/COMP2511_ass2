@@ -4,48 +4,47 @@ import java.util.List;
 
 public class BoulderGoal extends BasicGoal {
     
-    private boolean isComplete;
-    public BoulderGoal(GoalSubscriber dungeon, List<Entity> floorSwitches, List<Entity> boulders) {
+    List<Entity> floorSwitches;
+    List<Entity> boulders;
+    
+    public BoulderGoal(Dungeon dungeon, List<Entity> floorSwitches, List<Entity> boulders) {
         super(dungeon, floorSwitches);
-        this.isComplete = false;
+        this.floorSwitches = floorSwitches;
+        this.boulders = boulders;
     }
 
     @Override
     public boolean isComplete() {
-        return isComplete;
-    }
-
-    @Override
-    public void setComplete(boolean isComplete) {
-        this.isComplete = isComplete;
+        return goalSatisfied();
     }
     
     @Override
     public String toString() {
         return "boulders";
     }
+    
+    private boolean goalSatisfied() {
+        boolean foundBoulder = true;
+        
+        for (Entity floorSwitch : floorSwitches) {
+            foundBoulder = false;
+            for (Entity boulder : boulders) {
+                if (Dungeon.inSamePosition(floorSwitch, boulder)) {
+                    foundBoulder = true;
+                    break;
+                }
+            }
+            if (!foundBoulder) {
+                return false;
+            }
+        }
+        return foundBoulder;
+    }
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-
+        // Notify the dungeon that the state has changed.
+        notifySubscribers();
     }
 
-    @Override
-    public void subscribe(GoalSubscriber gs) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void unsubscribe(GoalSubscriber gs) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void notifySubscribers() {
-        // TODO Auto-generated method stub
-
-    }
 }

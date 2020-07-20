@@ -66,6 +66,7 @@ public class Dungeon implements GoalSubscriber {
     public void removePortal(int ID) {
         entities.removeIf(e -> e instanceof Portal && ((Portal)e).getID() == ID);
     }
+    
     /**
      * Used by moveable objects to determine if they are colliding with
      * collidable objects. The function returns a reference to the an
@@ -80,6 +81,22 @@ public class Dungeon implements GoalSubscriber {
         for (Entity e: entities) {
             if (e instanceof Collider && e.getX() == x && e.getY() == y) {
                 return (Collider) e;
+            }
+        }
+        return null;
+    }
+    
+     /**
+     * Used by floor switches to determine if there is a boulder on top of them.
+     *
+     * @param x x-coordinate in the dungeon
+     * @param y y-coordinate in the dungeon
+     * @return reference to colliding boulder.
+     */
+    public Boulder getCollidingBoulder(int x, int y) {
+        for (Entity e: entities) {
+            if (e instanceof Boulder && e.getX() == x && e.getY() == y) {
+                return (Boulder) e;
             }
         }
         return null;
@@ -101,4 +118,13 @@ public class Dungeon implements GoalSubscriber {
     public boolean isGameEnded() {
         return isGameEnded;
     }
+    
+    public static boolean inSamePosition(Entity a, Entity b) {
+        return a.getX() == b.getX() && a.getY() == b.getY();
+    }
+    
+    public boolean isPlayerOn(Entity e) {
+        return inSamePosition(player, e);
+    }
+    
 }
