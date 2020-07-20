@@ -2,10 +2,10 @@ package unsw.dungeon;
 
 public class Exit extends Entity implements Collider, GoalPublisher {
     
-    private GoalSubscriber goal;
+    private GoalSubscriber exitGoal;
     public Exit(int x, int y) {
         super(x, y);
-        this.goal = null;
+        this.exitGoal = null;
     }
 
     @Override
@@ -14,18 +14,18 @@ public class Exit extends Entity implements Collider, GoalPublisher {
     }
 
     @Override
+    public void notifySubscribers() {
+        exitGoal.update();
+    }
+    
+    @Override
     public void subscribe(GoalSubscriber gs) {
-        this.goal = gs;
+        this.exitGoal = gs;
     }
 
     @Override
     public void unsubscribe(GoalSubscriber s) {
-       this.goal = null;
+       this.exitGoal = null;
+    
     }
-
-    @Override
-    public void notifySubscribers() {
-        goal.update();
-    }
-
 }

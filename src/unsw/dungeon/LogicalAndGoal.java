@@ -11,7 +11,6 @@ public class LogicalAndGoal extends ConjunctionGoal {
     @Override
     public boolean isComplete() {
         boolean result = true;
-        
         for (Goal subGoal : subGoals) {
             result = result && subGoal.isComplete();
         }

@@ -5,7 +5,7 @@ import java.util.List;
 public class BoulderGoal extends BasicGoal {
     
     private boolean isComplete;
-    public BoulderGoal(GoalSubscriber dungeon, List<Entity> floorSwitches) {
+    public BoulderGoal(GoalSubscriber dungeon, List<Entity> floorSwitches, List<Entity> boulders) {
         super(dungeon, floorSwitches);
         this.isComplete = false;
     }

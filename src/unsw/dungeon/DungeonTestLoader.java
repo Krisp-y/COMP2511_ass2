@@ -32,4 +32,9 @@ public class DungeonTestLoader extends DungeonLoader {
     public void onLoad(Portal portal) {
         return;
     }
+    
+    @Override
+    public void onLoad(FloorSwitch floorSwitch) {
+        return;
+    }
 }

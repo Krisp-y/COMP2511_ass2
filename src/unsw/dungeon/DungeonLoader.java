@@ -46,6 +46,7 @@ public abstract class DungeonLoader {
 
         JSONArray jsonEntities = json.getJSONArray("entities");
         Map<String, List<Entity>> entitiesMap = loadEntities(dungeon, jsonEntities);
+        
         // Only try and greate a goal condition if it is specified in json.
         if (json.has("goal-condition")) {
             JSONObject goals = json.getJSONObject("goal-condition");
@@ -53,6 +54,7 @@ public abstract class DungeonLoader {
             Goal mainGoal = loadGoals(entitiesMap, dungeon, goals);
             dungeon.setMainGoal(mainGoal);
         }
+        
         return dungeon;
     }
     
@@ -76,12 +78,12 @@ public abstract class DungeonLoader {
                 return new BoulderGoal(dungeon, entitiesMap.get("floorSwitches"));
             case "enemies":
                 if (entitiesMap.get("enemies") == null) {
-                    throw new InvalidGoalException("there are no floorSwitches specified.");
+                    throw new InvalidGoalException("there are no enemies specified.");
                 }
                 return new EnemyGoal(dungeon, entitiesMap.get("enemies"));
             case "treasure":
                 if (entitiesMap.get("treasure") == null) {
-                    throw new InvalidGoalException("there are no floorSwitches specified.");
+                    throw new InvalidGoalException("there are no treasure specified.");
                 }
                 return new TreasureGoal(dungeon, entitiesMap.get("treasure"));
                 
@@ -164,6 +166,10 @@ public abstract class DungeonLoader {
             onLoad(portal);
             entity = portal;
             break;
+        case "floorSwitch":
+            FloorSwitch floorSwitch = new FloorSwitch(x, y);
+            onLoad(floorSwitch);
+            entity = floorSwitch;
         }
         return entity;
     }
@@ -178,5 +184,7 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Exit exit);
 
     public abstract void onLoad(Portal portal);
+    
+    public abstract void onLoad(FloorSwitch floorSwitch);
 
 }
