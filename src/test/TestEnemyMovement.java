@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -150,6 +151,7 @@ class TestEnemyMovement {
         e = new Enemy(d, 9, 9);
         d.setPlayer(p);
         d.addEntity(e);
+        d.addEntity(p);
         
         int originalDistance = getDistance(p, e);
         assertEquals(18, originalDistance);
@@ -164,14 +166,23 @@ class TestEnemyMovement {
         d.tick();
         p.tryMoveRight();
         d.tick();
-        p.tryMoveRight();
+        p.tryMoveRight(); // Player has picked up the potion.
         d.tick();
         
         originalDistance = getDistance(p, e);
-        assertEquals(6, originalDistance);
+        assertEquals(8, originalDistance);
         
         assertTrue(p.isInvincible());
         
+        for (int i = 0; i < 15; i++) {
+            p.tryMoveUp(); //Player moves down to (0,1)
+            d.tick();
+            assertTrue(originalDistance <= getDistance(p, e) + 1); // Enemy moves away from player
+            originalDistance = getDistance(p, e);
+        }
+        
+        // Player no longer invisible.
+        assertFalse(p.isInvincible());
     }
-
+    
 }

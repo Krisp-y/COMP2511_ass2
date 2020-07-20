@@ -144,7 +144,6 @@ public class Dungeon implements GoalSubscriber {
         }
     }
     
-    // TODO: do stuff to correctly handle the ending of the game.
     public void endGame() {
         this.isGameEnded = true;
     }

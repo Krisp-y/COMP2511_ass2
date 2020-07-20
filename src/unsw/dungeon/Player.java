@@ -8,7 +8,7 @@ import java.util.List;
  * @author Robert Clifton-Everest
  *
  */
-public class Player extends Moveable {
+public class Player extends Moveable implements Tickable {
     private List<Entity> inventory;
     /**
      * Create a player positioned in square (x,y)
@@ -76,8 +76,9 @@ public class Player extends Moveable {
         
         // If we have just added a potion, make the player invincible and make enemies retreat
         if (!isInvincible()) {
-            dungeon.setEnemiesToAttack();
+            dungeon.setEnemiesToRetreat();
         }
+        
         inventory.add(potion);
         dungeon.removeEntity(potion);
     }   
@@ -87,16 +88,18 @@ public class Player extends Moveable {
         
         // If we have removed a potion and we have none left, make the enemies attack
         if (!isInvincible()) {
-            dungeon.setEnemiesToRetreat();
+            dungeon.setEnemiesToAttack();
         }
     }
     
     public boolean isInvincible() {
+        System.out.println(inventory);
         for (Entity e: inventory) {
             if (e instanceof Potion) {
                 return true;
             }
         }
+        
         return false;
     }
     
@@ -134,5 +137,30 @@ public class Player extends Moveable {
         }
         return -1;
     }
+
+    @Override
+    public void tick() {
+        for (Entity e: inventory) {
+            if (e instanceof Tickable) {
+                ((Tickable) e).tick();
+            }
+        }
+        removeEmptyPotions();
+    }
     
+    private void removeEmptyPotions() {
+        List<Potion> potionsEmpty = new ArrayList<Potion>();
+        for (Entity e: inventory) {
+            if (e instanceof Potion) {
+                Potion p = (Potion) e;
+                if (p.getHealth() == 0) {
+                    potionsEmpty.add(p);
+                }
+            } 
+        }
+        
+        for (Potion p : potionsEmpty) {
+            removePotion(p);
+        }
+    }
 }

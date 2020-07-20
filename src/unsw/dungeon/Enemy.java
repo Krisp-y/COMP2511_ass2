@@ -45,6 +45,8 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
     
     @Override
     public void notifySubscribers() {
+        if (enemyGoal == null)
+            return;
         enemyGoal.update();
     }
     
