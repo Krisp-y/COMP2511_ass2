@@ -1,7 +1,5 @@
 package unsw.dungeon;
 
-import java.util.List;
-
 public class Key extends Entity implements Collider {
     Dungeon dungeon;
     int kID;

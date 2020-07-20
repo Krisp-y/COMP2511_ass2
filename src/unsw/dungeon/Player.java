@@ -2,7 +2,6 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 import java.util.List;
-import unsw.dungeon.Key;
 
 /**
  * The player entity

@@ -1,7 +1,5 @@
 package unsw.dungeon;
 
-import java.util.List;
-
 public class Door extends Moveable implements Collider {
     private int ID;
     public Door(Dungeon dungeon, int x, int y, int ID) {

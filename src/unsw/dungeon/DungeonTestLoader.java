@@ -40,6 +40,8 @@ public class DungeonTestLoader extends DungeonLoader {
     
     @Override
     public void onLoad(Enemy enemy) {
+        return;
+    }
 
     @Override
     public void onLoad(Key key) {
