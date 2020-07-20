@@ -4,15 +4,19 @@ import java.util.List;
 
 public class TreasureGoal extends BasicGoal {
     
-    private boolean isComplete;
+    private int numTreasures;
+    private int numCollected;
     public TreasureGoal(Dungeon dungeon, List<Entity> treasures) {
         super(dungeon, treasures);
-        this.isComplete = false;
+        this.numTreasures = treasures.size();
+        this.numCollected = 0;
     }
 
     @Override
     public boolean isComplete() {
-        return isComplete;
+        System.out.println(numTreasures);
+        System.out.println(numCollected);
+        return numTreasures == numCollected;
     }
     
     @Override
@@ -22,25 +26,8 @@ public class TreasureGoal extends BasicGoal {
 
     @Override
     public void update() {
-        
-    }
-
-    @Override
-    public void subscribe(GoalSubscriber gs) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void unsubscribe(GoalSubscriber gs) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void notifySubscribers() {
-        // TODO Auto-generated method stub
-
+        numCollected++; //update is called when the player picks up treasure.
+        notifySubscribers();
     }
     
 }

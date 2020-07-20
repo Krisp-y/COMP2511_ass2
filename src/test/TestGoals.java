@@ -627,6 +627,80 @@ class TestGoals {
                 
                 
             }
+        
+            @Test
+            @DisplayName("testing treasure goal completion")
+            void testTreasureGoalCompletion() {
+                // Test the basic boulder goal works
+                JSONObject json = new JSONObject()
+                    .put("width", 3)
+                    .put("height", 3)
+                    .put("entities", new JSONArray()
+                        .put(new JSONObject()
+                            .put("type", "treasure")
+                            .put("x", 1)
+                            .put("y", 1)
+                        )
+                    )
+                    .put("goal-condition", new JSONObject()
+                        .put("goal", "treasure")
+                    );
+                DungeonLoader dl = new DungeonTestLoader(json);
+                Dungeon d = dl.load();
+                Player p = new Player(d, 0, 0);
+                d.setPlayer(p);
+                
+                // Ensure the game hasn't ended yet.
+                assertFalse(d.isGameEnded());
+                
+                // Make the player push the boulder onto the floor switch
+                p.tryMoveDown();
+                p.tryMoveRight(); // PLayer at (1,1) collects treasure
+        
+                // The player has collected the treasure so the game has ended.
+                assertTrue(d.isGameEnded());
+            }
+            
+            @Test
+            @DisplayName("testing treasure goal completion two treasures")
+            void testTreasureGoalCompletionTwoTreasures() {
+                JSONObject json = new JSONObject()
+                    .put("width", 4)
+                    .put("height", 4)
+                    .put("entities", new JSONArray()
+                        .put(new JSONObject()
+                            .put("type", "treasure")
+                            .put("x", 1)
+                            .put("y", 1)
+                        )
+                        .put(new JSONObject()
+                            .put("type", "treasure")
+                            .put("x", 2)
+                            .put("y", 2)
+                        )
+                    )
+                    .put("goal-condition", new JSONObject()
+                        .put("goal", "treasure")
+                    );
+                DungeonLoader dl = new DungeonTestLoader(json);
+                Dungeon d = dl.load();
+                Player p = new Player(d, 0, 0);
+                d.setPlayer(p);
+                
+                // Ensure the game hasn't ended yet.
+                assertFalse(d.isGameEnded());
+                
+                // Make the player push the boulder onto the floor switch
+                p.tryMoveDown();
+                p.tryMoveRight(); // PLayer at (1,1) collects treasure
+                assertFalse(d.isGameEnded()); // There is still one treasure remaining to be picked up.
+                
+                p.tryMoveDown();
+                p.tryMoveRight(); // PLayer at (2,2) collects treasure
+                
+                // When the player gets onto the switch the game has ended since the goals are complete.
+                assertTrue(d.isGameEnded());
+            }
         }
         
         @Nested
