@@ -33,7 +33,7 @@ public class AttackStrategy implements EnemyMovementStrategy {
      * @param y players y position
      * @return Directoin array where the first entry is the best direction and the second entry is second best.
      */
-    public Direction[] calculateNextDirection(int x, int y) {
+    private Direction[] calculateNextDirection(int x, int y) {
         int dx = x - enemy.getX();
         int dy = y - enemy.getY();
         Direction[] d = {Direction.STATIONARY, Direction.STATIONARY};

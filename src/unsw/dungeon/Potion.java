@@ -3,7 +3,7 @@ package unsw.dungeon;
 public class Potion extends Entity implements Collider, Tickable {
     
     private int health;
-    Player player;
+    private Player player;
     private boolean collected;
     public Potion(int x, int y) {
         super(x, y);

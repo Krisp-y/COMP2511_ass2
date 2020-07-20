@@ -4,8 +4,8 @@ import java.util.List;
 
 public class BoulderGoal extends BasicGoal {
     
-    List<Entity> floorSwitches;
-    List<Entity> boulders;
+    private List<Entity> floorSwitches;
+    private List<Entity> boulders;
     
     public BoulderGoal(Dungeon dungeon, List<Entity> floorSwitches, List<Entity> boulders) {
         super(dungeon, floorSwitches);
