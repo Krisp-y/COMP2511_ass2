@@ -1,31 +1,29 @@
 {
     "entities": [
         {
+            "x": 1,
+            "y": 0,
+            "type": "weapon"
+        },
+        {
+            "x": 2,
+            "y": 2,
+            "type": "enemy"
+        },
+        {
             "x": 3,
-            "y": 3,
-            "type": "potion"
-        },
-        {
-            "x": 5,
-            "y": 5,
-            "type": "wall"
-        },
-        {
-            "x": 5,
-            "y": 6,
-            "type": "wall"
+            "y": 2,
+            "type": "enemy"
         },
         {
             "x": 0,
             "y": 0,
             "type": "player"
-        },
-        {
-            "x": 9,
-            "y": 9,
-            "type": "enemy"
         }
     ],
-    "width": 10,
-    "height": 10
+    "width": 4,
+    "goal-condition": {
+        "goal": "enemies"
+    },
+    "height": 4
 }

@@ -4,19 +4,20 @@ import java.util.List;
 
 public class EnemyGoal extends BasicGoal {
     
-    private boolean isComplete;
+    private int numEnemies;
+    private int numDead;
+    
     public EnemyGoal(Dungeon dungeon, List<Entity> enemies) {
         super(dungeon, enemies);
-        this.isComplete = false;
-    }
-    
-    public void setComplete() {
-        this.isComplete = true;
+        this.numDead = 0;
+        this.numEnemies = enemies.size();
     }
 
     @Override
     public boolean isComplete() {
-        return isComplete;
+        System.out.println("num dead: " + numDead);
+        System.out.println("num enemies: " + numEnemies);
+        return numDead == numEnemies;
     }
     
     @Override
@@ -26,6 +27,7 @@ public class EnemyGoal extends BasicGoal {
 
     @Override
     public void update() {
+        numDead++; // update is called when an enemy is killed;
         notifySubscribers();
     }
 }

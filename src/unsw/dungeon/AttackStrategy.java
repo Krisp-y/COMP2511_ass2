@@ -21,7 +21,7 @@ public class AttackStrategy implements EnemyMovementStrategy {
         enemy.tryMove(bestDirections[0]);
         
         // If the enemy can't move, try and move in the second best direction.
-        if (prevx == enemy.getX() && prevy == enemy.getY()) {
+        if (enemy.isAlive() && prevx == enemy.getX() && prevy == enemy.getY()) {
             enemy.tryMove(bestDirections[1]);
         }
         

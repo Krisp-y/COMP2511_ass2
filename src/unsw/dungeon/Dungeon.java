@@ -22,6 +22,7 @@ public class Dungeon implements GoalSubscriber {
     private Player player;
     private Goal mainGoal;
     private boolean isGameEnded;
+    private List<Entity> markedForDeletion;
      
     public Dungeon(int width, int height) {
         this.width = width;
@@ -29,6 +30,7 @@ public class Dungeon implements GoalSubscriber {
         this.entities = new ArrayList<>();
         this.player = null;
         this.isGameEnded = false;
+        this.markedForDeletion = new ArrayList<Entity>();
     }
 
     public int getWidth() {
@@ -166,6 +168,18 @@ public class Dungeon implements GoalSubscriber {
                 ((Tickable) e).tick();
             }
         }
+        deleteRemovedEntities();
+    }
+    
+    public void markForDeletion(Entity e) {
+        markedForDeletion.add(e);
+    }
+
+    private void deleteRemovedEntities() {
+        for (Entity e : markedForDeletion) {
+            entities.remove(e);
+        }
+        markedForDeletion.clear();
     }
     
     public int getPlayerPositionX() {

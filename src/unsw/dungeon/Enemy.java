@@ -4,11 +4,13 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
     
     private GoalSubscriber enemyGoal;
     private EnemyMovementStrategy ms;
+    private boolean alive;
     
     public Enemy(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
         this.ms = new AttackStrategy(dungeon, this);
         this.enemyGoal = null;
+        this.alive = true;
     }
 
     @Override
@@ -22,13 +24,16 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
                     p.removeWeapon();
                 }
                 
-                dungeon.removeEntity(this);
+                dungeon.markForDeletion(this);
+                alive = false;
                 notifySubscribers();
                 
             } else if (p.isInvincible()) { // If the player is invincible from the potion, kill the enemy.
                 dungeon.removeEntity(this);
+                alive = false;
                 notifySubscribers();
             } else { // Otherwise the player is killed by the enemy.
+                p.setAlive(false);
                 dungeon.endGame();
             }
         }
@@ -45,8 +50,9 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
     
     @Override
     public void notifySubscribers() {
-        if (enemyGoal == null)
+        if (enemyGoal == null) {
             return;
+        }
         enemyGoal.update();
     }
     
@@ -59,5 +65,9 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
     public void unsubscribe(GoalSubscriber s) {
        this.enemyGoal = null;
     }
+
+	public boolean isAlive() {
+		return alive;
+	}
     
 }

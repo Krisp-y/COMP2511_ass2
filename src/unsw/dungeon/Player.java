@@ -8,8 +8,10 @@ import java.util.List;
  * @author Robert Clifton-Everest
  *
  */
-public class Player extends Moveable implements Tickable {
+public class Player extends Moveable implements Tickable, Collider {
     private List<Entity> inventory;
+    private boolean alive;
+    
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -18,6 +20,7 @@ public class Player extends Moveable implements Tickable {
     public Player(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
         this.inventory = new ArrayList<>();
+        this.alive = true;
     }   
 
     public void teleport(int x, int y) {
@@ -162,5 +165,21 @@ public class Player extends Moveable implements Tickable {
         for (Potion p : potionsEmpty) {
             removePotion(p);
         }
+    }
+
+    @Override
+    public void handleCollision(Moveable m) {
+        if (m instanceof Enemy) {
+            Enemy enemy = (Enemy) m;
+            enemy.handleCollision(this);
+        }
+    }
+    
+    public boolean isAlive() {
+        return alive;
+    }
+    
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 }
