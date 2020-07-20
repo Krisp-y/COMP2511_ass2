@@ -1,5 +1,9 @@
 package unsw.dungeon;
 
+import java.util.List;
+
+import org.hamcrest.core.IsInstanceOf;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -39,5 +43,7 @@ public class Entity {
     public int getX() {
         return x().get();
     }
+
+
 
 }

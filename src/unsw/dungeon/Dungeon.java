@@ -57,7 +57,7 @@ public class Dungeon {
     }
 
     public void removeKey(int ID) {
-        entities.removeIf(e -> e instanceof Key && ((Key)e).getID() == ID);
+        entities.removeIf(e -> e instanceof Key && ((Key)e).getKeyID() == ID);
     }
     /**
      * Used by moveable objects to determine if they are colliding with

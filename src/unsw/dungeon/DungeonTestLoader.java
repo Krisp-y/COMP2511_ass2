@@ -27,4 +27,13 @@ public class DungeonTestLoader extends DungeonLoader {
     public void onLoad(Portal portal) {
         return;
     }
+
+    @Override
+    public void onLoad(Key key) {
+        return;
+    }
+    @Override
+    public void onLoad(Door door) {
+        return;
+    }
 }

@@ -79,6 +79,20 @@ public abstract class DungeonLoader {
             entity = portal;
             this.numPortals++;
             break;
+        case "key":
+            //portal id is given as JSON object 
+            int kid = json.getInt("id");
+            Key key = new Key(dungeon, x, y, kid);
+            onLoad(key);
+            entity = key;
+            break;
+        case "door":
+            //portal id is given as JSON object 
+            int did = json.getInt("id");
+            Door door = new Door(dungeon, x, y, did);
+            onLoad(door);
+            entity = door;
+            break;
         }
         dungeon.addEntity(entity);
     }
@@ -91,5 +105,9 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Boulder boulder);
 
     public abstract void onLoad(Portal portal);
+
+    public abstract void onLoad(Key key);
+
+    public abstract void onLoad(Door door);
 
 }
