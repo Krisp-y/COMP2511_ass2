@@ -36,4 +36,9 @@ public class DungeonTestLoader extends DungeonLoader {
     public void onLoad(Door door) {
         return;
     }
+
+    @Override
+    public void onLoad(Treasure treasure) {
+        return;
+    }
 }

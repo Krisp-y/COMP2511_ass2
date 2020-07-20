@@ -37,6 +37,7 @@ public class Player extends Moveable {
     public void removeCollectable(Entity e) {
         inventory.remove(e);
     }
+
     public boolean hasKey() {
         for (Entity e: inventory) {
             if (e instanceof Key) {
@@ -58,5 +59,15 @@ public class Player extends Moveable {
 
     public void useKey() {
         inventory.removeIf(e -> e instanceof Key);
+    }
+
+    public int countTreasure() {
+        int count = 0;
+        for(Entity e: inventory ) {
+            if (e instanceof Treasure) {
+                count++;
+            }
+        }
+        return count;
     }
 }

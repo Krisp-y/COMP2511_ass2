@@ -93,6 +93,11 @@ public abstract class DungeonLoader {
             onLoad(door);
             entity = door;
             break;
+        case "treasure":
+            Treasure treasure = new Treasure(dungeon, x, y);
+            onLoad(treasure);
+            entity = treasure;
+            break;
         }
         dungeon.addEntity(entity);
     }
@@ -109,5 +114,7 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Key key);
 
     public abstract void onLoad(Door door);
+
+    public abstract void onLoad(Treasure treasure);
 
 }
