@@ -45,7 +45,16 @@ public class Player extends Moveable {
         }
         return false;
     }
-
+    
+    public boolean hasWeapon() {
+        for (Entity e: inventory) {
+            if (e instanceof Weapon) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public int getKeyID() {
         for (Entity e: inventory) {
             if (e instanceof Key) {
@@ -68,5 +77,16 @@ public class Player extends Moveable {
             }
         }
         return count;
+    }
+
+    public int checkWeaponHealth() {
+        for (Entity e: inventory) {
+            if (e instanceof Weapon) {
+                Weapon w = (Weapon)e;
+                return w.getHealth();
+            }
+        }
+        return -1;
+
     }
 }
