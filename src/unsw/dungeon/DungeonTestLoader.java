@@ -40,6 +40,18 @@ public class DungeonTestLoader extends DungeonLoader {
     
     @Override
     public void onLoad(Enemy enemy) {
+
+    @Override
+    public void onLoad(Key key) {
+        return;
+    }
+    @Override
+    public void onLoad(Door door) {
+        return;
+    }
+
+    @Override
+    public void onLoad(Treasure treasure) {
         return;
     }
 }

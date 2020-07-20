@@ -5,12 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Nested;
 
-import unsw.dungeon.Boulder;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.DungeonTestLoader;
 import unsw.dungeon.Enemy;

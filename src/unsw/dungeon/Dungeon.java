@@ -67,6 +67,14 @@ public class Dungeon implements GoalSubscriber {
         entities.removeIf(e -> e instanceof Portal && ((Portal)e).getID() == ID);
     }
     
+
+    public void removeKey(int ID) {
+        entities.removeIf(e -> e instanceof Key && ((Key)e).getKeyID() == ID);
+    }
+
+    public void removeEntity(Entity e) {
+        entities.remove(e);
+    }
     /**
      * Used by moveable objects to determine if they are colliding with
      * collidable objects. The function returns a reference to the an
@@ -83,6 +91,7 @@ public class Dungeon implements GoalSubscriber {
                 return (Collider) e;
             }
         }
+        
         return null;
     }
     
