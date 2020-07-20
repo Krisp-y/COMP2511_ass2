@@ -18,7 +18,7 @@ import unsw.dungeon.Dungeon;
 import unsw.dungeon.DungeonLoader;
 
 @DisplayName("testing goals")
-public class TestGoals {    
+class TestGoals {    
     @Nested
     @DisplayName("testing goal creation")
     class TestGoalCreation {

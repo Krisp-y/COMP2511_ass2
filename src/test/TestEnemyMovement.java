@@ -48,12 +48,13 @@ class TestEnemyMovement {
         assertEquals(4, originalDistance); // Make sure the getdistance function is working.
         
         p.tryMoveDown(); //Player moves down to (0,1)
-        
+        d.tick();
         // When the player moves down the distance should shrink between enemy and player
         assertTrue(originalDistance >= getDistance(p, e)); // Enemy should be at (2,1)
         originalDistance = getDistance(p, e);
         
         p.tryMoveRight();
+        d.tick();
         assertTrue(originalDistance >= getDistance(p, e)); // Player and enemy at (1,1)
         assertEquals(0, getDistance(p, e));
     }
@@ -77,42 +78,48 @@ class TestEnemyMovement {
                 )
                 .put(new JSONObject()
                     .put("type", "wall")
-                    .put("x", 3)
-                    .put("y", 2)
+                    .put("x", 2)
+                    .put("y", 1)
                 )
             );
+        System.out.println(json);
         DungeonLoader dl = new DungeonTestLoader(json);
         d = dl.load();
         p = new Player(d, 0, 0);
-        e = new Enemy(d, 4, 4);
+        e = new Enemy(d, 3, 3);
         d.setPlayer(p);
         d.addEntity(e);
         
         int originalDistance = getDistance(p, e);
-        assertEquals(8, originalDistance);
+        assertEquals(6, originalDistance);
         
         // When not blocked by walls, the distance between the player and the enemy should never grow.
         
         p.tryMoveDown(); //Player moves down to (0,1)
+        d.tick();
         assertTrue(originalDistance >= getDistance(p, e)); // Enemy should be at (2,1)
         originalDistance = getDistance(p, e);
         
         p.tryMoveRight();
-        assertTrue(originalDistance >= getDistance(p, e));
-        originalDistance = getDistance(p, e);
-        
-        p.tryMoveRight();
+        d.tick();
         assertTrue(originalDistance >= getDistance(p, e));
         originalDistance = getDistance(p, e);
         
         // When the enemy is blocked by a wall, the distance should grow by a factor no greater than one,
         // In this case the enemy is blocked and the player moves, but the enemy does not turn around or go the
         // wrong direction.
+        p.tryMoveRight();
+        d.tick();
+        assertTrue(originalDistance + 1 >= getDistance(p, e));
+        originalDistance = getDistance(p, e);
+             
         p.tryMoveUp();
-        assertTrue(originalDistance >= getDistance(p, e) + 1);
+        d.tick();
+        assertTrue(originalDistance >= getDistance(p, e));
         originalDistance = getDistance(p, e);
         
         p.tryMoveRight();
+        d.tick();
         assertTrue(originalDistance >= getDistance(p, e));
         originalDistance = getDistance(p, e);
     }
