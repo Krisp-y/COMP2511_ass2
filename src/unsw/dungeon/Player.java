@@ -47,7 +47,7 @@ public class Player extends Moveable {
         }
         return false;
     }
-
+    
     public int getKeyID() {
         for (Entity e: inventory) {
             if (e instanceof Key) {
@@ -99,4 +99,40 @@ public class Player extends Moveable {
         }
         return false;
     }
+    
+    public boolean hasWeapon() {
+        for (Entity e: inventory) {
+            if (e instanceof Weapon) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void addWeapon(Weapon w) {
+        inventory.add(w);
+        dungeon.removeEntity(w);
+    }
+    
+    public void removeWeapon() {
+        inventory.removeIf(e -> e instanceof Weapon);
+    }
+    
+    public void reduceWeaponHealth() {
+        for (Entity e: inventory) {
+            if (e instanceof Weapon) {
+                ((Weapon) e).decrementHealth();
+            }
+        }
+    }
+    
+    public int getWeaponHealth() {
+        for (Entity e: inventory) {
+            if (e instanceof Weapon) {
+                return ((Weapon) e).getHealth();
+            }
+        }
+        return -1;
+    }
+    
 }

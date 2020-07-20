@@ -201,6 +201,11 @@ public abstract class DungeonLoader {
                 onLoad(potion);
                 entity = potion;
                 break;
+            case "weapon":
+                Weapon weapon = new Weapon(x, y);
+                onLoad(weapon);
+                entity = weapon;
+                break;
         }
         return entity;
     }
@@ -226,5 +231,6 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Treasure treasure);
     
     public abstract void onLoad(Potion potion);
-
+    
+    public abstract void onLoad(Weapon potion);
 }

@@ -62,4 +62,9 @@ public class DungeonTestLoader extends DungeonLoader {
         return;
     }
     
+    @Override
+    public void onLoad(Weapon weapon) {
+        return;
+    }
+    
 }
