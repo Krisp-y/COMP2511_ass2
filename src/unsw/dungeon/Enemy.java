@@ -14,10 +14,24 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
     @Override
     public void handleCollision(Moveable m) {
         if (m instanceof Player) {
+            Player p = (Player)m;
+            if(p.hasWeapon()) {
+                p.reduceWeaponHealth();
+                if(p.checkWeaponHealth() == 0) {
+                    p.removeWeapon();;
+                }
+                //kill enemy
+                dungeon.removeEntity(this);
+                notifySubscribers();
+                //Zac please edit base on potion implementation
+            } else if (p.hasPotion()) {
+                dungeon.removeEntity(this);
+                notifySubscribers();
+            } else {
             dungeon.endGame();
         }
     }
-
+}
     @Override
     public void tick() {
         ms.move();

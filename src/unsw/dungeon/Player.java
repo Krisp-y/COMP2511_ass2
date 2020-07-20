@@ -79,6 +79,10 @@ public class Player extends Moveable {
         return count;
     }
 
+    public void removeWeapon() {
+        inventory.removeIf(e -> e instanceof Weapon);
+    }
+    
     public int checkWeaponHealth() {
         for (Entity e: inventory) {
             if (e instanceof Weapon) {
@@ -89,4 +93,14 @@ public class Player extends Moveable {
         return -1;
 
     }
+
+    public void reduceWeaponHealth() {
+        for (Entity e: inventory) {
+            if (e instanceof Weapon) {
+                Weapon w = (Weapon)e;
+                w.decrementHealth();
+            }
+        }
+    }
+
 }

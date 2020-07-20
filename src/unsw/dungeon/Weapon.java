@@ -22,6 +22,9 @@ public class Weapon extends Entity implements Collider {
         return health;
     }
 
+    public void decrementHealth() {
+        health--;
+    }
     private void weaponCollision(Player p) {
         if(p.hasWeapon()) {
             return;
@@ -30,7 +33,6 @@ public class Weapon extends Entity implements Collider {
         dungeon.removeEntity(this);
         
     }
-    }
+}
     
 
-}
