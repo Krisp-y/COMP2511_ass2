@@ -47,7 +47,7 @@ public abstract class Moveable extends Entity {
     }
     
     /** Attempts to move Moveable up, changes state on collision. */
-    public void  tryMoveUp() {        
+    public void tryMoveUp() {        
         direction = Direction.UP;
         Collider c = dungeon.getCollidingEntity(getX(), getY() - 1);
         if (c == null) {
@@ -70,7 +70,7 @@ public abstract class Moveable extends Entity {
     }
     
     /** Attempts to move Moveable left, changes state on collision. */
-    public void  tryMoveLeft() {
+    public void tryMoveLeft() {
         direction = Direction.LEFT;
         Collider c = dungeon.getCollidingEntity(getX() - 1, getY());
         if (c == null) {

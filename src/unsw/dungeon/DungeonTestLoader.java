@@ -37,4 +37,9 @@ public class DungeonTestLoader extends DungeonLoader {
     public void onLoad(FloorSwitch floorSwitch) {
         return;
     }
+    
+    @Override
+    public void onLoad(Enemy enemy) {
+        return;
+    }
 }

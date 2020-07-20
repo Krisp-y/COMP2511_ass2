@@ -127,4 +127,20 @@ public class Dungeon implements GoalSubscriber {
         return inSamePosition(player, e);
     }
     
+    public void tick() {
+        for (Entity e: entities) {
+            if (e instanceof Tickable) {
+                ((Tickable) e).tick();
+            }
+        }
+    }
+    
+    public int getPlayerPositionX() {
+        return player.getX();
+    }
+    
+    public int getPlayerPositionY() {
+        return player.getY();
+    }
+    
 }

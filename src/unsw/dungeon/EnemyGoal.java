@@ -9,6 +9,10 @@ public class EnemyGoal extends BasicGoal {
         super(dungeon, enemies);
         this.isComplete = false;
     }
+    
+    public void setComplete() {
+        this.isComplete = true;
+    }
 
     @Override
     public boolean isComplete() {
@@ -22,25 +26,6 @@ public class EnemyGoal extends BasicGoal {
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void subscribe(GoalSubscriber gs) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void unsubscribe(GoalSubscriber gs) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void notifySubscribers() {
-        // TODO Auto-generated method stub
-
+        notifySubscribers();
     }
 }

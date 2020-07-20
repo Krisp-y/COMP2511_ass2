@@ -79,10 +79,10 @@ public abstract class DungeonLoader {
                 }
                 return new BoulderGoal(dungeon, entitiesMap.get("switch"), entitiesMap.get("boulder"));
             case "enemies":
-                if (entitiesMap.get("enemies") == null) {
+                if (entitiesMap.get("enemy") == null) {
                     throw new InvalidGoalException("Enemy goal specified but not enemies provided.");
                 }
-                return new EnemyGoal(dungeon, entitiesMap.get("enemies"));
+                return new EnemyGoal(dungeon, entitiesMap.get("enemy"));
             case "treasure":
                 if (entitiesMap.get("treasure") == null) {
                     throw new InvalidGoalException("Treasure goal specified but no treasure provided.");
@@ -171,6 +171,12 @@ public abstract class DungeonLoader {
                 FloorSwitch floorSwitch = new FloorSwitch(dungeon, x, y);
                 onLoad(floorSwitch);
                 entity = floorSwitch;
+                break;
+            case "enemy":
+                Enemy enemy = new Enemy(dungeon, x, y);
+                onLoad(enemy);
+                entity = enemy;
+                break;
         }
         return entity;
     }
@@ -186,5 +192,7 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Portal portal);
 
     public abstract void onLoad(FloorSwitch floorSwitch);
+    
+    public abstract void onLoad(Enemy enemy);
 
 }

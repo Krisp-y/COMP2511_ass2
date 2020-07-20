@@ -67,6 +67,8 @@ public class DungeonController {
         default:
             break;
         }
+        
+        dungeon.tick();
     }
 
 }
