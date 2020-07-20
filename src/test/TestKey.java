@@ -42,6 +42,12 @@ public class TestKey {
                         .put("type", "key")
                         .put("id", 1)
                     )
+                    .put(new JSONObject()
+                        .put("x", 2)
+                        .put("y", 3)
+                        .put("type", "door")
+                        .put("id", 1)
+                    )
                         
                 );
             DungeonLoader dl = new DungeonTestLoader(simpleDungeon);
@@ -82,7 +88,15 @@ public class TestKey {
         @DisplayName("check player can move onto door when correct key held")
         
         void testKeyID() {
-
+            player_.tryMoveRight(); // Player at (1,0)
+            player_.tryMoveRight(); // Player at (2,0)
+            player_.tryMoveDown(); // Player at (2,1)
+            player_.tryMoveDown(); // Player at (2,2)
+            // Player should have collided with key at (2,2)
+            player_.tryMoveDown(); // Player at (2,3)
+            //Player should not be able to move down onto door unless they hold key 1
+            assertEquals(2, player_.getX());
+            assertEquals(3, player_.getY());
         }
     }
 
