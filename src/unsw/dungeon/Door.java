@@ -1,13 +1,11 @@
 package unsw.dungeon;
 
-public class Door extends Entity implements Collider {
-    private int ID;
-    Dungeon dungeon;
-    int x;
-    int y;
+import java.util.List;
 
+public class Door extends Moveable implements Collider {
+    private int ID;
     public Door(int x, int y, int ID, Dungeon dungeon) {
-        super(x, y);
+        super(dungeon, x, y);
         this.ID = ID;
 
     }
@@ -26,10 +24,10 @@ public class Door extends Entity implements Collider {
         switch (playerMoveDirection) {
             case UP:
                 collidingEntity = dungeon.getCollidingEntity(getX(), getY() - 1);
-                // If there is no colliding entity above the boulder, move it up
+                // If there is no colliding entity above the door, move it up
                 // and move the player up.
                 if (collidingEntity == null) {
-                    if(p.hasKey() && p.getID() == this.getDoorID) {
+                    if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveUp();
                     }
                     
@@ -40,7 +38,7 @@ public class Door extends Entity implements Collider {
                 // If there is no colliding entity below the boulder, move the
                 // boulder down and the player down
                 if (collidingEntity == null) {
-                    if(p.hasKey() && p.getID() == this.getDoorID) {
+                    if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveDown();
                     }
                     
@@ -51,7 +49,7 @@ public class Door extends Entity implements Collider {
                 // If there is no colliding entity left of the boulder, move the
                 // boulder left and the player left
                 if (collidingEntity == null) {
-                    if(p.hasKey() && p.getID() == this.getDoorID) {
+                    if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveLeft();
                     }
                     
@@ -62,7 +60,7 @@ public class Door extends Entity implements Collider {
                 // boulder right and the player right
                 collidingEntity = dungeon.getCollidingEntity(getX() + 1, getY());
                 if (collidingEntity == null) {
-                    if(p.hasKey() && p.getID() == this.getDoorID) {
+                    if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveRight();
                     }
                     
@@ -78,5 +76,6 @@ public class Door extends Entity implements Collider {
     public int getDoorID() {
         return this.ID;
     }
+
     
 }

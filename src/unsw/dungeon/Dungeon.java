@@ -55,6 +55,10 @@ public class Dungeon {
     public void removePortal(int ID) {
         entities.removeIf(e -> e instanceof Portal && ((Portal)e).getID() == ID);
     }
+
+    public void removeKey(int ID) {
+        entities.removeIf(e -> e instanceof Key && ((Key)e).getID() == ID);
+    }
     /**
      * Used by moveable objects to determine if they are colliding with
      * collidable objects. The function returns a reference to the an

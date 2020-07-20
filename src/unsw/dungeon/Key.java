@@ -19,7 +19,7 @@ public class Key extends Entity implements Collider {
         }
         
     }
-    public int getID() {
+    public int getKeyID() {
         return kID;
     }
 
@@ -29,13 +29,14 @@ public class Key extends Entity implements Collider {
 
     private void keyCollision(Player p) {
         //not a collision if they already have key
-        if(hasKey(p.getInventory())) {
+        if(p.hasKey()) {
             return;
         }
         p.collectItem(this);
-        dungeon.removeKey(this.getID());
+        dungeon.removeKey(this.getKeyID());
 
     }
+
 
     
 
