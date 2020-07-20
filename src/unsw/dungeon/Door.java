@@ -7,7 +7,7 @@ public class Door extends Moveable implements Collider {
     public Door(Dungeon dungeon, int x, int y, int ID) {
         super(dungeon, x, y);
         this.ID = ID;
-
+        
     }
 
     @Override
@@ -20,11 +20,11 @@ public class Door extends Moveable implements Collider {
     private void doorCollision(Player p) {
         Direction playerMoveDirection = p.getDirection();
         Collider collidingEntity;
-
         switch (playerMoveDirection) {
             case UP:
                 collidingEntity = dungeon.getCollidingEntity(getX(), getY() - 1);
                 // If there is no colliding entity above the door, move the player up
+               
                 if (collidingEntity == null) {
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveUp();
@@ -61,6 +61,7 @@ public class Door extends Moveable implements Collider {
                 // boulder right and the player right
                 collidingEntity = dungeon.getCollidingEntity(getX() + 1, getY());
                 if (collidingEntity == null) {
+                
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveRight();
                         p.useKey();
@@ -71,10 +72,8 @@ public class Door extends Moveable implements Collider {
             default:
                 return;
         }
-        
-
     }
-
+    
     public int getDoorID() {
         return this.ID;
     }

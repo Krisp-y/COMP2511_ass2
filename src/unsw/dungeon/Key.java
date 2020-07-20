@@ -16,8 +16,8 @@ public class Key extends Entity implements Collider {
     public void handleCollision(Moveable m) {
         if (m instanceof Player) {
             keyCollision((Player) m);
+            m.move(m.getDirection());
         }
-        
     }
     public int getKeyID() {
         return kID;
@@ -34,10 +34,6 @@ public class Key extends Entity implements Collider {
         }
         p.collectItem(this);
         dungeon.removeKey(this.getKeyID());
-
+        
     }
-
-
-    
-
 }

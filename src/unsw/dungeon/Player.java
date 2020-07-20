@@ -54,10 +54,6 @@ public class Player extends Moveable {
     }
 
     public void useKey() {
-        for (Entity e: inventory) {
-            if (e instanceof Key) {
-                inventory.remove(e);
-            }
-        }
+        inventory.removeIf(e -> e instanceof Key);
     }
 }

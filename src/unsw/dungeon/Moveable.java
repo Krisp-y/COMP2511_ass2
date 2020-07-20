@@ -61,11 +61,11 @@ public class Moveable extends Entity {
     public void tryMoveDown() {
         direction = Direction.DOWN;
         Collider c = dungeon.getCollidingEntity(getX(), getY() + 1);
+        System.out.println(c);
         if (c == null) {
             moveDown();
         } else { // There is a collision
             c.handleCollision(this);
-
         }
     }
     
@@ -88,6 +88,18 @@ public class Moveable extends Entity {
             moveRight();
         } else { // There is a collision
             c.handleCollision(this);
+        }
+    }
+    
+    public void move(Direction d) {
+        if (d == Direction.UP) {
+            moveUp();
+        } else if (d == Direction.DOWN) {
+            moveDown();
+        } else if (d == Direction.LEFT) {
+            moveLeft();
+        } else if (d == Direction.RIGHT) {
+            moveRight();
         }
     }
     
