@@ -75,6 +75,31 @@ public class Dungeon implements GoalSubscriber {
     public void removeEntity(Entity e) {
         entities.remove(e);
     }
+    
+    /**
+    * Updates the enemy movement strategy for each enemy in the dungeon to RetreatStrategy
+    */
+    public void setEnemiesToRetreat() {
+        for (Entity e: entities) {
+            if (e instanceof Enemy) {
+                Enemy enemy = (Enemy) e;
+                enemy.setStrategy(new RetreatStrategy(this, enemy));
+            }
+        }
+    }
+    
+    /**
+    * Updates the enemy movement strategy for each enemy in the dungeon to AttackStrategy
+    */
+    public void setEnemiesToAttack() {
+        for (Entity e: entities) {
+            if (e instanceof Enemy) {
+                Enemy enemy = (Enemy) e;
+                enemy.setStrategy(new AttackStrategy(this, enemy));
+            }
+        }
+    }
+    
     /**
      * Used by moveable objects to determine if they are colliding with
      * collidable objects. The function returns a reference to the an

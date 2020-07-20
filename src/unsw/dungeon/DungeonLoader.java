@@ -192,9 +192,14 @@ public abstract class DungeonLoader {
                 entity = door;
                 break;
             case "treasure":
-                Treasure treasure = new Treasure(dungeon, x, y);
+                Treasure treasure = new Treasure(x, y);
                 onLoad(treasure);
                 entity = treasure;
+                break;
+            case "potion":
+                Potion potion = new Potion(x, y);
+                onLoad(potion);
+                entity = potion;
                 break;
         }
         return entity;
@@ -219,5 +224,7 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Door door);
 
     public abstract void onLoad(Treasure treasure);
+    
+    public abstract void onLoad(Potion potion);
 
 }

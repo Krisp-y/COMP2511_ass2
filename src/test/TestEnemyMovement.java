@@ -79,7 +79,7 @@ class TestEnemyMovement {
                     .put("y", 1)
                 )
             );
-        System.out.println(json);
+    
         DungeonLoader dl = new DungeonTestLoader(json);
         d = dl.load();
         p = new Player(d, 0, 0);
@@ -120,4 +120,58 @@ class TestEnemyMovement {
         assertTrue(originalDistance >= getDistance(p, e));
         originalDistance = getDistance(p, e);
     }
+
+    @Test
+    @DisplayName("testing enemy movement with potions")
+    void TestEnemyMovementWithPotions() {
+        JSONObject json = new JSONObject()
+            .put("width", 10)
+            .put("height", 10)
+            .put("entities", new JSONArray()
+                .put(new JSONObject()
+                    .put("type", "potion")
+                    .put("x", 3)
+                    .put("y", 3)
+                )
+                .put(new JSONObject()
+                    .put("type", "wall")
+                    .put("x", 5)
+                    .put("y", 5)
+                )
+                .put(new JSONObject()
+                    .put("type", "wall")
+                    .put("x", 5)
+                    .put("y", 6)
+                )
+            );
+        DungeonLoader dl = new DungeonTestLoader(json);
+        d = dl.load();
+        p = new Player(d, 0, 0);
+        e = new Enemy(d, 9, 9);
+        d.setPlayer(p);
+        d.addEntity(e);
+        
+        int originalDistance = getDistance(p, e);
+        assertEquals(18, originalDistance);
+        
+        p.tryMoveDown(); //Player moves down to (0,1)
+        d.tick();
+        p.tryMoveDown();
+        d.tick();
+        p.tryMoveDown();
+        d.tick();
+        p.tryMoveRight();
+        d.tick();
+        p.tryMoveRight();
+        d.tick();
+        p.tryMoveRight();
+        d.tick();
+        
+        originalDistance = getDistance(p, e);
+        assertEquals(6, originalDistance);
+        
+        assertTrue(p.isInvincible());
+        
+    }
+
 }

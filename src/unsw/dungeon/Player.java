@@ -71,4 +71,32 @@ public class Player extends Moveable {
         }
         return count;
     }
+    
+    public void addPotion(Potion potion) {
+        
+        // If we have just added a potion, make the player invincible and make enemies retreat
+        if (!isInvincible()) {
+            dungeon.setEnemiesToAttack();
+        }
+        inventory.add(potion);
+        dungeon.removeEntity(potion);
+    }   
+    
+    public void removePotion(Potion potion) {
+        inventory.remove(potion);
+        
+        // If we have removed a potion and we have none left, make the enemies attack
+        if (!isInvincible()) {
+            dungeon.setEnemiesToRetreat();
+        }
+    }
+    
+    public boolean isInvincible() {
+        for (Entity e: inventory) {
+            if (e instanceof Potion) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

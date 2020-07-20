@@ -22,7 +22,7 @@ public class Door extends Moveable implements Collider {
             case UP:
                 collidingEntity = dungeon.getCollidingEntity(getX(), getY() - 1);
                 // If there is no colliding entity above the door, move the player up
-               
+                
                 if (collidingEntity == null) {
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveUp();

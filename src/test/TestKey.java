@@ -48,7 +48,6 @@ public class TestKey {
                     )
                         
                 );
-            System.out.println(simpleDungeon);
             DungeonLoader dl = new DungeonTestLoader(simpleDungeon);
             d = dl.load();
             // Put player in the top left corner

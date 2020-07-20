@@ -56,4 +56,10 @@ public class DungeonTestLoader extends DungeonLoader {
     public void onLoad(Treasure treasure) {
         return;
     }
+    
+    @Override
+    public void onLoad(Potion potion) {
+        return;
+    }
+    
 }
