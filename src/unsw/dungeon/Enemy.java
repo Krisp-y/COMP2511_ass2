@@ -39,7 +39,7 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
             dungeon.removeEntity(this);
         } else { // Otherwise the player is killed by the enemy.
             dungeon.removeEntity(p);
-            dungeon.endGame();
+            dungeon.endGameLost();
         }
     }
 

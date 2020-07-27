@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class MainMenuController {
+public class MainMenuController extends Controller {
     
     @FXML
     private Text selectedLevelText;
@@ -37,30 +38,10 @@ public class MainMenuController {
     @FXML
     private VBox rightPanel;
     
-    private String selectedLevel;
     private ArrayList<Button> buttons;
-    private Stage primaryStage;
     
-    public MainMenuController(Stage primaryStage) {
-        selectedLevel = "advanced.json";
+    public MainMenuController() {
         buttons = new ArrayList<Button>();
-        this.primaryStage = primaryStage;
-    }
-    
-    @FXML 
-    public void startGame() throws IOException {
-        System.out.println("Starting Game!");
-        primaryStage.setTitle("Dungeon");
-        
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(selectedLevel);
-        DungeonController controller = dungeonLoader.loadController();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
-        loader.setController(controller);
-        Parent root = loader.load();
-        Scene game_scene = new Scene(root);
-        root.requestFocus();
-        primaryStage.setScene(game_scene);
-        primaryStage.show();
     }
     
     @FXML 
@@ -82,7 +63,7 @@ public class MainMenuController {
             String prettified = prettify(file.getName());
             button.setText(prettified);
             button.setOnAction(e -> {
-                selectedLevel = file.getName(); 
+                main.setLevel(file.getName());
                 selectedLevelText.setText(prettified);
                 rightPanel.getChildren().removeAll(buttons);
                 buttons.clear();
@@ -90,6 +71,7 @@ public class MainMenuController {
             buttons.add(button);
             rightPanel.getChildren().add(button);
         }
+        
     }
     
     private String prettify(String filename) {

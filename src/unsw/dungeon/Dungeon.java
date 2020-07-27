@@ -3,6 +3,7 @@
  */
 package unsw.dungeon;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -22,13 +23,15 @@ public class Dungeon implements GoalSubscriber {
     private Player player;
     private Goal mainGoal;
     private boolean isGameEnded;
-     
+    private DungeonController dc;
+
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new CopyOnWriteArrayList<>();
         this.player = null;
         this.isGameEnded = false;
+        this.dc = null;
     }
 
     public int getWidth() {
@@ -42,11 +45,11 @@ public class Dungeon implements GoalSubscriber {
     public Player getPlayer() {
         return player;
     }
-    
+
     public void setMainGoal(Goal mainGoal) {
         this.mainGoal = mainGoal;
     }
-    
+
     public Goal getMainGoal() {
         return mainGoal;
     }
@@ -69,52 +72,53 @@ public class Dungeon implements GoalSubscriber {
         entities.remove(e);
         e = null;
     }
-    
+
     /**
-    * Updates the enemy movement strategy for each enemy in the dungeon to RetreatStrategy
-    */
+     * Updates the enemy movement strategy for each enemy in the dungeon to
+     * RetreatStrategy
+     */
     public void setEnemiesToRetreat() {
-        for (Entity e: entities) {
+        for (Entity e : entities) {
             if (e instanceof Enemy) {
                 Enemy enemy = (Enemy) e;
                 enemy.setStrategy(new RetreatStrategy(this, enemy));
             }
         }
     }
-    
+
     /**
-    * Updates the enemy movement strategy for each enemy in the dungeon to AttackStrategy
-    */
+     * Updates the enemy movement strategy for each enemy in the dungeon to
+     * AttackStrategy
+     */
     public void setEnemiesToAttack() {
-        for (Entity e: entities) {
+        for (Entity e : entities) {
             if (e instanceof Enemy) {
                 Enemy enemy = (Enemy) e;
                 enemy.setStrategy(new AttackStrategy(this, enemy));
             }
         }
     }
-    
+
     /**
-     * Used by moveable objects to determine if they are colliding with
-     * collidable objects. The function returns a reference to the an
-     * entity IF the entity is collidable AND the entities coordinates are
-     * (x, y). 
+     * Used by moveable objects to determine if they are colliding with collidable
+     * objects. The function returns a reference to the an entity IF the entity is
+     * collidable AND the entities coordinates are (x, y).
      *
      * @param x x-coordinate in the dungeon
      * @param y y-coordinate in the dungeon
      * @return reference to colliding entity.
      */
     public Collider getCollidingEntity(int x, int y) {
-        for (Entity e: entities) {
+        for (Entity e : entities) {
             if (e instanceof Collider && e.getX() == x && e.getY() == y) {
                 return (Collider) e;
             }
         }
-        
+
         return null;
     }
-    
-     /**
+
+    /**
      * Used by floor switches to determine if there is a boulder on top of them.
      *
      * @param x x-coordinate in the dungeon
@@ -122,7 +126,7 @@ public class Dungeon implements GoalSubscriber {
      * @return reference to colliding boulder.
      */
     public Boulder getCollidingBoulder(int x, int y) {
-        for (Entity e: entities) {
+        for (Entity e : entities) {
             if (e instanceof Boulder && e.getX() == x && e.getY() == y) {
                 return (Boulder) e;
             }
@@ -134,11 +138,21 @@ public class Dungeon implements GoalSubscriber {
     public void update() {
         // mainGoal is null iff it has not been specified in the json.
         if (mainGoal != null && mainGoal.isComplete()) {
-            endGame();
+            endGameWon();
         }
     }
     
-    public void endGame() {
+    public void endGameWon() {
+        if (this.dc != null) {
+            dc.gameWon();
+        }
+        this.isGameEnded = true;
+    }
+
+    public void endGameLost() {
+        if (this.dc != null) {
+            dc.gameLost();
+        }
         this.isGameEnded = true;
     }
     
@@ -168,6 +182,10 @@ public class Dungeon implements GoalSubscriber {
     
     public int getPlayerPositionY() {
         return player.getY();
+    }
+    
+    public void subscribeController(DungeonController dc) {
+        this.dc = dc;
     }
     
 }
