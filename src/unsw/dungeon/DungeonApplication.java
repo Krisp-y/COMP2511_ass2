@@ -12,17 +12,15 @@ public class DungeonApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Dungeon");
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("advanced.json");
-        DungeonController controller = dungeonLoader.loadController();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
         
-        loader.setController(controller);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
+        MainMenuController menuController = new MainMenuController(primaryStage);
+        FXMLLoader menuloader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        menuloader.setController(menuController);
+        Parent menu_root = menuloader.load();
+        Scene main_menu_scene = new Scene(menu_root);
         
-        root.requestFocus();
-        primaryStage.setScene(scene);
+        menu_root.requestFocus();
+        primaryStage.setScene(main_menu_scene);
         primaryStage.show();
     }
 

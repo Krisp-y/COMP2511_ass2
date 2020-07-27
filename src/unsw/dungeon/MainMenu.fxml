@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="50.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comp 2511 Project" />
+            <Button fx:id="playGame" mnemonicParsing="false" onMouseClicked="#startGame" text="Play Game" />
+            <Button fx:id="selectLevel" mnemonicParsing="false" onMouseClicked="#selectLevel" text="Select Level" />
+            <Button fx:id="changeSettings" mnemonicParsing="false" onMouseClicked="#changeSettings" text="Settings" />
+         </children>
+      </VBox>
+      <VBox fx:id="rightPanel" alignment="CENTER" prefHeight="243.0" prefWidth="301.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Selected Level:" />
+            <Text fx:id="selectedLevelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Advanced Maze" />
+         </children>
+      </VBox>
+   </children>
+</HBox>
