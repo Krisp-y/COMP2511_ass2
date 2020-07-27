@@ -952,7 +952,6 @@ class TestGoals {
                     .put("goal-condition", new JSONObject()
                         .put("goal", "enemies")
                     );
-                System.out.println(json);
                 DungeonLoader dl = new DungeonTestLoader(json);
                 Dungeon d = dl.load();
                 Player p = new Player(d, 0, 0);
@@ -997,7 +996,6 @@ class TestGoals {
                     .put("goal-condition", new JSONObject()
                         .put("goal", "enemies")
                     );
-                System.out.println(json);
                 DungeonLoader dl = new DungeonTestLoader(json);
                 Dungeon d = dl.load();
                 Player p = new Player(d, 0, 0);

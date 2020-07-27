@@ -1,7 +1,7 @@
 package unsw.dungeon;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * The player entity
@@ -11,6 +11,7 @@ import java.util.List;
 public class Player extends Moveable implements Tickable, Collider {
     private List<Entity> inventory;
     private boolean alive;
+    private boolean isTeleporting;
     
     /**
      * Create a player positioned in square (x,y)
@@ -19,7 +20,7 @@ public class Player extends Moveable implements Tickable, Collider {
      */
     public Player(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
-        this.inventory = new ArrayList<>();
+        this.inventory = new CopyOnWriteArrayList<>();
         this.alive = true;
     }   
 
@@ -96,7 +97,6 @@ public class Player extends Moveable implements Tickable, Collider {
     }
     
     public boolean isInvincible() {
-        System.out.println(inventory);
         for (Entity e: inventory) {
             if (e instanceof Potion) {
                 return true;
@@ -148,30 +148,14 @@ public class Player extends Moveable implements Tickable, Collider {
                 ((Tickable) e).tick();
             }
         }
-        removeEmptyPotions();
-    }
-    
-    private void removeEmptyPotions() {
-        List<Potion> potionsEmpty = new ArrayList<Potion>();
-        for (Entity e: inventory) {
-            if (e instanceof Potion) {
-                Potion p = (Potion) e;
-                if (p.getHealth() == 0) {
-                    potionsEmpty.add(p);
-                }
-            } 
-        }
-        
-        for (Potion p : potionsEmpty) {
-            removePotion(p);
-        }
     }
 
     @Override
     public void handleCollision(Moveable m) {
         if (m instanceof Enemy) {
             Enemy enemy = (Enemy) m;
-            enemy.handleCollision(this);
+            enemy.move(enemy.getDirection());
+            enemy.playerCollision(this); // handle the player collision on the enemy side.
         }
     }
     
@@ -181,5 +165,13 @@ public class Player extends Moveable implements Tickable, Collider {
     
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+    
+    public boolean isTeleporting() {
+        return isTeleporting;
+    }
+    
+    public void setTeleporting(boolean isTeleporting) {
+        this.isTeleporting = isTeleporting;
     }
 }

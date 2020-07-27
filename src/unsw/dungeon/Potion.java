@@ -26,6 +26,9 @@ public class Potion extends Entity implements Collider, Tickable {
     public void tick() {
         if (collected) {
             health--;
+            if (health == 0) {
+                player.removePotion(this);
+            }
         }
     }
     

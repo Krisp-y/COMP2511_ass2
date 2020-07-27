@@ -65,25 +65,24 @@ public class TestKey {
             assert(player_.hasKey());
 
         }
-
+        
         @Test
-        @DisplayName("check players key has the correct ID")
-        void testKeyOpen() {
-            // Player at (0,0)
+        @DisplayName("check player cannot move onto door with no key held")
+        void testCannotMoveThroughDoorWithNoKey() {
             player_.tryMoveRight(); // Player at (1,0)
-            player_.tryMoveRight(); // Player at (2,0)
-            player_.tryMoveDown(); // Player at (2,1)
-            player_.tryMoveDown(); // Player at (2,2)
-            // Player should have collided with key at (2,2)
-            assertTrue(player_.hasKey());
-            assertEquals("1", String.valueOf(player_.getKeyID()));
-
+            player_.tryMoveDown(); // Player at (1,1)
+            player_.tryMoveDown(); // Player at (1,2)
+            player_.tryMoveDown(); // Player at (1,3)
+            player_.tryMoveRight(); // Player at (2,3)
+            
+            //Player should not be able to move down onto door unless they hold key 1
+            assertEquals(1, player_.getX());
+            assertEquals(3, player_.getY());
         }
 
         @Test
         @DisplayName("check player can move onto door when correct key held")
-        
-        void testKeyID() {
+        void testCanMoveThroughDoorWithNoKey() {
             player_.tryMoveRight(); // Player at (1,0)
             player_.tryMoveRight(); // Player at (2,0)
             player_.tryMoveDown(); // Player at (2,1)
@@ -91,6 +90,26 @@ public class TestKey {
             // Player should have collided with key at (2,2)
             player_.tryMoveDown(); // Player at (2,3)
             //Player should not be able to move down onto door unless they hold key 1
+            assertEquals(2, player_.getX());
+            assertEquals(3, player_.getY());
+        
+        }
+        
+        @Test
+        @DisplayName("check player can move onto door after it is unlocked")
+        void testCanMoveThroughDoorAfterUnlocked() {
+            player_.tryMoveRight(); // Player at (1,0)
+            player_.tryMoveRight(); // Player at (2,0)
+            player_.tryMoveDown(); // Player at (2,1)
+            player_.tryMoveDown(); // Player at (2,2)
+            // Player should have collided with key at (2,2)
+            player_.tryMoveDown(); // Player at (2,3) (through the door)
+            player_.tryMoveLeft(); // Player at (2,2) again
+            player_.tryMoveRight(); // Player back at (2,3) on the door
+            assertEquals(2, player_.getX());
+            assertEquals(3, player_.getY());
+            player_.tryMoveUp();
+            player_.tryMoveDown();
             assertEquals(2, player_.getX());
             assertEquals(3, player_.getY());
         }

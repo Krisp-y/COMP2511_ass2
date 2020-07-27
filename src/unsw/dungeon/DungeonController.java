@@ -3,11 +3,17 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -26,17 +32,20 @@ public class DungeonController {
     private Player player;
 
     private Dungeon dungeon;
-
+    
+    private Timeline timeline;
+    
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
+        setupTimeline();
     }
 
     @FXML
     public void initialize() {
         Image ground = new Image((new File("images/dirt_0_new.png")).toURI().toString());
-
+        
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
             for (int y = 0; y < dungeon.getHeight(); y++) {
@@ -47,10 +56,12 @@ public class DungeonController {
         for (ImageView entity : initialEntities) {
             squares.getChildren().add(entity);
         }
+        //timeline.play();
     }
 
     @FXML
     public void handleKeyPress(KeyEvent event) {
+        
         switch (event.getCode()) {
         case UP:
             player.tryMoveUp();
@@ -68,6 +79,20 @@ public class DungeonController {
             break;
         }
         tick();
+    }
+    
+    private void setupTimeline() {
+        timeline = new Timeline();
+        timeline.setCycleCount(Animation.INDEFINITE);
+        
+        EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                tick();
+            }
+        };
+        
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), eh));
     }
     
     public void tick() {

@@ -103,7 +103,6 @@ class TestCollectibles {
         player = new Player(d, 0, 0);
         d.setPlayer(player);
         d.addEntity(player);
-        System.out.println("1");
         assertFalse(player.isInvincible());
         
         player.tryMoveDown(); // Player moves down to (0,1)

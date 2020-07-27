@@ -14,8 +14,6 @@ public class TreasureGoal extends BasicGoal {
 
     @Override
     public boolean isComplete() {
-        System.out.println(numTreasures);
-        System.out.println(numCollected);
         return numTreasures == numCollected;
     }
     

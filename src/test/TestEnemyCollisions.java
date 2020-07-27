@@ -55,7 +55,6 @@ class TestEnemyCollisions {
                     .put("y", 8)
                 )
             );
-            System.out.println(json);
             DungeonLoader dl = new DungeonTestLoader(json);
             d = dl.load();
             p = new Player(d, 0, 0);
@@ -81,9 +80,10 @@ class TestEnemyCollisions {
                 p.tryMoveDown();
                 d.tick();
             }
+            // Entity is dead after this collision.
             assertFalse(e.isAlive());
-            
         }
+        
         @Test
         @DisplayName("testing cases where an enemy dies from a player collision when player has a weapon")
         void TestEnemyDiesFromPlayerCollisionWithWeapon() {
@@ -121,7 +121,7 @@ class TestEnemyCollisions {
             d.addEntity(e);
             d.addEntity(p);
             
-            assertTrue(e.isAlive());
+            assertTrue(e.isAlive()); // e is alive
             assertFalse(p.hasWeapon());
             
             p.tryMoveRight();
@@ -166,7 +166,7 @@ class TestEnemyCollisions {
             d.addEntity(p);
             
             for (Enemy e : enemies) {
-                assertTrue(e.isAlive());
+                assertTrue(e != null);
             }
             
             assertFalse(p.hasWeapon());
@@ -224,7 +224,6 @@ class TestEnemyCollisions {
                     .put("y", 8)
                 )
             );
-            System.out.println(json);
             DungeonLoader dl = new DungeonTestLoader(json);
             d = dl.load();
             p = new Player(d, 0, 0);
@@ -242,9 +241,8 @@ class TestEnemyCollisions {
                 p.tryMoveDown();
                 d.tick();
             }
-        
-            assertFalse(p.isAlive());
-            assertTrue(d.isGameEnded());
+
+            assertTrue(d.isGameEnded()); // Player is dead so game is done
             
         }
     

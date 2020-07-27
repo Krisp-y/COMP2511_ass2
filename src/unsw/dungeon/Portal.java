@@ -16,7 +16,11 @@ public class Portal extends Entity implements Collider {
     @Override
     public void handleCollision(Moveable m) {
         if (m instanceof Player) {
-            portalCollision((Player) m);
+            Player p = (Player) m;
+            if (!p.isTeleporting()) {
+                portalCollision(p);
+                p.setTeleporting(false);
+            }
         }
         
     }
@@ -52,10 +56,8 @@ public class Portal extends Entity implements Collider {
                 }
             }
         }
-        
-        dungeon.removePortal(this.getID());
+        p.setTeleporting(false);
         p.teleport(newX,newY);
-
     }
 
     @Override 

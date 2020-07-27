@@ -13,7 +13,7 @@ public abstract class Entity {
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
     private IntegerProperty x, y;
-    protected EntityView cv;
+    protected EntityView ev;
 
     /**
      * Create an entity positioned in square (x,y)
@@ -23,12 +23,11 @@ public abstract class Entity {
     public Entity(int x, int y) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
-        this.cv = null;
     }
     
     public void despawn() {
-        if (this.cv != null) {
-            this.cv.despawnUpdate();
+        if (this.ev != null) {
+            this.ev.despawnUpdate();
         } 
     }
     
@@ -37,7 +36,7 @@ public abstract class Entity {
     }
     
     public void subsribeView(EntityView cv) {
-        this.cv = cv;
+        this.ev = cv;
     }
 
     public IntegerProperty x() {

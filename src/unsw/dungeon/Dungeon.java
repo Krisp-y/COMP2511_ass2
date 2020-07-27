@@ -3,8 +3,8 @@
  */
 package unsw.dungeon;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A dungeon in the interactive dungeon player.
@@ -22,15 +22,13 @@ public class Dungeon implements GoalSubscriber {
     private Player player;
     private Goal mainGoal;
     private boolean isGameEnded;
-    private List<Entity> markedForDeletion;
      
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
-        this.entities = new ArrayList<>();
+        this.entities = new CopyOnWriteArrayList<>();
         this.player = null;
         this.isGameEnded = false;
-        this.markedForDeletion = new ArrayList<Entity>();
     }
 
     public int getWidth() {
@@ -64,21 +62,12 @@ public class Dungeon implements GoalSubscriber {
     public List<Entity> getEntities() {
         return entities;
     }
-    
-    public void removePortal(int ID) {
-        entities.removeIf(e -> e instanceof Portal && ((Portal)e).getID() == ID);
-        
-    }
-    
-
-    public void removeKey(int ID) {
-        entities.removeIf(e -> e instanceof Key && ((Key)e).getKeyID() == ID);
-        
-    }
 
     public void removeEntity(Entity e) {
+        System.out.println("Here!");
         e.despawn();
         entities.remove(e);
+        e = null;
     }
     
     /**
@@ -171,18 +160,6 @@ public class Dungeon implements GoalSubscriber {
                 ((Tickable) e).tick();
             }
         }
-        deleteRemovedEntities();
-    }
-    
-    public void markForDeletion(Entity e) {
-        markedForDeletion.add(e);
-    }
-
-    private void deleteRemovedEntities() {
-        for (Entity e : markedForDeletion) {
-            entities.remove(e);
-        }
-        markedForDeletion.clear();
     }
     
     public int getPlayerPositionX() {

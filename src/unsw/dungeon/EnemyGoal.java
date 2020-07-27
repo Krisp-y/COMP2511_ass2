@@ -15,9 +15,7 @@ public class EnemyGoal extends BasicGoal {
 
     @Override
     public boolean isComplete() {
-        System.out.println("num dead: " + numDead);
-        System.out.println("num enemies: " + numEnemies);
-        return numDead == numEnemies;
+        return numDead >= numEnemies;
     }
     
     @Override
