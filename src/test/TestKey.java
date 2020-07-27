@@ -95,7 +95,4 @@ public class TestKey {
             assertEquals(3, player_.getY());
         }
     }
-
-    
-    
 }

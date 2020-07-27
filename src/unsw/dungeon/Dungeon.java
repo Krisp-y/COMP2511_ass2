@@ -67,14 +67,17 @@ public class Dungeon implements GoalSubscriber {
     
     public void removePortal(int ID) {
         entities.removeIf(e -> e instanceof Portal && ((Portal)e).getID() == ID);
+        
     }
     
 
     public void removeKey(int ID) {
         entities.removeIf(e -> e instanceof Key && ((Key)e).getKeyID() == ID);
+        
     }
 
     public void removeEntity(Entity e) {
+        e.despawn();
         entities.remove(e);
     }
     

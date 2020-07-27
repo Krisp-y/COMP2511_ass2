@@ -1,9 +1,9 @@
 {
     "entities": [
         {
-            "x": 1,
-            "y": 0,
-            "type": "weapon"
+            "x": 6,
+            "y": 6,
+            "type": "enemy"
         },
         {
             "x": 2,
@@ -12,18 +12,38 @@
         },
         {
             "x": 3,
-            "y": 2,
+            "y": 3,
+            "type": "enemy"
+        },
+        {
+            "x": 4,
+            "y": 4,
+            "type": "enemy"
+        },
+        {
+            "x": 5,
+            "y": 5,
             "type": "enemy"
         },
         {
             "x": 0,
             "y": 0,
             "type": "player"
+        },
+        {
+            "x": 7,
+            "y": 7,
+            "type": "enemy"
+        },
+        {
+            "x": 1,
+            "y": 0,
+            "type": "weapon"
         }
     ],
-    "width": 4,
+    "width": 8,
     "goal-condition": {
         "goal": "enemies"
     },
-    "height": 4
+    "height": 8
 }

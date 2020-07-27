@@ -20,7 +20,7 @@ import unsw.dungeon.Player;
 public class TestPortal {
     @Nested
     @DisplayName("testing player collision with a portal")
-    class TestWallCollisions {
+    class TestPortalCollisions {
         Dungeon d;
         Player player_;
         

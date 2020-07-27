@@ -43,10 +43,10 @@ public class DungeonController {
                 squares.add(new ImageView(ground), x, y);
             }
         }
-
-        for (ImageView entity : initialEntities)
+        
+        for (ImageView entity : initialEntities) {
             squares.getChildren().add(entity);
-
+        }
     }
 
     @FXML

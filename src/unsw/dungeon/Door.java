@@ -27,6 +27,7 @@ public class Door extends Moveable implements Collider {
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveUp();
                         p.useKey();
+                        changeImage();
                     }
                     
                 }
@@ -38,6 +39,7 @@ public class Door extends Moveable implements Collider {
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveDown();
                         p.useKey();
+                        changeImage();
                     }
                     
                 }
@@ -50,6 +52,7 @@ public class Door extends Moveable implements Collider {
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveLeft();
                         p.useKey();
+                        changeImage();
                     }
                     
                 }
@@ -63,6 +66,7 @@ public class Door extends Moveable implements Collider {
                     if(p.hasKey() && p.getKeyID() == this.getDoorID()) {
                         p.moveRight();
                         p.useKey();
+                        changeImage();
                     }
                     
                 }
@@ -75,6 +79,9 @@ public class Door extends Moveable implements Collider {
     public int getDoorID() {
         return this.ID;
     }
-
     
+    public void changeImage() {
+        if (cv != null) 
+            cv.changeDoorImage();
+    }
 }
