@@ -30,7 +30,7 @@
             <Button mnemonicParsing="false" onMouseClicked="#restartLevel" text="Restart Level" />
             <Button mnemonicParsing="false" onMouseClicked="#mainMenu" text="Main Menu" />
             <Button mnemonicParsing="false" onMouseClicked="#changeSettings" text="Options" />
-            <!-- <Button mnemonicParsing="false" onMouseClicked="#quitGame" text="Quit" /> -->
+            <Button mnemonicParsing="false" onMouseClicked="#quitGame" text="Quit" />
          </children>
       </VBox>
      

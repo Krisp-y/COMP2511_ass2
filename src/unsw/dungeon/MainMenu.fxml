@@ -13,6 +13,7 @@
             <Button fx:id="playGame" mnemonicParsing="false" onMouseClicked="#startGame" text="Play Game" />
             <Button fx:id="selectLevel" mnemonicParsing="false" onMouseClicked="#selectLevel" text="Select Level" />
             <Button fx:id="changeSettings" mnemonicParsing="false" onMouseClicked="#changeSettings" text="Settings" />
+            <Button mnemonicParsing="false" onMouseClicked="#quitGame" text="Quit" />
          </children>
       </VBox>
       <VBox fx:id="rightPanel" alignment="CENTER" prefHeight="243.0" prefWidth="301.0">

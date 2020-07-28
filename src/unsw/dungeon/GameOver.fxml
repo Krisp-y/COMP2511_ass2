@@ -16,5 +16,6 @@
       <Text fx:id="subText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
       <Button fx:id="restartButton" mnemonicParsing="false" text="Restart Level" onMouseClicked="#restartLevel"/>
       <Button fx:id="mainMenuButton" mnemonicParsing="false" text="Main Menu" onMouseClicked="#mainMenu"/>
+      <Button mnemonicParsing="false" onMouseClicked="#quitGame" text="Quit" />
    </children>
 </VBox>

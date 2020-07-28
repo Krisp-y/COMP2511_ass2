@@ -42,6 +42,10 @@ public class DungeonApplication extends Application {
         changeScene(createGameEndLoader("lost"));
     }
     
+    public void quitGame() {
+        primaryStage.close();
+    }
+    
     private FXMLLoader createGameEndLoader(String type) throws IOException {
         
         GameEndController gameOverController;

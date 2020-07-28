@@ -15,6 +15,11 @@ public abstract class Controller {
     public void startGame() throws IOException {
         main.changeToDungeon();
     }
+    
+    @FXML 
+    public void quitGame() {
+        main.quitGame();
+    }
 
     @FXML
     public void restartLevel() throws IOException {
