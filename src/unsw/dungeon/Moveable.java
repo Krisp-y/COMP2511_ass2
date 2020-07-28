@@ -95,6 +95,7 @@ public abstract class Moveable extends Entity {
      * @param d Direction of movement.
      */
     public void move(Direction d) {
+        System.out.println("Moving " + " " + this + " " + d);
         if (d == Direction.UP) {
             moveUp();
         } else if (d == Direction.DOWN) {

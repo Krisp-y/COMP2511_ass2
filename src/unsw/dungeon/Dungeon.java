@@ -67,7 +67,6 @@ public class Dungeon implements GoalSubscriber {
     }
 
     public void removeEntity(Entity e) {
-        System.out.println("Here!");
         e.despawn();
         entities.remove(e);
         e = null;
@@ -138,12 +137,14 @@ public class Dungeon implements GoalSubscriber {
     public void update() {
         // mainGoal is null iff it has not been specified in the json.
         if (mainGoal != null && mainGoal.isComplete()) {
+            System.out.println("Game Ending Collision");
             endGameWon();
         }
     }
     
     public void endGameWon() {
         if (this.dc != null) {
+            System.out.println("Game Won!");
             dc.gameWon();
         }
         this.isGameEnded = true;
@@ -151,6 +152,7 @@ public class Dungeon implements GoalSubscriber {
 
     public void endGameLost() {
         if (this.dc != null) {
+            System.out.println("Game Lost!");
             dc.gameLost();
         }
         this.isGameEnded = true;

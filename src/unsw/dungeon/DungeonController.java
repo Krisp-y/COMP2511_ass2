@@ -9,7 +9,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.effect.GaussianBlur;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -40,7 +40,8 @@ public class DungeonController extends Controller {
 
     private Dungeon dungeon;
 
-    private Timeline timeline;
+    private Timeline tickerTimeline;
+    private Timeline dungeonEnd;
 
     private boolean isPaused;
 
@@ -49,7 +50,8 @@ public class DungeonController extends Controller {
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
         this.isPaused = false;
-        setupTimeline();
+        setupTickerTimeline();
+        setupDungeonEndTimeline();
         dungeon.subscribeController(this);
     }
 
@@ -67,22 +69,22 @@ public class DungeonController extends Controller {
         for (ImageView entity : initialEntities) {
             squares.getChildren().add(entity);
         }
-        timeline.play();
+        tickerTimeline.play();
     }
 
     @FXML
     public void resume() {
         isPaused = false;
         pauseMenu.setVisible(false);
-        timeline.play();
+        tickerTimeline.play();
         squares.setEffect(null);
         squares.requestFocus();
     }
-    
+
     public void pause() {
         pauseMenu.setVisible(true);
-        timeline.pause();
-        squares.setEffect(new GaussianBlur());
+        tickerTimeline.pause();
+        squares.setEffect(new BoxBlur());
         isPaused = true;
     }
 
@@ -100,8 +102,6 @@ public class DungeonController extends Controller {
             }
             return;
         }
-
-        System.out.println("Hello key press");
         switch (event.getCode()) {
             case UP:
                 player.tryMoveUp();
@@ -121,38 +121,41 @@ public class DungeonController extends Controller {
             default:
                 break;
         }
-        //tick();
+        // tick();
     }
-    
+
     public void gameWon() {
-        try {
-            main.changeToGameWon();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        dungeonEnd.getKeyFrames().add(new KeyFrame(Duration.millis(500), e -> {
+            try {
+                main.changeToGameWon();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }));
+        dungeonEnd.play();
     }
     
     public void gameLost() {
-        try {
-            main.changeToGameLost();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        dungeonEnd.getKeyFrames().add(new KeyFrame(Duration.millis(500), e -> {
+            try {
+                main.changeToGameLost();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }));
+        dungeonEnd.play();
     }
     
     
-    private void setupTimeline() {
-        timeline = new Timeline();
-        timeline.setCycleCount(Animation.INDEFINITE);
-        
-        EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                tick();
-            }
-        };
-        
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), eh));
+    private void setupTickerTimeline() {
+        tickerTimeline = new Timeline();
+        tickerTimeline.setCycleCount(Animation.INDEFINITE);
+        tickerTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), e -> {tick();}));
+    }
+    
+    private void setupDungeonEndTimeline() {
+        dungeonEnd = new Timeline();
+        dungeonEnd.setCycleCount(1);
     }
     
     public void tick() {

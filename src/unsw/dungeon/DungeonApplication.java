@@ -20,7 +20,7 @@ public class DungeonApplication extends Application {
     
     private void changeScene(FXMLLoader loader) throws IOException {
         Parent root = loader.load();
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 1000, 1000);
         root.requestFocus();
         primaryStage.setScene(scene);
         primaryStage.show();

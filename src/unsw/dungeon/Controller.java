@@ -33,6 +33,6 @@ public abstract class Controller {
 
     @FXML 
     public void changeSettings() {
-        System.out.println("Changing Settings!");
+        // System.out.println("Changing Settings!");
     }
 }

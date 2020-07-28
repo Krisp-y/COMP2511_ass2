@@ -16,7 +16,6 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
     @Override
     public void handleCollision(Moveable m) {
         if (m instanceof Player) { // If the enemy collides with a player
-            System.out.println("Collided with player");
             Player p = (Player) m;
             p.move(p.getDirection());
             playerCollision(p);
@@ -39,6 +38,7 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
             dungeon.removeEntity(this);
         } else { // Otherwise the player is killed by the enemy.
             dungeon.removeEntity(p);
+            System.out.println("Game Ending Collision");
             dungeon.endGameLost();
         }
     }
