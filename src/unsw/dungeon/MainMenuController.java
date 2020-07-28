@@ -39,9 +39,16 @@ public class MainMenuController extends Controller {
     private VBox rightPanel;
     
     private ArrayList<Button> buttons;
+    private String selectedLevel;
     
-    public MainMenuController() {
+    public MainMenuController(String selectedLevel) {
         buttons = new ArrayList<Button>();
+        this.selectedLevel = selectedLevel;
+    }
+    
+    @FXML
+    public void initialize() {
+        selectedLevelText.setText(prettify(selectedLevel));
     }
     
     @FXML

@@ -63,7 +63,7 @@ public class DungeonApplication extends Application {
     }
     
     private FXMLLoader createMainMenuLoader() throws IOException {
-        MainMenuController menuController = new MainMenuController();
+        MainMenuController menuController = new MainMenuController(selectedLevel);
         FXMLLoader menuloader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
         menuloader.setController(menuController);
         menuController.subscribe(this);

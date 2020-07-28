@@ -9,6 +9,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -74,6 +75,15 @@ public class DungeonController extends Controller {
         isPaused = false;
         pauseMenu.setVisible(false);
         timeline.play();
+        squares.setEffect(null);
+        squares.requestFocus();
+    }
+    
+    public void pause() {
+        pauseMenu.setVisible(true);
+        timeline.pause();
+        squares.setEffect(new GaussianBlur());
+        isPaused = true;
     }
 
     @FXML
@@ -106,9 +116,7 @@ public class DungeonController extends Controller {
                 player.tryMoveRight();
                 break;
             case ESCAPE:
-                pauseMenu.setVisible(true);
-                timeline.pause();
-                isPaused = true;
+                pause();
                 break;
             default:
                 break;
