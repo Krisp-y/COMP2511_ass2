@@ -15,4 +15,19 @@ public abstract class Controller {
     public void startGame() throws IOException {
         main.changeToDungeon();
     }
+
+    @FXML
+    public void restartLevel() throws IOException {
+        main.changeToDungeon();
+    }
+
+    @FXML
+    public void mainMenu() throws IOException {
+        main.changeToMainMenu();
+    }
+
+    @FXML 
+    public void changeSettings() {
+        System.out.println("Changing Settings!");
+    }
 }

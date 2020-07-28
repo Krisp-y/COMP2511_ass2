@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -29,6 +30,9 @@ public class DungeonController extends Controller {
     @FXML
     private GridPane squares;
 
+    @FXML
+    private VBox pauseMenu;
+
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -37,10 +41,13 @@ public class DungeonController extends Controller {
 
     private Timeline timeline;
 
+    private boolean isPaused;
+
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
+        this.isPaused = false;
         setupTimeline();
         dungeon.subscribeController(this);
     }
@@ -59,12 +66,32 @@ public class DungeonController extends Controller {
         for (ImageView entity : initialEntities) {
             squares.getChildren().add(entity);
         }
-        // timeline.play();
+        timeline.play();
+    }
+
+    @FXML
+    public void resume() {
+        isPaused = false;
+        pauseMenu.setVisible(false);
+        timeline.play();
     }
 
     @FXML
     public void handleKeyPress(KeyEvent event) {
+        if (isPaused) {
 
+            switch (event.getCode()) {
+                case ESCAPE:
+                    resume();
+                    isPaused = false;
+                    break;
+                default:
+                    break;
+            }
+            return;
+        }
+
+        System.out.println("Hello key press");
         switch (event.getCode()) {
             case UP:
                 player.tryMoveUp();
@@ -78,10 +105,15 @@ public class DungeonController extends Controller {
             case RIGHT:
                 player.tryMoveRight();
                 break;
+            case ESCAPE:
+                pauseMenu.setVisible(true);
+                timeline.pause();
+                isPaused = true;
+                break;
             default:
                 break;
         }
-        tick();
+        //tick();
     }
     
     public void gameWon() {

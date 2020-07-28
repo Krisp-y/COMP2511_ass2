@@ -44,11 +44,6 @@ public class MainMenuController extends Controller {
         buttons = new ArrayList<Button>();
     }
     
-    @FXML 
-    public void changeSettings() {
-        System.out.println("Changing Settings!");
-    }
-    
     @FXML
     public void selectLevel() {
         if (!buttons.isEmpty()) {
