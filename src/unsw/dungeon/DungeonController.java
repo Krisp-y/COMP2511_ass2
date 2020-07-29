@@ -273,7 +273,6 @@ public class DungeonController extends Controller {
 	}
 	
 	private void updateInventoryItem(CollectibleEnum e, Integer count) {
-	    System.out.println("here!");
 	    Pane p = inventoryViewMap.get(e); // get the pane.
 	    int idx = inventoryHbox.getChildren().indexOf(p);
 	    Text t = (Text) p.getChildren().get(1); // This is always the text object.
@@ -316,15 +315,15 @@ public class DungeonController extends Controller {
             if (g instanceof EnemyGoal) {
                 EnemyGoal eg = (EnemyGoal) g;
                 goalView.getChildren().add(getImageFromPath("images/deep_elf_master_archer.png"));
-                goalView.getChildren().add(new Text("0/" + eg.getEnemyCount()));
+                goalView.getChildren().add(new Text(eg.getDeadEnemyCount() + "/" + eg.getEnemyCount()));
             } else if (g instanceof TreasureGoal) {
                 TreasureGoal tg = (TreasureGoal) g;
                 goalView.getChildren().add(getImageFromPath("images/gold_pile.png"));
-                goalView.getChildren().add(new Text("0/" + tg.getTreasureCount()));
+                goalView.getChildren().add(new Text(tg.getCollectedTreasureCount() + "/" + tg.getTreasureCount()));
             } else if (g instanceof BoulderGoal) {
                 BoulderGoal bg = (BoulderGoal) g;
-                goalView.getChildren().add(getImageFromPath("images/gold_pile.png"));
-                goalView.getChildren().add(new Text("0/" + bg.getNumFloorSwitches()));
+                goalView.getChildren().add(getImageFromPath("images/boulder.png"));
+                goalView.getChildren().add(new Text(bg.getSwitchesTriggered() + "/" + bg.getNumFloorSwitches()));
             } else if (g instanceof ExitGoal) {
                 goalView.getChildren().add(getImageFromPath("images/exit.png"));
                 goalView.getChildren().add(new Text("Incomplete"));
@@ -348,7 +347,7 @@ public class DungeonController extends Controller {
                 t.setText(eg.getDeadEnemyCount() + "/" + eg.getEnemyCount());
             } else if (bgHBox.getKey() instanceof TreasureGoal) {
                 TreasureGoal tg = (TreasureGoal) bgHBox.getKey();
-                t.setText(tg.getTreasureCount() + "/" + tg.getCollectedTreasureCount());
+                t.setText(tg.getCollectedTreasureCount() + "/" + tg.getTreasureCount());
             } else if (bgHBox.getKey() instanceof BoulderGoal) {
                 BoulderGoal bg = (BoulderGoal) bgHBox.getKey();
                 t.setText(bg.getSwitchesTriggered() + "/" + bg.getNumFloorSwitches());

@@ -41,6 +41,8 @@ public class FloorSwitch extends Entity implements Collider, GoalPublisher {
                 m.move(m.getDirection());
             } else {
                 b.handleCollision(m);
+                // By the boulder off the floorswitch, we may have incompleted a goal.
+                notifySubscribers();
             }
         }
     }

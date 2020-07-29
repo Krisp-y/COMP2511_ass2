@@ -13,6 +13,7 @@ public class BoulderGoal extends BasicGoal {
         this.floorSwitches = floorSwitches;
         this.boulders = boulders;
         this.switchesTriggered = 0;
+        countTriggeredSwitches();
     }
 
     @Override
@@ -25,23 +26,21 @@ public class BoulderGoal extends BasicGoal {
         return "boulders";
     }
     
-    private boolean goalSatisfied() {
-        boolean foundBoulder = true;
+    private void countTriggeredSwitches() {
+        
         switchesTriggered = 0;
         for (Entity floorSwitch : floorSwitches) {
-            foundBoulder = false;
             for (Entity boulder : boulders) {
                 if (Dungeon.inSamePosition(floorSwitch, boulder)) {
-                    foundBoulder = true;
                     switchesTriggered++;
-                    break;
                 }
             }
-            if (!foundBoulder) {
-                return false;
-            }
         }
-        return foundBoulder;
+    }
+    
+    private boolean goalSatisfied() {
+        countTriggeredSwitches();
+        return switchesTriggered >= floorSwitches.size();
     }
 
     @Override
