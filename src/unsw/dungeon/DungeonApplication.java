@@ -13,14 +13,13 @@ public class DungeonApplication extends Application {
     private Stage primaryStage;
     private String selectedLevel;
     
-    
     public void setLevel(String newLevel) {
         selectedLevel = newLevel;
     }
     
     private void changeScene(FXMLLoader loader) throws IOException {
         Parent root = loader.load();
-        Scene scene = new Scene(root, 1000, 1000);
+        Scene scene = new Scene(root, 1024, 768); // Nice industry standard 4:3 (my favourite for platformer) ratios
         root.requestFocus();
         primaryStage.setScene(scene);
         primaryStage.show();

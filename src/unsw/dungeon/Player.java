@@ -12,7 +12,7 @@ public class Player extends Moveable implements Tickable, Collider {
     private List<Entity> inventory;
     private boolean alive;
     private boolean isTeleporting;
-    
+    private DungeonController dc;
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -36,11 +36,17 @@ public class Player extends Moveable implements Tickable, Collider {
     /** Moves an item from the dungeon entity list to the player inventory. */
     public void collectItem(Entity e) {
         inventory.add(e);
+        if (dc != null) {
+            dc.addToInventoryView(e);
+        }
         dungeon.removeEntity(e);
     }
 
     public void removeCollectable(Entity e) {
         inventory.remove(e);
+        if (dc != null) {
+            dc.removeFromInventoryView(e);
+        }
     }
 
     public boolean hasKey() {
@@ -63,7 +69,14 @@ public class Player extends Moveable implements Tickable, Collider {
     }
 
     public void useKey() {
-        inventory.removeIf(e -> e instanceof Key);
+        for (Entity e : inventory) {
+            if (e instanceof Key) {
+                inventory.remove(e);
+                if (dc != null) {
+                    dc.removeFromInventoryView(e);
+                }
+            }
+        }
     }
 
     public int countTreasure() {
@@ -82,13 +95,22 @@ public class Player extends Moveable implements Tickable, Collider {
         if (!isInvincible()) {
             dungeon.setEnemiesToRetreat();
         }
-        
+        // System.out.println("trying to add potion");
         inventory.add(potion);
+        if (dc != null) {
+            dc.addToInventoryView(potion);
+            dc.showInvincibleStatus(true);
+        }
         dungeon.removeEntity(potion);
     }   
     
     public void removePotion(Potion potion) {
+        
         inventory.remove(potion);
+        if (dc != null) {
+            dc.removeFromInventoryView(potion);
+            dc.showInvincibleStatus(false);
+        }
         
         // If we have removed a potion and we have none left, make the enemies attack
         if (!isInvincible()) {
@@ -102,7 +124,6 @@ public class Player extends Moveable implements Tickable, Collider {
                 return true;
             }
         }
-        
         return false;
     }
     
@@ -117,17 +138,34 @@ public class Player extends Moveable implements Tickable, Collider {
     
     public void addWeapon(Weapon w) {
         inventory.add(w);
+        if (dc != null) {
+            dc.showWeapon(true);
+            dc.addToInventoryView(w);
+        }
         dungeon.removeEntity(w);
     }
     
     public void removeWeapon() {
-        inventory.removeIf(e -> e instanceof Weapon);
+        for (Entity e : inventory) {
+            if (e instanceof Weapon) {
+                inventory.remove(e);
+                if (dc != null) {
+                    dc.showWeapon(false);
+                    dc.removeFromInventoryView(e);
+                }
+            }
+        }
     }
     
     public void reduceWeaponHealth() {
+        
         for (Entity e: inventory) {
             if (e instanceof Weapon) {
-                ((Weapon) e).decrementHealth();
+                Weapon w = (Weapon) e;
+                w.decrementHealth();
+                if (dc != null) {
+                    dc.updateWeaponHealth(w.getHealth());
+                }
             }
         }
     }
@@ -173,5 +211,9 @@ public class Player extends Moveable implements Tickable, Collider {
     
     public void setTeleporting(boolean isTeleporting) {
         this.isTeleporting = isTeleporting;
+    }
+    
+    public void subscribeController(DungeonController dc) {
+        this.dc = dc;
     }
 }

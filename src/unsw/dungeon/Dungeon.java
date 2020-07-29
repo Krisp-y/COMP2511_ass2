@@ -137,14 +137,14 @@ public class Dungeon implements GoalSubscriber {
     public void update() {
         // mainGoal is null iff it has not been specified in the json.
         if (mainGoal != null && mainGoal.isComplete()) {
-            System.out.println("Game Ending Collision");
+            // System.out.println("Game Ending Collision");
             endGameWon();
         }
     }
     
     public void endGameWon() {
         if (this.dc != null) {
-            System.out.println("Game Won!");
+            // System.out.println("Game Won!");
             dc.gameWon();
         }
         this.isGameEnded = true;
@@ -152,7 +152,7 @@ public class Dungeon implements GoalSubscriber {
 
     public void endGameLost() {
         if (this.dc != null) {
-            System.out.println("Game Lost!");
+            // System.out.println("Game Lost!");
             dc.gameLost();
         }
         this.isGameEnded = true;
@@ -188,6 +188,21 @@ public class Dungeon implements GoalSubscriber {
     
     public void subscribeController(DungeonController dc) {
         this.dc = dc;
+        player.subscribeController(dc);
+    }
+    
+    public static CollectibleEnum getEntityEnum(Entity e) {
+        if (e instanceof Potion) {
+            return CollectibleEnum.POTION;
+        } else if (e instanceof Key) {
+            return CollectibleEnum.KEY;
+        } else if (e instanceof Treasure) {
+            return CollectibleEnum.TREASURE;
+        } else if (e instanceof Weapon) {
+            return CollectibleEnum.WEAPON;
+        }
+        
+        return CollectibleEnum.INVALID;
     }
     
 }

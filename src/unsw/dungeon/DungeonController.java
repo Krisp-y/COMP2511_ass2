@@ -1,7 +1,11 @@
 package unsw.dungeon;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -14,7 +18,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -33,8 +40,16 @@ public class DungeonController extends Controller {
 
     @FXML
     private VBox pauseMenu;
+    
+    @FXML
+    private HBox inventoryHbox;
 
     private List<ImageView> initialEntities;
+    
+    // I am so unbelievably sorry for this mess but deadlines make you do dumb things
+    private Map<CollectibleEnum, EntityView> entityImageMap;
+    private Map<CollectibleEnum, Integer> inventoryCountMap;
+    private Map<CollectibleEnum, Pane> inventoryViewMap;
 
     private Player player;
 
@@ -45,15 +60,25 @@ public class DungeonController extends Controller {
 
     private boolean isPaused;
 
-    public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
+    public DungeonController(Dungeon dungeon, List<ImageView> initialEntities, Map<Entity, EntityView> entityImageMap) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
+        this.entityImageMap = new HashMap<CollectibleEnum, EntityView>();
+        this.inventoryCountMap = new HashMap<CollectibleEnum, Integer>();
+        this.inventoryViewMap = new HashMap<CollectibleEnum, Pane>();
         this.isPaused = false;
+        this.tickerTimeline = new Timeline();
+        this.dungeonEnd = new Timeline();
+        
+        setupEntityImageMap(entityImageMap);
+        setupInventoryCountMap();
         setupTickerTimeline();
         setupDungeonEndTimeline();
         dungeon.subscribeController(this);
     }
+
+    
 
     @FXML
     public void initialize() {
@@ -148,18 +173,85 @@ public class DungeonController extends Controller {
     
     
     private void setupTickerTimeline() {
-        tickerTimeline = new Timeline();
         tickerTimeline.setCycleCount(Animation.INDEFINITE);
         tickerTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), e -> {tick();}));
     }
     
     private void setupDungeonEndTimeline() {
-        dungeonEnd = new Timeline();
         dungeonEnd.setCycleCount(1);
+    }
+    
+    private void setupInventoryCountMap() {
+        for (CollectibleEnum e : entityImageMap.keySet()) {
+            inventoryCountMap.put(e, 0);
+        }
+    }
+    
+    private void setupEntityImageMap(Map<Entity, EntityView> entityImageMap_) {
+        for (Map.Entry<Entity, EntityView> entry : entityImageMap_.entrySet()) {
+            this.entityImageMap.put(Dungeon.getEntityEnum(entry.getKey()), entry.getValue());
+        }
     }
     
     public void tick() {
         dungeon.tick();
+    }
+
+	public void updateInvincibleStatus(boolean b) {
+	    //TODO
+	}
+
+	public void updateWeaponHealth(int health) {
+	    //TODO
+	}
+
+	public void showWeapon(boolean b) {
+	    //TODO
+	}
+
+	public void showInvincibleStatus(boolean b) {
+	    //TODO
+	}
+
+	public void addToInventoryView(Entity e) {
+	    Integer oldcount = inventoryCountMap.get(Dungeon.getEntityEnum(e));
+	    inventoryCountMap.put(Dungeon.getEntityEnum(e), oldcount + 1);
+	    
+	    if (oldcount == 0) {
+	        Pane inventoryItem = createInventoryItem(Dungeon.getEntityEnum(e));
+	        inventoryHbox.getChildren().add(inventoryItem);
+	    } else {
+	        updateInventoryItem(Dungeon.getEntityEnum(e), oldcount + 1);
+	    }
+	}
+
+	public void removeFromInventoryView(Entity e) {
+	    Integer oldcount = inventoryCountMap.get(Dungeon.getEntityEnum(e));
+	    inventoryCountMap.put(Dungeon.getEntityEnum(e), oldcount - 1);
+	    
+	    if (oldcount - 1 ==  0) { // Remove the pane from the inventory view
+	        Pane p = inventoryViewMap.get(Dungeon.getEntityEnum(e));
+	        inventoryHbox.getChildren().remove(p);
+	    } else {
+	        updateInventoryItem(Dungeon.getEntityEnum(e), oldcount - 1);
+	    }
+	}
+	
+	private Pane createInventoryItem(CollectibleEnum e) {
+	    Pane p = new Pane();
+	    p.getChildren().add(new ImageView(entityImageMap.get(e).getImage()));
+	    p.getChildren().add(new Text(""));
+	    inventoryViewMap.put(e, p);
+	    return p;
+	}
+	
+	private void updateInventoryItem(CollectibleEnum e, Integer count) {
+	    System.out.println("here!");
+	    Pane p = inventoryViewMap.get(e); // get the pane.
+	    int idx = inventoryHbox.getChildren().indexOf(p);
+	    Text t = (Text) p.getChildren().get(1); // This is always the text object.
+	    t.setText(count.toString());
+	    inventoryHbox.getChildren().set(idx, p); // replace with the new pane.
     }
 }
 
