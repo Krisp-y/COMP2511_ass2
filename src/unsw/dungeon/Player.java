@@ -139,7 +139,7 @@ public class Player extends Moveable implements Tickable, Collider {
     public void addWeapon(Weapon w) {
         inventory.add(w);
         if (dc != null) {
-            dc.showWeapon(true);
+            dc.showWeaponStatus(true);
             dc.addToInventoryView(w);
         }
         dungeon.removeEntity(w);
@@ -150,7 +150,7 @@ public class Player extends Moveable implements Tickable, Collider {
             if (e instanceof Weapon) {
                 inventory.remove(e);
                 if (dc != null) {
-                    dc.showWeapon(false);
+                    dc.showWeaponStatus(false);
                     dc.removeFromInventoryView(e);
                 }
             }
@@ -164,7 +164,7 @@ public class Player extends Moveable implements Tickable, Collider {
                 Weapon w = (Weapon) e;
                 w.decrementHealth();
                 if (dc != null) {
-                    dc.updateWeaponHealth(w.getHealth());
+                    dc.reduceWeaponHealth();
                 }
             }
         }

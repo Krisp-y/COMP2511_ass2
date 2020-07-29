@@ -20,6 +20,4 @@ public class EntityView extends ImageView {
         this.setImage(image);
     }
     
-    
-    
 }

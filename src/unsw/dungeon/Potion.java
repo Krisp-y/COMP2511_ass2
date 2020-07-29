@@ -7,7 +7,7 @@ public class Potion extends Entity implements Collider, Tickable {
     private boolean collected;
     public Potion(int x, int y) {
         super(x, y);
-        this.health = 15;
+        this.health = Dungeon.POTION_HEALTH;
         this.player = null;
         this.collected = false;
     }

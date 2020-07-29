@@ -43,6 +43,13 @@ public class DungeonController extends Controller {
     
     @FXML
     private HBox inventoryHbox;
+    
+    @FXML
+    private VBox itemStatusVbox;
+    
+    private HBox weaponStatus;
+    
+    private HBox potionStatus;
 
     private List<ImageView> initialEntities;
     
@@ -201,12 +208,30 @@ public class DungeonController extends Controller {
 	    //TODO
 	}
 
-	public void updateWeaponHealth(int health) {
-	    //TODO
+	public void reduceWeaponHealth() {
+	    int endidx = weaponStatus.getChildren().size() - 1;
+	    weaponStatus.getChildren().remove(endidx);
+	}
+	
+	private ImageView getImageFromPath(String path) {
+	    return new ImageView(new Image((new File(path)).toURI().toString()));
 	}
 
-	public void showWeapon(boolean b) {
-	    //TODO
+	public void showWeaponStatus(boolean b) {
+	    if (b) {
+	        assert(weaponStatus == null);
+	        weaponStatus = new HBox();
+	        weaponStatus.getChildren().add(
+	            new ImageView(entityImageMap.get(CollectibleEnum.WEAPON).getImage()));
+            // Add all the health dots.
+            for (int i = 0; i < Dungeon.WEAPON_HEALTH; i++) {
+                weaponStatus.getChildren().add(getImageFromPath("images/dot.png"));
+            }
+	        itemStatusVbox.getChildren().add(weaponStatus);
+	    } else {
+	        weaponStatus.getChildren().clear();
+	        itemStatusVbox.getChildren().remove(weaponStatus);
+	    }
 	}
 
 	public void showInvincibleStatus(boolean b) {

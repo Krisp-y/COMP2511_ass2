@@ -43,7 +43,12 @@
                         <Text layoutX="78.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Goals" textAlignment="CENTER" wrappingWidth="70.341796875" />
                      </children>
                   </Pane>
-                  <Pane prefHeight="353.0" prefWidth="227.0" style="-fx-background-color: orange;" />
+                  <Pane prefHeight="353.0" prefWidth="227.0" style="-fx-background-color: orange;">
+                     <children>
+                        <Text layoutX="84.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Status" />
+                        <VBox fx:id="itemStatusVbox" layoutX="16.0" layoutY="22.0" prefHeight="307.0" prefWidth="196.0" />
+                     </children>
+                  </Pane>
                </children>
             </VBox>
             <Pane prefHeight="69.0" prefWidth="255.0" style="-fx-background-color: blue; -fx-border-width: 5; -fx-border-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -70,7 +75,7 @@
                      </HBox.margin>
                      <children>
                         <Text layoutX="247.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" textAlignment="CENTER" />
-                        <HBox fx:id="inventoryHbox" alignment="CENTER" layoutX="10.0" layoutY="23.0" prefHeight="49.0" prefWidth="521.0" />
+                        <HBox fx:id="inventoryHbox" alignment="CENTER" layoutX="7.0" layoutY="22.0" prefHeight="39.0" prefWidth="521.0" />
                      </children>
                   </Pane>
                </children>

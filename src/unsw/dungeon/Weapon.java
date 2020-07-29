@@ -6,7 +6,7 @@ public class Weapon extends Entity implements Collider {
 
     public Weapon(int x, int y) {
         super(x, y);
-        this.health = 5;
+        this.health = Dungeon.WEAPON_HEALTH;
     }
 
     @Override

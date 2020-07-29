@@ -17,7 +17,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
  *
  */
 public class Dungeon implements GoalSubscriber {
-
+    
+    public static final int WEAPON_HEALTH = 5;
+    public static final int POTION_HEALTH = 15;
+    
     private int width, height;
     private List<Entity> entities;
     private Player player;
