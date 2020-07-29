@@ -4,6 +4,7 @@
 package unsw.dungeon;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -27,6 +28,7 @@ public class Dungeon implements GoalSubscriber {
     private Goal mainGoal;
     private boolean isGameEnded;
     private DungeonController dc;
+    private List<BasicGoal> basicGoals;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -34,6 +36,7 @@ public class Dungeon implements GoalSubscriber {
         this.entities = new CopyOnWriteArrayList<>();
         this.player = null;
         this.isGameEnded = false;
+        this.basicGoals = new ArrayList<BasicGoal>();
         this.dc = null;
     }
 
@@ -137,12 +140,13 @@ public class Dungeon implements GoalSubscriber {
     }
 
     @Override
-    public void update() {
+    public void goalUpdate() {
         // mainGoal is null iff it has not been specified in the json.
         if (mainGoal != null && mainGoal.isComplete()) {
             // System.out.println("Game Ending Collision");
             endGameWon();
         }
+        dc.updateBasicGoals();
     }
     
     public void endGameWon() {
@@ -206,6 +210,14 @@ public class Dungeon implements GoalSubscriber {
         }
         
         return CollectibleEnum.INVALID;
+    }
+    
+    public List<BasicGoal> getBasicGoals() {
+        return basicGoals;
+    }
+    
+    public void addBasicGoal(BasicGoal g) {
+        basicGoals.add(g);
     }
     
 }

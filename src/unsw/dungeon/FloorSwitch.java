@@ -23,7 +23,7 @@ public class FloorSwitch extends Entity implements Collider, GoalPublisher {
 
     @Override
     public void notifySubscribers() {
-        boulderGoal.update();
+        boulderGoal.goalUpdate();
     }
 
     @Override

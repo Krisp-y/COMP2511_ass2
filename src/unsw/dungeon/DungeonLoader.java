@@ -62,7 +62,7 @@ public abstract class DungeonLoader {
             throws InvalidGoalException {
 
         String goalType = goals.getString("goal");
-
+        BasicGoal g;
         switch (goalType) {
             // Leaf Goals are here. Base case of the recursion. Fail loudly when
             // there are no entities available to complete the goals.
@@ -70,25 +70,33 @@ public abstract class DungeonLoader {
                 if (entitiesMap.get("exit") == null) {
                     throw new InvalidGoalException("Exit goal specified but no exit tiles provided.");
                 }
-                return new ExitGoal(dungeon, entitiesMap.get("exit"));
+                g = new ExitGoal(dungeon, entitiesMap.get("exit"));
+                dungeon.addBasicGoal(g);
+                return g;
             case "boulders":
                 if (entitiesMap.get("switch") == null) {
                     throw new InvalidGoalException("Boulder goal specified but no switches provided.");
                 } else if (entitiesMap.get("boulder") == null) {
                     throw new InvalidGoalException("Boulder goal specified but no boulders provided.");
                 }
-                return new BoulderGoal(dungeon, entitiesMap.get("switch"), entitiesMap.get("boulder"));
+                g = new BoulderGoal(dungeon, entitiesMap.get("switch"), entitiesMap.get("boulder"));
+                dungeon.addBasicGoal(g);
+                return g;
             case "enemies":
                 if (entitiesMap.get("enemy") == null) {
                     throw new InvalidGoalException("Enemy goal specified but not enemies provided.");
                 }
-                return new EnemyGoal(dungeon, entitiesMap.get("enemy"));
+                g = new EnemyGoal(dungeon, entitiesMap.get("enemy"));
+                dungeon.addBasicGoal(g);
+                return g;
             case "treasure":
                 if (entitiesMap.get("treasure") == null) {
                     throw new InvalidGoalException("Treasure goal specified but no treasure provided.");
                 }
-                return new TreasureGoal(dungeon, entitiesMap.get("treasure"));
-
+                g =  new TreasureGoal(dungeon, entitiesMap.get("treasure"));
+                dungeon.addBasicGoal(g);
+                return g;
+            
             // Composite goals are here. Loop through all the subgoals
             // in the conjunction and recursively call loadGoals on each
             // of the children, adding the resulting goal to each child.

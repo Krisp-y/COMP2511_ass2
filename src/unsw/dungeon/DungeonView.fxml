@@ -12,7 +12,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <StackPane onKeyPressed="#handleKeyPress" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane>
@@ -38,15 +37,17 @@
                   <Insets right="5.0" top="5.0" />
                </GridPane.margin>
                <children>
-                  <Pane prefHeight="370.0" prefWidth="227.0" style="-fx-background-color: yellow;">
+                  <Pane prefHeight="165.0" prefWidth="227.0" style="-fx-background-color: yellow;">
                      <children>
                         <Text layoutX="78.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Goals" textAlignment="CENTER" wrappingWidth="70.341796875" />
+                        <VBox fx:id="basicGoalVbox" layoutX="15.0" layoutY="26.0" prefHeight="128.0" prefWidth="197.0" />
                      </children>
                   </Pane>
-                  <Pane prefHeight="353.0" prefWidth="227.0" style="-fx-background-color: orange;">
+                  <Pane fx:id="conjunctionPane" prefHeight="257.0" prefWidth="227.0" style="-fx-background-color: orange;" />
+                  <Pane prefHeight="253.0" prefWidth="227.0">
                      <children>
-                        <Text layoutX="84.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Status" />
-                        <VBox fx:id="itemStatusVbox" layoutX="16.0" layoutY="22.0" prefHeight="307.0" prefWidth="196.0" />
+                        <Text layoutX="78.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Status" textAlignment="CENTER" wrappingWidth="70.341796875" />
+                        <VBox fx:id="itemStatusVbox" layoutX="6.0" layoutY="46.0" prefHeight="201.0" prefWidth="211.0" />
                      </children>
                   </Pane>
                </children>
@@ -75,7 +76,7 @@
                      </HBox.margin>
                      <children>
                         <Text layoutX="247.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" textAlignment="CENTER" />
-                        <HBox fx:id="inventoryHbox" alignment="CENTER" layoutX="7.0" layoutY="22.0" prefHeight="39.0" prefWidth="521.0" />
+                        <HBox fx:id="inventoryHbox" alignment="CENTER" layoutX="7.0" layoutY="11.0" prefHeight="47.0" prefWidth="521.0" />
                      </children>
                   </Pane>
                </children>

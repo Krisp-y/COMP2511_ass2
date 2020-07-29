@@ -177,4 +177,6 @@ public class DungeonControllerLoader extends DungeonLoader {
     public DungeonController loadController() throws FileNotFoundException {
         return new DungeonController(load(), entities, entityImageMap);
     }
+
+    
 }

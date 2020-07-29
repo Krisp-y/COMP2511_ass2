@@ -25,7 +25,7 @@ public class Treasure extends Entity implements Collider, GoalPublisher {
         if (treasureGoal == null) {
             return;
         }
-        treasureGoal.update();
+        treasureGoal.goalUpdate();
     }
     
     @Override

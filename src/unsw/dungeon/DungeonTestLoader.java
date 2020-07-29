@@ -66,5 +66,6 @@ public class DungeonTestLoader extends DungeonLoader {
     public void onLoad(Weapon weapon) {
         return;
     }
-    
+
+
 }

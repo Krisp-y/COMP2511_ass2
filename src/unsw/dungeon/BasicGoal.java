@@ -28,7 +28,11 @@ public abstract class BasicGoal implements Goal, GoalSubscriber, GoalPublisher {
     
     @Override
     public void notifySubscribers() {
-        dungeon.update();
+        dungeon.goalUpdate();
+    }
+    
+    public Goal getGoal() {
+        return this;
     }
 
 }

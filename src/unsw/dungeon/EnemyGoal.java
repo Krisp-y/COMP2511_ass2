@@ -24,8 +24,16 @@ public class EnemyGoal extends BasicGoal {
     }
 
     @Override
-    public void update() {
+    public void goalUpdate() {
         numDead++; // update is called when an enemy is killed;
         notifySubscribers();
+    }
+    
+    public int getEnemyCount() {
+        return numEnemies;
+    }
+    
+    public int getDeadEnemyCount() {
+        return numDead;
     }
 }

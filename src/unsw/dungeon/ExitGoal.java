@@ -26,7 +26,7 @@ public class ExitGoal extends BasicGoal {
     }
 
     @Override
-    public void update() {
+    public void goalUpdate() {
         notifySubscribers();
     }
 

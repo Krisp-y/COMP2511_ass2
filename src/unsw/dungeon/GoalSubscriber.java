@@ -1,5 +1,5 @@
 package unsw.dungeon;
 
 public interface GoalSubscriber {
-    public void update();
+    public void goalUpdate();
 }

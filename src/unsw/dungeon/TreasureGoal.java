@@ -14,7 +14,7 @@ public class TreasureGoal extends BasicGoal {
 
     @Override
     public boolean isComplete() {
-        return numTreasures == numCollected;
+        return numTreasures >= numCollected;
     }
     
     @Override
@@ -23,9 +23,17 @@ public class TreasureGoal extends BasicGoal {
     }
 
     @Override
-    public void update() {
+    public void goalUpdate() {
         numCollected++; //update is called when the player picks up treasure.
         notifySubscribers();
+    }
+    
+    public int getTreasureCount() {
+        return numTreasures;
+    }
+    
+    public int getCollectedTreasureCount() {
+        return numCollected;
     }
     
 }

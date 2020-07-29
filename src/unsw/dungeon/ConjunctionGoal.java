@@ -12,4 +12,12 @@ public abstract class ConjunctionGoal implements Goal {
     public void addSubGoal(Goal subGoal) {
         subGoals.add(subGoal);
     }
+    
+    public ArrayList<Goal> getSubGoals() {
+        return subGoals;
+    }
+    
+    public Goal getGoal() {
+        return this;
+    }
 }

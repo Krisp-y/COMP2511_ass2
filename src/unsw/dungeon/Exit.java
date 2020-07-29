@@ -18,7 +18,7 @@ public class Exit extends Entity implements Collider, GoalPublisher {
 
     @Override
     public void notifySubscribers() {
-        exitGoal.update();
+        exitGoal.goalUpdate();
     }
     
     @Override

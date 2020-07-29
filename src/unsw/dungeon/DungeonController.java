@@ -25,6 +25,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,8 +50,10 @@ public class DungeonController extends Controller {
     @FXML
     private VBox itemStatusVbox;
     
-    private HBox weaponStatus;
+    @FXML
+    private VBox basicGoalVbox;
     
+    private HBox weaponStatus;
     private HBox potionStatus;
 
     private List<ImageView> initialEntities;
@@ -59,23 +62,26 @@ public class DungeonController extends Controller {
     private Map<CollectibleEnum, EntityView> entityImageMap;
     private Map<CollectibleEnum, Integer> inventoryCountMap;
     private Map<CollectibleEnum, Pane> inventoryViewMap;
+    private List<Pair<BasicGoal, HBox>> basicGoalViews;
 
     private Player player;
-
+    private Goal mainGoal;
     private Dungeon dungeon;
 
     private Timeline tickerTimeline;
     private Timeline dungeonEnd;
-
+    
     private boolean isPaused;
 
-    public DungeonController(Dungeon dungeon, List<ImageView> initialEntities, Map<Entity, EntityView> entityImageMap) {
+    public DungeonController(Dungeon dungeon, List<ImageView> initialEntities, 
+        Map<Entity, EntityView> entityImageMap) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
         this.entityImageMap = new HashMap<CollectibleEnum, EntityView>();
         this.inventoryCountMap = new HashMap<CollectibleEnum, Integer>();
         this.inventoryViewMap = new HashMap<CollectibleEnum, Pane>();
+        this.basicGoalViews = new ArrayList<Pair<BasicGoal, HBox>>();
         this.isPaused = false;
         this.tickerTimeline = new Timeline();
         this.dungeonEnd = new Timeline();
@@ -86,8 +92,6 @@ public class DungeonController extends Controller {
         setupDungeonEndTimeline();
         dungeon.subscribeController(this);
     }
-
-    
 
     @FXML
     public void initialize() {
@@ -104,6 +108,9 @@ public class DungeonController extends Controller {
             squares.getChildren().add(entity);
         }
         tickerTimeline.play();
+        
+        setupBasicGoalView();
+        setupMainGoalView();
     }
 
     @FXML
@@ -179,29 +186,7 @@ public class DungeonController extends Controller {
         }));
         dungeonEnd.play();
     }
-    
-    
-    private void setupTickerTimeline() {
-        tickerTimeline.setCycleCount(Animation.INDEFINITE);
-        tickerTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), e -> {tick();}));
-    }
-    
-    private void setupDungeonEndTimeline() {
-        dungeonEnd.setCycleCount(1);
-    }
-    
-    private void setupInventoryCountMap() {
-        for (CollectibleEnum e : entityImageMap.keySet()) {
-            inventoryCountMap.put(e, 0);
-        }
-    }
-    
-    private void setupEntityImageMap(Map<Entity, EntityView> entityImageMap_) {
-        for (Map.Entry<Entity, EntityView> entry : entityImageMap_.entrySet()) {
-            this.entityImageMap.put(Dungeon.getEntityEnum(entry.getKey()), entry.getValue());
-        }
-    }
-    
+        
     public void tick() {
         dungeon.tick();
     }
@@ -211,9 +196,6 @@ public class DungeonController extends Controller {
 	    weaponStatus.getChildren().remove(endidx);
 	}
 	
-	private ImageView getImageFromPath(String path) {
-	    return new ImageView(new Image((new File(path)).toURI().toString()));
-	}
 
 	public void showWeaponStatus(boolean b) {
 	    if (b) {
@@ -297,6 +279,81 @@ public class DungeonController extends Controller {
 	    Text t = (Text) p.getChildren().get(1); // This is always the text object.
 	    t.setText(count.toString());
 	    inventoryHbox.getChildren().set(idx, p); // replace with the new pane.
+    }
+
+    private void setupTickerTimeline() {
+        tickerTimeline.setCycleCount(Animation.INDEFINITE);
+        tickerTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), e -> {
+            tick();
+        }));
+    }
+
+    private void setupDungeonEndTimeline() {
+        dungeonEnd.setCycleCount(1);
+    }
+
+    private void setupInventoryCountMap() {
+        for (CollectibleEnum e : entityImageMap.keySet()) {
+            inventoryCountMap.put(e, 0);
+        }
+    }
+	
+	private ImageView getImageFromPath(String path) {
+	    return new ImageView(new Image((new File(path)).toURI().toString()));
+	}
+
+    private void setupEntityImageMap(Map<Entity, EntityView> entityImageMap_) {
+        for (Map.Entry<Entity, EntityView> entry : entityImageMap_.entrySet()) {
+            this.entityImageMap.put(Dungeon.getEntityEnum(entry.getKey()), entry.getValue());
+        }
+    }
+    
+    private void setupBasicGoalView() {
+        List<BasicGoal> basicGoals = dungeon.getBasicGoals();
+        
+        for (BasicGoal g : basicGoals) {
+            HBox goalView = new HBox();
+            if (g instanceof EnemyGoal) {
+                EnemyGoal eg = (EnemyGoal) g;
+                goalView.getChildren().add(getImageFromPath("images/deep_elf_master_archer.png"));
+                goalView.getChildren().add(new Text("0/" + eg.getEnemyCount()));
+            } else if (g instanceof TreasureGoal) {
+                TreasureGoal tg = (TreasureGoal) g;
+                goalView.getChildren().add(getImageFromPath("images/gold_pile.png"));
+                goalView.getChildren().add(new Text("0/" + tg.getTreasureCount()));
+            } else if (g instanceof BoulderGoal) {
+                BoulderGoal bg = (BoulderGoal) g;
+                goalView.getChildren().add(getImageFromPath("images/gold_pile.png"));
+                goalView.getChildren().add(new Text("0/" + bg.getNumFloorSwitches()));
+            } else if (g instanceof ExitGoal) {
+                goalView.getChildren().add(getImageFromPath("images/exit.png"));
+                goalView.getChildren().add(new Text("Incomplete"));
+            }
+            basicGoalVbox.getChildren().add(goalView);
+            basicGoalViews.add(new Pair<BasicGoal, HBox>(g, goalView));
+        }
+        
+        
+    }
+    
+    private void setupMainGoalView() {
+        return;
+    }
+    
+    public void updateBasicGoals() {
+        for (Pair<BasicGoal, HBox> bgHBox : basicGoalViews) {
+            Text t = (Text) bgHBox.getValue().getChildren().get(1);
+            if (bgHBox.getKey() instanceof EnemyGoal) {
+                EnemyGoal eg = (EnemyGoal) bgHBox.getKey();
+                t.setText(eg.getDeadEnemyCount() + "/" + eg.getEnemyCount());
+            } else if (bgHBox.getKey() instanceof TreasureGoal) {
+                TreasureGoal tg = (TreasureGoal) bgHBox.getKey();
+                t.setText(tg.getTreasureCount() + "/" + tg.getCollectedTreasureCount());
+            } else if (bgHBox.getKey() instanceof BoulderGoal) {
+                BoulderGoal bg = (BoulderGoal) bgHBox.getKey();
+                t.setText(bg.getSwitchesTriggered() + "/" + bg.getNumFloorSwitches());
+            }
+        }
     }
 }
 
