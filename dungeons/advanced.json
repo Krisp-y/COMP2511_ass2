@@ -97,11 +97,7 @@
       "y": 1,
       "type": "wall"
     },
-    {
-      "x": 1,
-      "y": 1,
-      "type": "player"
-    },
+    
     {
       "x": 6,
       "y": 1,
@@ -609,6 +605,11 @@
       "y": 10,
       "type": "portal",
       "id": 0
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "type": "player"
     }
   ],
   "goal-condition": {

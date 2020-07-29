@@ -15,7 +15,6 @@ public class Potion extends Entity implements Collider, Tickable {
     @Override
     public void handleCollision(Moveable m) {
         if (m instanceof Player) {
-            System.out.println("m" + " collided with " + this);
             player = (Player) m;
             player.addPotion(this);
             collected = true;
