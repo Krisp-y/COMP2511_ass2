@@ -109,13 +109,25 @@ public class Player extends Moveable implements Tickable, Collider {
         inventory.remove(potion);
         if (dc != null) {
             dc.removeFromInventoryView(potion);
-            dc.showInvincibleStatus(false);
         }
         
         // If we have removed a potion and we have none left, make the enemies attack
         if (!isInvincible()) {
+            if (dc != null) { // Only show
+                dc.showInvincibleStatus(false);
+            }
             dungeon.setEnemiesToAttack();
         }
+    }
+    
+    public void updatePotionHealth(Potion potion) {
+        if (dc != null) {
+            dc.updatePotionHealth(potion.getHealth());
+        }
+    }
+    
+    public int getPotionHealth(Potion potion) {
+        return potion.getHealth();
     }
     
     public boolean isInvincible() {

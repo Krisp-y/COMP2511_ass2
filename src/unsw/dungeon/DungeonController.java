@@ -204,10 +204,6 @@ public class DungeonController extends Controller {
         dungeon.tick();
     }
 
-	public void updateInvincibleStatus(boolean b) {
-	    //TODO
-	}
-
 	public void reduceWeaponHealth() {
 	    int endidx = weaponStatus.getChildren().size() - 1;
 	    weaponStatus.getChildren().remove(endidx);
@@ -235,7 +231,28 @@ public class DungeonController extends Controller {
 	}
 
 	public void showInvincibleStatus(boolean b) {
-	    //TODO
+	    if (b) {
+	        if (potionStatus != null) {
+	            // WE already have a potion, so just update the counter to 15.
+	            updatePotionHealth(Dungeon.POTION_HEALTH);
+	            return;
+	        }
+	        
+	        potionStatus = new HBox();
+	        potionStatus.getChildren().add(
+	            new ImageView(entityImageMap.get(CollectibleEnum.POTION).getImage()));
+            // Add all the health dots.
+            potionStatus.getChildren().add(new Text(": " + Dungeon.POTION_HEALTH));
+	        itemStatusVbox.getChildren().add(potionStatus);
+	    } else {
+	        potionStatus.getChildren().clear();
+	        itemStatusVbox.getChildren().remove(potionStatus);
+	    }
+	}
+	
+	public void updatePotionHealth(int health) {
+	    Text t = (Text) potionStatus.getChildren().get(1);
+	    t.setText(": " + health);
 	}
 
 	public void addToInventoryView(Entity e) {
