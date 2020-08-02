@@ -12,7 +12,7 @@ public class LogicalOrGoal extends ConjunctionGoal {
         for (Goal subGoal : subGoals) {
             result = result || subGoal.isComplete();
         }
-        gvListener.update(result);
+        updateListener(result);
         return result;
     }
     

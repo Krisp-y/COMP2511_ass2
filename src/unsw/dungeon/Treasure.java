@@ -1,12 +1,13 @@
 package unsw.dungeon;
 
 public class Treasure extends Entity implements Collider, GoalPublisher {
-    
+
     private GoalSubscriber treasureGoal;
+
     public Treasure(int x, int y) {
         super(x, y);
     }
-    
+
     @Override
     public void handleCollision(Moveable m) {
         if (m instanceof Player) {
@@ -30,7 +31,7 @@ public class Treasure extends Entity implements Collider, GoalPublisher {
         }
         treasureGoal.goalUpdate();
     }
-    
+
     @Override
     public void subscribe(GoalSubscriber gs) {
         this.treasureGoal = gs;
@@ -38,6 +39,6 @@ public class Treasure extends Entity implements Collider, GoalPublisher {
 
     @Override
     public void unsubscribe(GoalSubscriber s) {
-       this.treasureGoal = null;
+        this.treasureGoal = null;
     }
 }

@@ -5,7 +5,11 @@ package unsw.dungeon;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -219,6 +223,42 @@ public class Dungeon implements GoalSubscriber {
 
     public void addBasicGoal(BasicGoal g) {
         basicGoals.add(g);
+    }
+    
+    public BasicGoal getExitGoal() {
+        for (BasicGoal bg: basicGoals) {
+            if (bg instanceof ExitGoal) {
+                return bg;
+            }
+        }
+        return null;
+    }
+    
+    public BasicGoal getTreasureGoal() {
+        for (BasicGoal bg: basicGoals) {
+            if (bg instanceof TreasureGoal) {
+                return bg;
+            }
+        }
+        return null;
+    }
+    
+    public BasicGoal getBouldersGoal() {
+        for (BasicGoal bg: basicGoals) {
+            if (bg instanceof BoulderGoal) {
+                return bg;
+            }
+        }
+        return null;
+    }
+    
+    public BasicGoal getEnemyGoal() {
+        for (BasicGoal bg: basicGoals) {
+            if (bg instanceof EnemyGoal) {
+                return bg;
+            }
+        }
+        return null;
     }
 
 }

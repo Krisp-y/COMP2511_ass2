@@ -68,7 +68,7 @@ public class DungeonController extends Controller {
     private Map<CollectibleEnum, EntityView> entityImageMap;
     private Map<CollectibleEnum, Integer> inventoryCountMap;
     private Map<CollectibleEnum, Pane> inventoryViewMap;
-    private List<Pair<BasicGoal, HBox>> basicGoalViews;
+    private Map<BasicGoal, HBox> basicGoalViews;
 
     private Player player;
     private Dungeon dungeon;
@@ -86,7 +86,7 @@ public class DungeonController extends Controller {
         this.entityImageMap = new HashMap<CollectibleEnum, EntityView>();
         this.inventoryCountMap = new HashMap<CollectibleEnum, Integer>();
         this.inventoryViewMap = new HashMap<CollectibleEnum, Pane>();
-        this.basicGoalViews = new ArrayList<Pair<BasicGoal, HBox>>();
+        this.basicGoalViews = new HashMap<BasicGoal, HBox>();
         this.isPaused = false;
         this.tickerTimeline = new Timeline();
         this.dungeonEnd = new Timeline();
@@ -315,6 +315,9 @@ public class DungeonController extends Controller {
         List<BasicGoal> basicGoals = dungeon.getBasicGoals();
         
         for (BasicGoal g : basicGoals) {
+            if (basicGoalViews.containsKey(g)) {
+                continue;
+            }
             HBox goalView = new HBox();
             if (g instanceof EnemyGoal) {
                 EnemyGoal eg = (EnemyGoal) g;
@@ -333,7 +336,7 @@ public class DungeonController extends Controller {
                 goalView.getChildren().add(new Text("Incomplete"));
             }
             basicGoalVbox.getChildren().add(goalView);
-            basicGoalViews.add(new Pair<>(g, goalView));
+            basicGoalViews.put(g, goalView);
         }
         
         
@@ -341,44 +344,26 @@ public class DungeonController extends Controller {
     
     private void setupMainGoalView() {
         Goal mainGoal = dungeon.getMainGoal();
-        if (mainGoal instanceof BasicGoal) {
-            BasicGoalView basicGoalView = new BasicGoalView((BasicGoal) mainGoal);
-            mainGoalView.getChildren().add(basicGoalView.getNode());
-        } else if (mainGoal instanceof ConjunctionGoal) {
-            GoalView gv = goalViewHelper(mainGoal, mainGoalView.getPrefWidth(), mainGoalView.getPrefHeight());
-            mainGoalView.getChildren().add(gv.getNode());
+        if (mainGoal instanceof ConjunctionGoal) {
+            ConjunctionGoal cg = (ConjunctionGoal) mainGoal;
+            new ConjunctionGoalView(cg, mainGoalView);
+        } else if (mainGoal instanceof BasicGoal) {
+            BasicGoal bg = (BasicGoal) mainGoal;
+            new BasicGoalView(bg, mainGoalView);
         }
-    }
-    
-    // Recursive helper method for the goal view.
-    private GoalView goalViewHelper(Goal goal, double width, double height) {
-        if (goal instanceof ConjunctionGoal) {
-            ConjunctionGoal cg = (ConjunctionGoal) goal;
-            ArrayList<Goal> subgoals = cg.getSubGoals();
-            List<GoalView> subgoalViews = new ArrayList<>();
-            double newHeight = height * 0.8 / subgoalViews.size();
-            for (Goal subgoal : subgoals) {
-                subgoalViews.add(goalViewHelper(subgoal, width*0.8, newHeight));
-            }
-            return new ConjunctionGoalView(cg, subgoalViews, width, height);
-        } else if (goal instanceof BasicGoal) {
-            return new BasicGoalView((BasicGoal) goal);
-        }
-        
-        return null;
     }
     
     public void updateBasicGoals() {
-        for (Pair<BasicGoal, HBox> bgHBox : basicGoalViews) {
-            Text t = (Text) bgHBox.getValue().getChildren().get(1);
-            if (bgHBox.getKey() instanceof EnemyGoal) {
-                EnemyGoal eg = (EnemyGoal) bgHBox.getKey();
+        for (Map.Entry<BasicGoal, HBox> entry : basicGoalViews.entrySet()) {
+            Text t = (Text) entry.getValue().getChildren().get(1);
+            if (entry.getKey() instanceof EnemyGoal) {
+                EnemyGoal eg = (EnemyGoal) entry.getKey();
                 t.setText(eg.getDeadEnemyCount() + "/" + eg.getEnemyCount());
-            } else if (bgHBox.getKey() instanceof TreasureGoal) {
-                TreasureGoal tg = (TreasureGoal) bgHBox.getKey();
+            } else if (entry.getKey() instanceof TreasureGoal) {
+                TreasureGoal tg = (TreasureGoal) entry.getKey();
                 t.setText(tg.getCollectedTreasureCount() + "/" + tg.getTreasureCount());
-            } else if (bgHBox.getKey() instanceof BoulderGoal) {
-                BoulderGoal bg = (BoulderGoal) bgHBox.getKey();
+            } else if (entry.getKey() instanceof BoulderGoal) {
+                BoulderGoal bg = (BoulderGoal) entry.getKey();
                 t.setText(bg.getSwitchesTriggered() + "/" + bg.getNumFloorSwitches());
             }
         }

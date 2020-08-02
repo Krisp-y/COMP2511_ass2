@@ -24,4 +24,11 @@ public abstract class ConjunctionGoal implements Goal {
     public void addListener(GoalView gv) {
         gvListener = gv;
     }
+    
+    public void updateListener(boolean result) {
+        if (gvListener != null) {
+            gvListener.update(result);
+        }
+        
+    }
 }

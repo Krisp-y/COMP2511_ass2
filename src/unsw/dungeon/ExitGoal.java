@@ -40,7 +40,7 @@ public class ExitGoal extends BasicGoal {
     
     public void setComplete(boolean b) {
         complete = b;
-        gvListener.update(complete);
+        updateListener(b);
     }
 
 }

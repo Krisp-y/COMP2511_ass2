@@ -1,9 +1,10 @@
 package unsw.dungeon;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BasicGoal implements Goal, GoalSubscriber, GoalPublisher {
-    protected GoalView gvListener;
+    protected List<GoalView> gvListeners;
     protected Dungeon dungeon;
     public BasicGoal(Dungeon dungeon, List<Entity> entities) {
         for (Entity entity : entities) {
@@ -15,6 +16,7 @@ public abstract class BasicGoal implements Goal, GoalSubscriber, GoalPublisher {
                 gp.subscribe(this);
             }
         }
+        gvListeners = new ArrayList<GoalView>();
         subscribe(dungeon);
     }
     
@@ -36,8 +38,15 @@ public abstract class BasicGoal implements Goal, GoalSubscriber, GoalPublisher {
     }
     
     public void addListener(GoalView gv) {
-        gvListener = gv;
-        System.out.println(gv + " is now listening to " + this);
+        gvListeners.add(gv);
+    }
+    
+    public void updateListener(boolean result) {
+        if (gvListeners != null) {
+            for (GoalView listener: gvListeners) {
+                listener.update(result);
+            }
+        }
     }
 
 }

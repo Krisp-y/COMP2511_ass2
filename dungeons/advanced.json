@@ -640,19 +640,27 @@
     }
   ],
   "goal-condition": {
-    "goal": "AND",
+    "goal": "OR",
     "subgoals": [
       {
         "goal": "enemies"
       },
       {
-        "goal": "treasure"
-      },
-      {
-        "goal": "exit"
-      },
-      {
-        "goal": "boulders"
+        "goal": "AND",
+        "subgoals": [
+          {
+            "goal": "exit"
+          },
+          {
+            "goal": "boulders"
+          },
+          {
+            "goal": "treasure"
+          },
+          {
+            "goal": "enemies"
+          }
+        ]
       }
     ]
   }

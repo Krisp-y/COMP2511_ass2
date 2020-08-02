@@ -70,6 +70,10 @@ public abstract class DungeonLoader {
                 if (entitiesMap.get("exit") == null) {
                     throw new InvalidGoalException("Exit goal specified but no exit tiles provided.");
                 }
+                g = dungeon.getExitGoal();
+                if (g != null) {
+                    return g;
+                }
                 g = new ExitGoal(dungeon, entitiesMap.get("exit"));
                 dungeon.addBasicGoal(g);
                 return g;
@@ -79,6 +83,10 @@ public abstract class DungeonLoader {
                 } else if (entitiesMap.get("boulder") == null) {
                     throw new InvalidGoalException("Boulder goal specified but no boulders provided.");
                 }
+                g = dungeon.getBouldersGoal();
+                if (g != null) {
+                    return g;
+                }
                 g = new BoulderGoal(dungeon, entitiesMap.get("switch"), entitiesMap.get("boulder"));
                 dungeon.addBasicGoal(g);
                 return g;
@@ -86,12 +94,20 @@ public abstract class DungeonLoader {
                 if (entitiesMap.get("enemy") == null) {
                     throw new InvalidGoalException("Enemy goal specified but not enemies provided.");
                 }
+                g = dungeon.getEnemyGoal();
+                if (g != null) {
+                    return g;
+                }
                 g = new EnemyGoal(dungeon, entitiesMap.get("enemy"));
                 dungeon.addBasicGoal(g);
                 return g;
             case "treasure":
                 if (entitiesMap.get("treasure") == null) {
                     throw new InvalidGoalException("Treasure goal specified but no treasure provided.");
+                }
+                g = dungeon.getTreasureGoal();
+                if (g != null) {
+                    return g;
                 }
                 g =  new TreasureGoal(dungeon, entitiesMap.get("treasure"));
                 dungeon.addBasicGoal(g);

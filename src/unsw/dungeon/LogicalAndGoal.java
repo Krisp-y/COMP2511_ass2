@@ -23,7 +23,7 @@ public class LogicalAndGoal extends ConjunctionGoal {
             eg.setComplete(false);
         }
        
-        gvListener.update(result);
+        updateListener(result);
         return result;
     }
     
