@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -52,6 +53,9 @@ public class DungeonController extends Controller {
     
     @FXML
     private VBox basicGoalVbox;
+    
+    @FXML
+    private Button testButton;
     
     private HBox weaponStatus;
     private HBox potionStatus;
@@ -109,6 +113,7 @@ public class DungeonController extends Controller {
         }
         tickerTimeline.play();
         
+        testButton.setStyle(value);
         setupBasicGoalView();
         setupMainGoalView();
     }

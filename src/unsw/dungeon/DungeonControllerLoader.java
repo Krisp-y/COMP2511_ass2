@@ -46,19 +46,22 @@ public class DungeonControllerLoader extends DungeonLoader {
         super(filename);
         entities = new ArrayList<>();
         entityImageMap = new HashMap<Entity, EntityView>();
-        playerImage = new Image((new File("images/human_new.png")).toURI().toString());
-        wallImage = new Image((new File("images/brick_brown_0.png")).toURI().toString());
-        boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
-        exitImage = new Image((new File("images/exit.png")).toURI().toString());
-        portalImage = new Image((new File("images/portal.png")).toURI().toString());
-        floorSwitchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
-        enemyImage = new Image((new File("images/deep_elf_master_archer.png")).toURI().toString());
-        keyImage = new Image((new File("images/key.png")).toURI().toString());
-        doorImage = new Image((new File("images/closed_door.png")).toURI().toString());
-        treasureImage = new Image((new File("images/gold_pile.png")).toURI().toString());
-        potionImage = new Image((new File("images/bubbly.png")).toURI().toString());
-        weaponImage = new Image((new File("images/greatsword_1_new.png")).toURI().toString());
-        ghostImage = new Image((new File("images/Enemy_crop.png")).toURI().toString());
+        playerImage = createImage("src/images/human_new.png");
+        wallImage = createImage("src/images/brick_brown_0.png");
+        boulderImage = createImage("src/images/boulder.png");
+        exitImage = createImage("src/images/exit.png");
+        portalImage = createImage("src/images/portal.png");
+        floorSwitchImage = createImage("src/images/pressure_plate.png");
+        enemyImage = createImage("src/images/deep_elf_master_archer.png");
+        keyImage = createImage("src/images/key.png"); createImage("images/closed_door.png");
+        treasureImage = createImage("src/images/gold_pile.png");
+        potionImage = createImage("src/images/bubbly.png");
+        weaponImage = createImage("src/images/greatsword_1_new.png");
+        ghostImage = createImage("src/images/Enemy_crop.png");
+    }
+    
+    private Image createImage(String path) {
+        return new Image((new File(path)).toURI().toString());
     }
     
     @Override
