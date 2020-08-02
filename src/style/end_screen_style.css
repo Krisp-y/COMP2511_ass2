@@ -1,0 +1,4 @@
+.bodybg {
+    -fx-background-image: url('../images/victory_image.jpg');
+    -fx-background-size: 100% 100%;
+}
