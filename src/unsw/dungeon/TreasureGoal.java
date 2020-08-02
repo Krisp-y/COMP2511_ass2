@@ -14,7 +14,7 @@ public class TreasureGoal extends BasicGoal {
 
     @Override
     public boolean isComplete() {
-        boolean result = numTreasures >= numCollected;
+        boolean result = numCollected >= numTreasures;
         gvListener.update(result);
         return result;
     }

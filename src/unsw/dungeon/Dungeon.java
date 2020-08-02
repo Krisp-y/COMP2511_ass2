@@ -18,10 +18,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
  *
  */
 public class Dungeon implements GoalSubscriber {
-    
+
     public static final int WEAPON_HEALTH = 5;
     public static final int POTION_HEALTH = 15;
-    
+
     private int width, height;
     private List<Entity> entities;
     private Player player;
@@ -75,7 +75,6 @@ public class Dungeon implements GoalSubscriber {
     public void removeEntity(Entity e) {
         e.despawn();
         entities.remove(e);
-        e = null;
     }
 
     /**
@@ -146,9 +145,11 @@ public class Dungeon implements GoalSubscriber {
             // System.out.println("Game Ending Collision");
             endGameWon();
         }
-        dc.updateBasicGoals();
+        if (dc != null) {
+            dc.updateBasicGoals();
+        }   
     }
-    
+
     public void endGameWon() {
         if (this.dc != null) {
             // System.out.println("Game Won!");
@@ -164,40 +165,40 @@ public class Dungeon implements GoalSubscriber {
         }
         this.isGameEnded = true;
     }
-    
+
     public boolean isGameEnded() {
         return isGameEnded;
     }
-    
+
     public static boolean inSamePosition(Entity a, Entity b) {
         return a.getX() == b.getX() && a.getY() == b.getY();
     }
-    
+
     public boolean isPlayerOn(Entity e) {
         return inSamePosition(player, e);
     }
-    
+
     public void tick() {
-        for (Entity e: entities) {
+        for (Entity e : entities) {
             if (e instanceof Tickable) {
                 ((Tickable) e).tick();
             }
         }
     }
-    
+
     public int getPlayerPositionX() {
         return player.getX();
     }
-    
+
     public int getPlayerPositionY() {
         return player.getY();
     }
-    
+
     public void subscribeController(DungeonController dc) {
         this.dc = dc;
         player.subscribeController(dc);
     }
-    
+
     public static CollectibleEnum getEntityEnum(Entity e) {
         if (e instanceof Potion) {
             return CollectibleEnum.POTION;
@@ -208,16 +209,16 @@ public class Dungeon implements GoalSubscriber {
         } else if (e instanceof Weapon) {
             return CollectibleEnum.WEAPON;
         }
-        
+
         return CollectibleEnum.INVALID;
     }
-    
+
     public List<BasicGoal> getBasicGoals() {
         return basicGoals;
     }
-    
+
     public void addBasicGoal(BasicGoal g) {
         basicGoals.add(g);
     }
-    
+
 }
