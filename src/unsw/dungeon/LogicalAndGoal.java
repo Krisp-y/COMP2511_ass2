@@ -11,6 +11,7 @@ public class LogicalAndGoal extends ConjunctionGoal {
         for (Goal subGoal : subGoals) {
             result = result && subGoal.isComplete();
         }
+        gvListener.update(result);
         return result;
     }
     

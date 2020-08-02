@@ -3,7 +3,7 @@ package unsw.dungeon;
 import java.util.ArrayList;
 
 public abstract class ConjunctionGoal implements Goal {
-    
+    protected GoalView gvListener;
     protected ArrayList<Goal> subGoals;
     public ConjunctionGoal() {
         this.subGoals = new ArrayList<Goal>();
@@ -19,5 +19,9 @@ public abstract class ConjunctionGoal implements Goal {
     
     public Goal getGoal() {
         return this;
+    }
+    
+    public void addListener(GoalView gv) {
+        gvListener = gv;
     }
 }

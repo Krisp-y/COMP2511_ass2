@@ -42,14 +42,14 @@
                   <Insets right="5.0" top="5.0" />
                </GridPane.margin>
                <children>
-                  <Pane prefHeight="165.0" prefWidth="227.0" style="-fx-background-color: yellow;">
+                  <Pane prefHeight="221.0" prefWidth="227.0" style="-fx-background-color: yellow;">
                      <children>
                         <Text layoutX="78.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Goals" textAlignment="CENTER" wrappingWidth="70.341796875" />
                         <VBox fx:id="basicGoalVbox" layoutX="15.0" layoutY="26.0" prefHeight="128.0" prefWidth="197.0" />
                      </children>
                   </Pane>
-                  <Pane fx:id="conjunctionPane" prefHeight="257.0" prefWidth="227.0" style="-fx-background-color: orange;" />
-                  <Pane prefHeight="253.0" prefWidth="227.0">
+                  <StackPane fx:id="mainGoalView" prefHeight="331.0" prefWidth="227.0" style="-fx-background-color: orange;" />
+                  <Pane prefHeight="167.0" prefWidth="227.0">
                      <children>
                         <Text layoutX="78.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Status" textAlignment="CENTER" wrappingWidth="70.341796875" />
                         <VBox fx:id="itemStatusVbox" layoutX="6.0" layoutY="46.0" prefHeight="201.0" prefWidth="211.0" />

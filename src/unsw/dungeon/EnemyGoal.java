@@ -15,7 +15,9 @@ public class EnemyGoal extends BasicGoal {
 
     @Override
     public boolean isComplete() {
-        return numDead >= numEnemies;
+        boolean result = numDead >= numEnemies;
+        gvListener.update(result);
+        return result;
     }
     
     @Override

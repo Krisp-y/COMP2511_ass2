@@ -38,7 +38,9 @@ import java.io.IOException;
  *
  */
 public class DungeonController extends Controller {
-
+    
+    public static final double BASIC_GOAL_VIEW_SIZE = 50;
+    
     @FXML
     private GridPane squares;
 
@@ -54,6 +56,9 @@ public class DungeonController extends Controller {
     @FXML
     private VBox basicGoalVbox;
     
+    @FXML
+    private StackPane mainGoalView; 
+    
     private HBox weaponStatus;
     private HBox potionStatus;
 
@@ -66,7 +71,6 @@ public class DungeonController extends Controller {
     private List<Pair<BasicGoal, HBox>> basicGoalViews;
 
     private Player player;
-    private Goal mainGoal;
     private Dungeon dungeon;
 
     private Timeline tickerTimeline;
@@ -197,7 +201,6 @@ public class DungeonController extends Controller {
 	    weaponStatus.getChildren().remove(endidx);
 	}
 	
-
 	public void showWeaponStatus(boolean b) {
 	    if (b) {
 	        assert(weaponStatus == null);
@@ -298,7 +301,7 @@ public class DungeonController extends Controller {
         }
     }
 	
-	private ImageView getImageFromPath(String path) {
+	public static ImageView getImageFromPath(String path) {
 	    return new ImageView(new Image((new File(path)).toURI().toString()));
 	}
 
@@ -315,15 +318,15 @@ public class DungeonController extends Controller {
             HBox goalView = new HBox();
             if (g instanceof EnemyGoal) {
                 EnemyGoal eg = (EnemyGoal) g;
-                goalView.getChildren().add(getImageFromPath("images/deep_elf_master_archer.png"));
+                goalView.getChildren().add(getImageFromPath("src/images/deep_elf_master_archer.png"));
                 goalView.getChildren().add(new Text(eg.getDeadEnemyCount() + "/" + eg.getEnemyCount()));
             } else if (g instanceof TreasureGoal) {
                 TreasureGoal tg = (TreasureGoal) g;
-                goalView.getChildren().add(getImageFromPath("images/gold_pile.png"));
+                goalView.getChildren().add(getImageFromPath("src/images/gold_pile.png"));
                 goalView.getChildren().add(new Text(tg.getCollectedTreasureCount() + "/" + tg.getTreasureCount()));
             } else if (g instanceof BoulderGoal) {
                 BoulderGoal bg = (BoulderGoal) g;
-                goalView.getChildren().add(getImageFromPath("images/boulder.png"));
+                goalView.getChildren().add(getImageFromPath("src/images/boulder.png"));
                 goalView.getChildren().add(new Text(bg.getSwitchesTriggered() + "/" + bg.getNumFloorSwitches()));
             } else if (g instanceof ExitGoal) {
                 goalView.getChildren().add(getImageFromPath("images/exit.png"));
@@ -337,7 +340,32 @@ public class DungeonController extends Controller {
     }
     
     private void setupMainGoalView() {
-        return;
+        Goal mainGoal = dungeon.getMainGoal();
+        if (mainGoal instanceof BasicGoal) {
+            BasicGoalView BasicGoalView = new BasicGoalView((BasicGoal) mainGoal);
+            mainGoalView.getChildren().add(BasicGoalView.getNode());
+        } else if (mainGoal instanceof ConjunctionGoal) {
+            GoalView gv = goalViewHelper(mainGoal, mainGoalView.getWidth(), mainGoalView.getHeight());
+            mainGoalView.getChildren().add(gv.getNode());
+        }
+    }
+    
+    // Recursive helper method for the goal view.
+    private GoalView goalViewHelper(Goal goal, double width, double height) {
+        if (goal instanceof ConjunctionGoal) {
+            ConjunctionGoal cg = (ConjunctionGoal) goal;
+            ArrayList<Goal> subgoals = cg.getSubGoals();
+            List<GoalView> subgoalViews = new ArrayList<GoalView>();
+            double newHeight = height * 0.8 / subgoalViews.size();
+            for (Goal subgoal : subgoals) {
+                subgoalViews.add(goalViewHelper(subgoal, width*0.8, newHeight));
+            }
+            return new ConjunctionGoalView(cg, subgoalViews, width, height);
+        } else if (goal instanceof BasicGoal) {
+            return new BasicGoalView((BasicGoal) goal);
+        }
+        
+        return null;
     }
     
     public void updateBasicGoals() {

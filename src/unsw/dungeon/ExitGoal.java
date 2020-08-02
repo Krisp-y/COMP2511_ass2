@@ -12,12 +12,14 @@ public class ExitGoal extends BasicGoal {
 
     @Override
     public boolean isComplete() {
+        boolean result = false;
         for (Entity exitSwitch : exitSwitches) {
             if (dungeon.isPlayerOn(exitSwitch)) {
-                return true;
+                result = true;
             }
         }
-        return false;
+        gvListener.update(result);
+        return result;
     }
     
     @Override

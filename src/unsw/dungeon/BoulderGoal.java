@@ -40,7 +40,9 @@ public class BoulderGoal extends BasicGoal {
     
     private boolean goalSatisfied() {
         countTriggeredSwitches();
-        return switchesTriggered >= floorSwitches.size();
+        boolean result = switchesTriggered >= floorSwitches.size();
+        gvListener.update(result);
+        return result;
     }
 
     @Override

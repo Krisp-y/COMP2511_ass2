@@ -3,7 +3,7 @@ package unsw.dungeon;
 import java.util.List;
 
 public abstract class BasicGoal implements Goal, GoalSubscriber, GoalPublisher {
-    
+    protected GoalView gvListener;
     protected Dungeon dungeon;
     public BasicGoal(Dungeon dungeon, List<Entity> entities) {
         for (Entity entity : entities) {
@@ -34,5 +34,11 @@ public abstract class BasicGoal implements Goal, GoalSubscriber, GoalPublisher {
     public Goal getGoal() {
         return this;
     }
+    
+    public void addListener(GoalView gv) {
+        gvListener = gv;
+    }
+    
+    public abstract boolean isComplete();
 
 }

@@ -9,10 +9,10 @@ public class LogicalOrGoal extends ConjunctionGoal {
     @Override
     public boolean isComplete() {
         boolean result = false;
-        
         for (Goal subGoal : subGoals) {
             result = result || subGoal.isComplete();
         }
+        gvListener.update(result);
         return result;
     }
     
