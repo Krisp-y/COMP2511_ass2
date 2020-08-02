@@ -47,18 +47,18 @@ public class DungeonControllerLoader extends DungeonLoader {
         entities = new ArrayList<>();
         entityImageMap = new HashMap<Entity, EntityView>();
         playerImage = new Image((new File("images/human_new.png")).toURI().toString());
-        wallImage = new Image((new File("images/brick_brown_0.png")).toURI().toString());
+        wallImage = new Image((new File("images/brick_blue.png")).toURI().toString());
         boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
         exitImage = new Image((new File("images/exit.png")).toURI().toString());
         portalImage = new Image((new File("images/portal.png")).toURI().toString());
         floorSwitchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
         enemyImage = new Image((new File("images/deep_elf_master_archer.png")).toURI().toString());
         keyImage = new Image((new File("images/key.png")).toURI().toString());
-        doorImage = new Image((new File("images/closed_door.png")).toURI().toString());
+        doorImage = new Image((new File("images/closed_door2.png")).toURI().toString());
         treasureImage = new Image((new File("images/gold_pile.png")).toURI().toString());
         potionImage = new Image((new File("images/bubbly.png")).toURI().toString());
         weaponImage = new Image((new File("images/greatsword_1_new.png")).toURI().toString());
-        ghostImage = new Image((new File("images/Enemy_crop.png")).toURI().toString());
+        ghostImage = new Image((new File("images/ghost2.png")).toURI().toString());
     }
     
     @Override
