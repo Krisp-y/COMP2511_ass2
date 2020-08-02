@@ -5,6 +5,7 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
     private GoalSubscriber enemyGoal;
     private EnemyMovementStrategy ms;
     private boolean isAlive;
+    private boolean isGhost;
     
     public Enemy(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
@@ -13,6 +14,7 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
         this.isAlive = true;
     }
 
+    
     @Override
     public void handleCollision(Moveable m) {
         if (m instanceof Player) { // If the enemy collides with a player

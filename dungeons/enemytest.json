@@ -53,7 +53,7 @@
         {
             "x": 9,
             "y": 9,
-            "type": "enemy"
+            "type": "ghost"
         }
     ],
     "width": 10,

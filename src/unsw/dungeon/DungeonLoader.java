@@ -214,6 +214,11 @@ public abstract class DungeonLoader {
                 onLoad(weapon);
                 entity = weapon;
                 break;
+            case "ghost":
+                Ghost ghost = new Ghost(dungeon, x, y);
+                onLoad(ghost);
+                entity = ghost;
+                break;
         }
         return entity;
     }
@@ -241,4 +246,6 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Potion potion);
     
     public abstract void onLoad(Weapon potion);
+
+    public abstract void onLoad(Ghost ghost);
 }

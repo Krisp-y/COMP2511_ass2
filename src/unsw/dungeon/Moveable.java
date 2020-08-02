@@ -50,7 +50,7 @@ public abstract class Moveable extends Entity {
     public void tryMoveUp() {        
         direction = Direction.UP;
         Collider c = dungeon.getCollidingEntity(getX(), getY() - 1);
-        if (c == null) {
+        if (c == null || this instanceof Ghost) {
             moveUp();
         } else { // There is a collision
             c.handleCollision(this);
@@ -61,7 +61,7 @@ public abstract class Moveable extends Entity {
     public void tryMoveDown() {
         direction = Direction.DOWN;
         Collider c = dungeon.getCollidingEntity(getX(), getY() + 1);
-        if (c == null) {
+        if (c == null || this instanceof Ghost) {
             moveDown();
         } else { // There is a collision
             c.handleCollision(this);
@@ -72,7 +72,7 @@ public abstract class Moveable extends Entity {
     public void tryMoveLeft() {
         direction = Direction.LEFT;
         Collider c = dungeon.getCollidingEntity(getX() - 1, getY());
-        if (c == null) {
+        if (c == null || this instanceof Ghost) {
             moveLeft();
         } else { // There is a collision
             c.handleCollision(this);
@@ -83,7 +83,7 @@ public abstract class Moveable extends Entity {
     public void tryMoveRight() {
         direction = Direction.RIGHT;
         Collider c = dungeon.getCollidingEntity(getX() + 1, getY());
-        if (c == null) {
+        if (c == null || this instanceof Ghost) {
             moveRight();
         } else { // There is a collision
             c.handleCollision(this);

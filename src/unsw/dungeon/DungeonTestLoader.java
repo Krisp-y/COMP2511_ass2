@@ -67,5 +67,11 @@ public class DungeonTestLoader extends DungeonLoader {
         return;
     }
 
+    @Override
+    public void onLoad(Ghost ghost) {
+        return;
+
+    }
+
 
 }
