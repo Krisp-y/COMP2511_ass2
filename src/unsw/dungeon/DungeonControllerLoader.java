@@ -47,18 +47,19 @@ public class DungeonControllerLoader extends DungeonLoader {
         entities = new ArrayList<>();
         entityImageMap = new HashMap<Entity, EntityView>();
         playerImage = createImage("src/images/human_new.png");
-        wallImage = createImage("src/images/brick_brown_0.png");
+        wallImage = createImage("src/images/brick_blue.png");
         boulderImage = createImage("src/images/boulder.png");
         exitImage = createImage("src/images/exit.png");
         portalImage = createImage("src/images/portal.png");
         floorSwitchImage = createImage("src/images/pressure_plate.png");
         enemyImage = createImage("src/images/deep_elf_master_archer.png");
-        keyImage = createImage("src/images/key.png"); createImage("images/closed_door.png");
+        keyImage = createImage("src/images/key.png");
+        doorImage = new Image((new File("images/closed_door2.png")).toURI().toString());
         treasureImage = createImage("src/images/gold_pile.png");
         potionImage = createImage("src/images/bubbly.png");
         weaponImage = createImage("src/images/greatsword_1_new.png");
-        ghostImage = createImage("src/images/Enemy_crop.png");
-    }
+        ghostImage = createImage("src/images/ghost2.png");
+            }
     
     private Image createImage(String path) {
         return new Image((new File(path)).toURI().toString());
