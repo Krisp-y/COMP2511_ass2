@@ -14,7 +14,7 @@ public class TreasureGoal extends BasicGoal {
 
     @Override
     public boolean isComplete() {
-        return numTreasures >= numCollected;
+        return numCollected >= numTreasures;
     }
     
     @Override
