@@ -20,6 +20,9 @@ public class Potion extends Entity implements Collider, Tickable {
             collected = true;
             m.move(m.getDirection());
         }
+        if (m instanceof Enemy) {
+            m.move(m.getDirection());   
+        }
     }
 
     @Override

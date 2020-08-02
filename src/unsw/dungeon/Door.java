@@ -1,11 +1,11 @@
 package unsw.dungeon;
 
 public class Door extends Moveable implements Collider {
-    private int ID;
+    private int id;
     private boolean doorUnlocked;
-    public Door(Dungeon dungeon, int x, int y, int ID) {
+    public Door(Dungeon dungeon, int x, int y, int id) {
         super(dungeon, x, y);
-        this.ID = ID;
+        this.id = id;
         this.doorUnlocked = false;
     }
 
@@ -13,6 +13,11 @@ public class Door extends Moveable implements Collider {
     public void handleCollision(Moveable m) {
         if (m instanceof Player) {
             doorCollision((Player) m);
+        }
+        if (m instanceof Enemy) {
+            if (doorUnlocked) {
+                m.move(m.getDirection());
+            }
         }
     } 
     
@@ -65,7 +70,7 @@ public class Door extends Moveable implements Collider {
     }
     
     public int getDoorID() {
-        return this.ID;
+        return this.id;
     }
     
     public void changeImage() {

@@ -22,7 +22,6 @@ public class Portal extends Entity implements Collider {
                 p.setTeleporting(false);
             }
         }
-        
     }
     int getID() {
         return pID;

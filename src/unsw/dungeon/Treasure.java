@@ -14,6 +14,9 @@ public class Treasure extends Entity implements Collider, GoalPublisher {
             m.move(m.getDirection());
             notifySubscribers();
         }
+        if (m instanceof Enemy) {
+            m.move(m.getDirection());
+        }
     }
 
     private void treasureCollision(Player p) {

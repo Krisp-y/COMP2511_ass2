@@ -45,5 +45,13 @@ public class FloorSwitch extends Entity implements Collider, GoalPublisher {
                 notifySubscribers();
             }
         }
+        
+        // Enemies can move on floor swithces if there is no boulder
+        if (m instanceof Enemy) {
+            Boulder b = dungeon.getCollidingBoulder(getX(), getY());
+            if (b == null) {
+                m.move(m.getDirection());
+            }
+        }
     }
 }

@@ -14,6 +14,9 @@ public class Key extends Entity implements Collider {
             keyCollision((Player) m);
             m.move(m.getDirection());
         }
+        if (m instanceof Enemy) {
+            m.move(m.getDirection());
+        }
     }
     public int getKeyID() {
         return kID;
