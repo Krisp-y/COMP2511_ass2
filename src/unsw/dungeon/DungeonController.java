@@ -54,9 +54,6 @@ public class DungeonController extends Controller {
     @FXML
     private VBox basicGoalVbox;
     
-    @FXML
-    private Button testButton;
-    
     private HBox weaponStatus;
     private HBox potionStatus;
 
@@ -112,8 +109,7 @@ public class DungeonController extends Controller {
             squares.getChildren().add(entity);
         }
         tickerTimeline.play();
-        
-        testButton.setStyle(value);
+
         setupBasicGoalView();
         setupMainGoalView();
     }
