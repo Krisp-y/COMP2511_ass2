@@ -37,8 +37,7 @@ public abstract class BasicGoal implements Goal, GoalSubscriber, GoalPublisher {
     
     public void addListener(GoalView gv) {
         gvListener = gv;
+        System.out.println(gv + " is now listening to " + this);
     }
-    
-    public abstract boolean isComplete();
 
 }

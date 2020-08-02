@@ -333,7 +333,7 @@ public class DungeonController extends Controller {
                 goalView.getChildren().add(new Text("Incomplete"));
             }
             basicGoalVbox.getChildren().add(goalView);
-            basicGoalViews.add(new Pair<BasicGoal, HBox>(g, goalView));
+            basicGoalViews.add(new Pair<>(g, goalView));
         }
         
         
@@ -342,10 +342,10 @@ public class DungeonController extends Controller {
     private void setupMainGoalView() {
         Goal mainGoal = dungeon.getMainGoal();
         if (mainGoal instanceof BasicGoal) {
-            BasicGoalView BasicGoalView = new BasicGoalView((BasicGoal) mainGoal);
-            mainGoalView.getChildren().add(BasicGoalView.getNode());
+            BasicGoalView basicGoalView = new BasicGoalView((BasicGoal) mainGoal);
+            mainGoalView.getChildren().add(basicGoalView.getNode());
         } else if (mainGoal instanceof ConjunctionGoal) {
-            GoalView gv = goalViewHelper(mainGoal, mainGoalView.getWidth(), mainGoalView.getHeight());
+            GoalView gv = goalViewHelper(mainGoal, mainGoalView.getPrefWidth(), mainGoalView.getPrefHeight());
             mainGoalView.getChildren().add(gv.getNode());
         }
     }
@@ -355,7 +355,7 @@ public class DungeonController extends Controller {
         if (goal instanceof ConjunctionGoal) {
             ConjunctionGoal cg = (ConjunctionGoal) goal;
             ArrayList<Goal> subgoals = cg.getSubGoals();
-            List<GoalView> subgoalViews = new ArrayList<GoalView>();
+            List<GoalView> subgoalViews = new ArrayList<>();
             double newHeight = height * 0.8 / subgoalViews.size();
             for (Goal subgoal : subgoals) {
                 subgoalViews.add(goalViewHelper(subgoal, width*0.8, newHeight));

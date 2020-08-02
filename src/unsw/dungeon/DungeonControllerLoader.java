@@ -110,7 +110,6 @@ public class DungeonControllerLoader extends DungeonLoader {
     @Override
     public void onLoad(Ghost ghost) {
         EntityView view = new EntityView(ghostImage);
-        System.out.println(ghostImage.getHeight());
         addEntity(ghost, view);
     }
 
