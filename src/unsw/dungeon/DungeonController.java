@@ -169,7 +169,6 @@ public class DungeonController extends Controller {
                 player.tryMoveLeft();
                 break;
             case RIGHT:
-                System.out.println("here!");
                 player.tryMoveRight();
                 break;
             case ESCAPE:
@@ -385,7 +384,7 @@ public class DungeonController extends Controller {
     }
     
     public void dynamicLoad(Entity e) {
-        Image image = DungeonControllerLoader.createImage("src/images/dot.png");
+        Image image = DungeonControllerLoader.createImage("src/images/fireball.png");
         EntityView view = new EntityView(image);
         DungeonControllerLoader.track(e, view);
         dynamicEntities.add(view);

@@ -21,32 +21,26 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
 public class MainMenuController extends Controller {
-    
+
     @FXML
     private Button selectLevel;
-    
+
     @FXML
     private StackPane selectLevelPane;
-    
+
     @FXML
     private StackPane mainMenuPane;
-    
+
     @FXML
     private StackPane backgroundPane;
-    
+
     private String selectedLevel;
-    
+
     public MainMenuController(String selectedLevel) {
-        selectedLevel = "level1";       
+        selectedLevel = "level1";
     }
-    
-    @FXML
-    public void initialize() {
-        System.out.println("Initializing");
-    }
-    
+
     @FXML
     public void selectLevel() {
         selectLevelPane.toFront();
@@ -54,7 +48,7 @@ public class MainMenuController extends Controller {
         mainMenuPane.setVisible(false);
         backgroundPane.setVisible(false);
     }
-    
+
     @FXML
     public void changeToLevel1() {
         main.setLevel("level1.json");
@@ -65,7 +59,7 @@ public class MainMenuController extends Controller {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void changeToLevel2() {
         main.setLevel("level2.json");
@@ -76,7 +70,7 @@ public class MainMenuController extends Controller {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void changeToLevel3() {
         main.setLevel("level3.json");
@@ -87,7 +81,7 @@ public class MainMenuController extends Controller {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void changeToLevel4() {
         main.setLevel("level4.json");
@@ -98,7 +92,7 @@ public class MainMenuController extends Controller {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void changeToLevel5() {
         main.setLevel("level5.json");
@@ -109,7 +103,7 @@ public class MainMenuController extends Controller {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void changeToLevel6() {
         main.setLevel("level6.json");
