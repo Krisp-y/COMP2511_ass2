@@ -2,6 +2,8 @@ package unsw.dungeon;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -50,15 +52,12 @@ public class DungeonApplication extends Application {
     private FXMLLoader createGameEndLoader(String type) throws IOException {
         
         GameEndController gameOverController;
-        switch (type) {
-            case "won":
-                gameOverController = new GameWonController();
-                break;
-            case "lost":
-                gameOverController = new GameLostController();
-                break;
-            default:
-                gameOverController = null;
+        if ("won".equals(type)) {
+            gameOverController = new GameWonController();
+        } else if ("lost".equals(type)) {
+            gameOverController = new GameLostController();
+        } else {
+            gameOverController = null;
         }
         
         FXMLLoader gameOverLoader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
@@ -69,7 +68,8 @@ public class DungeonApplication extends Application {
     
     private FXMLLoader createMainMenuLoader() throws IOException {
         MainMenuController menuController = new MainMenuController(selectedLevel);
-        FXMLLoader menuloader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        System.out.println(MainMenuController.class.getResource("MainMenu.fxml"));
+        FXMLLoader menuloader = new FXMLLoader(MainMenuController.class.getResource("MainMenu.fxml"));
         menuloader.setController(menuController);
         menuController.subscribe(this);
         return menuloader;
@@ -78,7 +78,7 @@ public class DungeonApplication extends Application {
     private FXMLLoader createDungeonLoader(String selectedLevel) throws IOException {
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(selectedLevel);
         DungeonController controller = dungeonLoader.loadController();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
+        FXMLLoader loader = new FXMLLoader(DungeonController.class.getResource("DungeonView.fxml"));
         loader.setController(controller);
         controller.subscribe(this);
         return loader;

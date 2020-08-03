@@ -50,7 +50,8 @@ public class SoundController {
     }
     
     private static MediaPlayer getfxplayer(String soundFile) {
-        return new MediaPlayer(new Media(new File(soundFile).toURI().toString()));
+        Media m = new Media(new File(soundFile).toURI().toString());
+        return new MediaPlayer(m);
     }
 
     public static void playPlayerHitSound() {

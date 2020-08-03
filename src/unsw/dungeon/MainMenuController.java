@@ -49,9 +49,9 @@ public class MainMenuController extends Controller {
     @FXML
     public void initialize() {
         selectedLevelText.setText(prettify(selectedLevel));
-        SoundController sc = SoundController.getSC();
-        sc.setBgMusic("src/sounds/main_menu.mp3");
-        sc.playBgMusic();
+        // SoundController sc = SoundController.getSC();
+        // sc.setBgMusic("src/sounds/door_unlocked.wav");
+        // sc.playBgMusic();
     }
     
     @FXML
