@@ -54,59 +54,59 @@ public class SoundController {
     }
 
     public static void playPlayerHitSound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/player_hit.wav");
+        MediaPlayer fxplayer = getfxplayer("sounds/player_hit.wav");
         fxplayer.play();
     }
     
     public static void playEnemyHitSound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/enemy_hit.mp3");
+        MediaPlayer fxplayer = getfxplayer("sounds/enemy_hit.mp3");
         fxplayer.play();
     
     }
     
     public static void playCoinsCollectedSound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/coins_collected.mp3");
+        MediaPlayer fxplayer = getfxplayer("sounds/coins_collected.mp3");
         fxplayer.play();
     
     }
     
     public static void playBoulderPushedSound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/boulder_pushed.mp3");
+        MediaPlayer fxplayer = getfxplayer("sounds/boulder_pushed.mp3");
         fxplayer.play();
     }
     
     public static void playSwitchTriggeredSound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/switch_triggered.wav");
+        MediaPlayer fxplayer = getfxplayer("sounds/switch_triggered.wav");
         fxplayer.play();
     }
     
     public static void playExitIncompleteSound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/exit_incomplete.wav");
+        MediaPlayer fxplayer = getfxplayer("sounds/exit_incomplete.wav");
         fxplayer.play();
     }
     
     public static void playPotionCollectedSound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/object_collected.mp3");
+        MediaPlayer fxplayer = getfxplayer("sounds/object_collected.mp3");
         fxplayer.play();
     }
     
     public static void playSwordCollectedSound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/swod_collected.mp3");
+        MediaPlayer fxplayer = getfxplayer("sounds/swod_collected.mp3");
         fxplayer.play();
     }
     
     public static void playFireballSound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/fireball.mp3");
+        MediaPlayer fxplayer = getfxplayer("sounds/fireball.mp3");
         fxplayer.play();
     }
     
     public static void playGameOverSound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/game_over.mp3");
+        MediaPlayer fxplayer = getfxplayer("sounds/game_over.mp3");
         fxplayer.play();
     }
     
     public static void playVictorySound() {
-        MediaPlayer fxplayer = getfxplayer("src/sounds/victory.mp3");
+        MediaPlayer fxplayer = getfxplayer("sounds/victory.mp3");
         fxplayer.play();
     }
     
