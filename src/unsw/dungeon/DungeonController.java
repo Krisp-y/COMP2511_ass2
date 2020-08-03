@@ -172,12 +172,7 @@ public class DungeonController extends Controller {
                 dungeon.getPlayer().tryMoveLeft();
                 break;
             case RIGHT:
-<<<<<<< HEAD
-                System.out.println("here!");
-                player.tryMoveRight();
-=======
                 dungeon.getPlayer().tryMoveRight();
->>>>>>> 93febb6104613c8f1b77c253724831d5a85743de
                 break;
             case ESCAPE:
                 pause();
