@@ -222,7 +222,7 @@ public class DungeonController extends Controller {
 	            new ImageView(entityImageMap.get(CollectibleEnum.WEAPON).getImage()));
             // Add all the health dots.
             for (int i = 0; i < Dungeon.WEAPON_HEALTH; i++) {
-                weaponStatus.getChildren().add(getImageFromPath("images/dot.png"));
+                weaponStatus.getChildren().add(getImageFromPath("images/fireball.png"));
             }
 	        itemStatusVbox.getChildren().add(weaponStatus);
 	    } else {

@@ -35,6 +35,14 @@
                         <RowConstraints />
                      </rowConstraints>
                   </GridPane>
+                  <GridPane fx:id="squares1" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="640.0" prefWidth="640.0">
+                     <columnConstraints>
+                        <ColumnConstraints />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                     </rowConstraints>
+                  </GridPane>
                </children>
             </StackPane>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: red; -fx-border-color: grey; -fx-border-width: 5;" GridPane.columnIndex="1">
@@ -48,63 +56,16 @@
                         <VBox fx:id="basicGoalVbox" layoutX="15.0" layoutY="26.0" prefHeight="128.0" prefWidth="197.0" />
                      </children>
                   </Pane>
-                  <Pane id="sidebg" fx:id="conjunctionPane" prefHeight="257.0" prefWidth="227.0" stylesheets="@../../style/block_background.css" />
+                  <StackPane id="sidebg" fx:id="mainGoalView" prefHeight="257.0" prefWidth="227.0" stylesheets="@../../style/block_background.css" />
                   <Pane prefHeight="253.0" prefWidth="227.0" styleClass="bodybg" stylesheets="@../../style/block_background.css">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" StackPane.alignment="CENTER">
-                           <children>
-                              <StackPane prefHeight="324.0" prefWidth="200.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <StackPane prefHeight="150.0" prefWidth="200.0">
-                                             <children>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <StackPane prefHeight="150.0" prefWidth="200.0" />
-                                                      <StackPane prefHeight="108.0" prefWidth="93.0" />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </StackPane>
-                                          <StackPane prefHeight="150.0" prefWidth="200.0">
-                                             <children>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <StackPane prefHeight="150.0" prefWidth="200.0" />
-                                                      <StackPane prefHeight="108.0" prefWidth="93.0" />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </StackPane>
-                                          <StackPane prefHeight="150.0" prefWidth="200.0">
-                                             <children>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <StackPane prefHeight="150.0" prefWidth="200.0" />
-                                                      <StackPane prefHeight="108.0" prefWidth="93.0" />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </StackPane>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </StackPane>
-                              <StackPane prefHeight="324.0" prefWidth="81.0" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </StackPane>
-                  <Pane prefHeight="167.0" prefWidth="227.0">
-                     <children>
-                        <Text layoutX="78.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Status" textAlignment="CENTER" wrappingWidth="70.341796875" />
+                        <Text layoutX="78.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Status" textAlignment="CENTER" wrappingWidth="70.341796875" />
                         <VBox fx:id="itemStatusVbox" layoutX="6.0" layoutY="46.0" prefHeight="201.0" prefWidth="211.0" />
                      </children>
                   </Pane>
                </children>
             </VBox>
-            <Pane id="voidbg" prefHeight="69.0" prefWidth="255.0" style="-fx-border-width: 5; -fx-border-color: grey;" stylesheets="@../../style/void_style.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Pane id="voidbg" prefHeight="69.0" prefWidth="255.0" style="-fx-border-width: 5; -fx-border-color: grey;" stylesheets="@../../style/block_background.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Text fill="#f5f0f0" layoutX="87.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status Effects" textAlignment="CENTER" />
                </children>
