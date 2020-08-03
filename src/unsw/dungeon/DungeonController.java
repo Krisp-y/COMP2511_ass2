@@ -248,6 +248,7 @@ public class DungeonController extends Controller {
 	        itemStatusVbox.getChildren().add(potionStatus);
 	    } else {
 	        potionStatus.getChildren().clear();
+	        potionStatus = null;
 	        itemStatusVbox.getChildren().remove(potionStatus);
 	    }
 	}
