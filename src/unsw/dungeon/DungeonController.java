@@ -50,6 +50,9 @@ public class DungeonController extends Controller {
     public static final double BASIC_GOAL_VIEW_SIZE = 50;
     
     @FXML
+    private GridPane viewPane;
+    
+    @FXML
     private GridPane squares;
 
     @FXML
@@ -133,14 +136,16 @@ public class DungeonController extends Controller {
         isPaused = false;
         pauseMenu.setVisible(false);
         tickerTimeline.play();
-        squares.setEffect(null);
+        viewPane.setEffect(null);
+        viewPane.setOpacity(1.0);
         squares.requestFocus();
     }
 
     public void pause() {
         pauseMenu.setVisible(true);
         tickerTimeline.pause();
-        squares.setEffect(new BoxBlur());
+        viewPane.setEffect(new BoxBlur());
+        viewPane.setOpacity(0.3);
         isPaused = true;
     }
 

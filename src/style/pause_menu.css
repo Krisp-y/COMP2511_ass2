@@ -17,6 +17,7 @@
     -fx-border-color: white;
     -fx-border-width: 5; 
 }
+
 .button .text {
     -fx-font-family: "CompassPro";
     -fx-font-size: 20;

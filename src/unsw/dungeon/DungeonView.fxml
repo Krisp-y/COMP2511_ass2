@@ -14,7 +14,7 @@
 
 <StackPane onKeyPressed="#handleKeyPress" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane>
+      <GridPane fx:id="viewPane">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -96,18 +96,47 @@
             </HBox>
          </children>
       </GridPane>
-      <VBox fx:id="pauseMenu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="30.0" visible="false">
+      <VBox fx:id="pauseMenu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="600.0" spacing="30.0" stylesheets="@../../style/pause_menu.css" visible="false">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Game Paused">
-               <font>
-                  <Font size="35.0" />
-               </font>
-            </Text>
-            <Button mnemonicParsing="false" onMouseClicked="#resume" text="Resume" />
-            <Button mnemonicParsing="false" onMouseClicked="#restartLevel" text="Restart Level" />
-            <Button mnemonicParsing="false" onMouseClicked="#mainMenu" text="Main Menu" />
-            <Button mnemonicParsing="false" onMouseClicked="#changeSettings" text="Options" />
-            <Button mnemonicParsing="false" onMouseClicked="#quitGame" text="Quit" />
+            <StackPane prefHeight="114.0" prefWidth="600.0" styleClass="text">
+               <children>
+                  <Text fx:id="gameOverText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Game Paused" textAlignment="CENTER" wrappingWidth="594.0">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Text>
+               </children>
+            </StackPane>
+            <StackPane>
+               <children>
+                  <Pane prefHeight="80.0" prefWidth="435.0">
+                     <children>
+                        <Pane layoutX="100.0" prefHeight="80.0" prefWidth="400.0" styleClass="button-bg-pane" />
+                        <Button fx:id="restartButton" layoutX="100.0" mnemonicParsing="false" onMouseClicked="#restartLevel" prefWidth="600.0" style="-fx-background-image: -fx-background-image: url('file:C:/Users/kristinsmith/Documents/main_background.jpg');" text="Restart This Level" textFill="#fffefe" />
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+            <StackPane>
+               <children>
+                  <Pane>
+                     <children>
+                        <Pane layoutX="100.0" prefHeight="80.0" prefWidth="400.0" styleClass="button-bg-pane" />
+                        <Button fx:id="mainMenuButton" layoutX="100.0" mnemonicParsing="false" onMouseClicked="#mainMenu" text="Main Menu" textFill="#fffbfb" />
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+            <StackPane>
+               <children>
+                  <Pane>
+                     <children>
+                        <Pane layoutX="101.0" prefHeight="80.0" prefWidth="400.0" styleClass="button-bg-pane" />
+                        <Button layoutX="100.0" mnemonicParsing="false" onMouseClicked="#quitGame" text="Quit" textFill="WHITE" />
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
          </children>
       </VBox>
    </children>
