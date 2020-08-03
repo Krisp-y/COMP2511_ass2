@@ -11,7 +11,7 @@ public class SoundController {
     private static SoundController sc;
     
     private SoundController() {
-        
+        set
     }
     
     public static SoundController getSC() {
