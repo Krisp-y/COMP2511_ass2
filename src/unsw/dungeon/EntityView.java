@@ -15,7 +15,12 @@ public class EntityView extends ImageView {
     }
     
     public void changeDoorOpenImage() {
-        Image image = new Image((new File("images/open_door.png")).toURI().toString());
+        Image image = new Image((new File("src/images/open_door.png")).toURI().toString());
+        this.setImage(image);
+    }
+    
+    public void changeDoorHighlightImage() {
+        Image image = new Image((new File("src/images/highlighted_door.png")).toURI().toString());
         this.setImage(image);
     }
     

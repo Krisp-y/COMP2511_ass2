@@ -77,4 +77,9 @@ public class Door extends Moveable implements Collider {
         if (ev != null) 
             ev.changeDoorOpenImage();
     }
+    
+    public void changeDoorHighlightImage() {
+        if (ev != null) 
+            ev.changeDoorHighlightImage();
+    }
 }

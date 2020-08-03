@@ -153,6 +153,17 @@ public class Dungeon implements GoalSubscriber {
             dc.updateBasicGoals();
         }   
     }
+    
+    public void highlightDoor(Key k) {
+        for (Entity e : entities) {
+            if (e instanceof Door) {
+                Door d = (Door) e;
+                if (d.getDoorID() == k.getKeyID()) {
+                    d.changeDoorHighlightImage();
+                }
+            }
+        }
+    }
 
     public void endGameWon() {
         if (this.dc != null) {
