@@ -101,6 +101,7 @@ public class Player extends Moveable implements Tickable, Collider {
         if (!isInvincible()) {
             dungeon.setEnemiesToRetreat();
         }
+        // System.out.println("trying to add potion");
         inventory.add(potion);
         if (dc != null) {
             dc.addToInventoryView(potion);
@@ -214,6 +215,7 @@ public class Player extends Moveable implements Tickable, Collider {
         }
 
         if (m instanceof FireBall) {
+            System.out.println("Player collides with fireball");
             FireBall fireBall = (FireBall) m;
             fireBall.move(fireBall.getDirection());
             fireBall.FBplayerCollision(this); // handle the player collision on the enemy side.

@@ -1,6 +1,6 @@
 {
-  "width": 20,
-  "height": 17,
+  "width": 18,
+  "height": 16,
   "entities": [
     {
       "x": 0,
@@ -93,23 +93,18 @@
       "type": "wall"
     },
     {
-      "x": 18,
-      "y": 0,
-      "type": "wall"
-    },
-    {
-      "x": 19,
-      "y": 0,
-      "type": "wall"
-    },
-    {
       "x": 0,
       "y": 1,
       "type": "wall"
     },
     
     {
-      "x": 19,
+      "x": 6,
+      "y": 1,
+      "type": "weapon"
+    },
+    {
+      "x": 17,
       "y": 1,
       "type": "wall"
     },
@@ -118,9 +113,53 @@
       "y": 2,
       "type": "wall"
     },
-    
     {
-      "x": 19,
+      "x": 3,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 6,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 7,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 8,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 9,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 12,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 13,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 14,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 15,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 17,
       "y": 2,
       "type": "wall"
     },
@@ -140,42 +179,7 @@
       "type": "wall"
     },
     {
-      "x": 5,
-      "y": 3,
-      "type": "wall"
-    },
-    {
-      "x": 6,
-      "y": 3,
-      "type": "wall"
-    },
-    {
-      "x": 7,
-      "y": 3,
-      "type": "wall"
-    },
-    {
-      "x": 8,
-      "y": 3,
-      "type": "wall"
-    },
-    {
-      "x": 9,
-      "y": 3,
-      "type": "wall"
-    },
-    {
-      "x": 14,
-      "y": 3,
-      "type": "wall"
-    },
-    {
       "x": 15,
-      "y": 3,
-      "type": "wall"
-    },
-    {
-      "x": 16,
       "y": 3,
       "type": "wall"
     },
@@ -185,23 +189,17 @@
       "type": "wall"
     },
     {
-      "x": 18,
-      "y": 3,
-      "type": "wall"
-    },
-    {
-      "x": 19,
-      "y": 3,
-      "type": "wall"
-    },
-    {
       "x": 0,
       "y": 4,
       "type": "wall"
     },
-    
     {
-      "x": 19,
+      "x": 8,
+      "y": 4,
+      "type": "wall"
+    },
+    {
+      "x": 17,
       "y": 4,
       "type": "wall"
     },
@@ -212,103 +210,117 @@
     },
     
     {
-      "x": 9,
+      "x": 8,
       "y": 5,
+      "type": "wall"
+    },
+    {
+      "x": 17,
+      "y": 5,
+      "type": "wall"
+    },
+    {
+      "x": 0,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 6,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 8,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 9,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 13,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 17,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 0,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 6,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 12,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 13,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 17,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 0,
+      "y": 8,
+      "type": "wall"
+    },
+    {
+      "x": 3,
+      "y": 8,
+      "type": "wall"
+    },
+    {
+      "x": 4,
+      "y": 8,
+      "type": "wall"
+    },
+    {
+      "x": 5,
+      "y": 8,
+      "type": "wall"
+    },
+    {
+      "x": 6,
+      "y": 8,
+      "type": "wall"
+    },
+    {
+      "x": 8,
+      "y": 8,
+      "type": "wall"
+    },
+    {
+      "x": 9,
+      "y": 8,
       "type": "wall"
     },
     {
       "x": 10,
-      "y": 5,
-      "type": "wall"
-    },
-    {
-      "x": 11,
-      "y": 5,
-      "type": "wall"
-    },
-    {
-      "x": 12,
-      "y": 5,
-      "type": "wall"
-    },
-    {
-      "x": 19,
-      "y": 5,
-      "type": "wall"
-    },
-    {
-      "x": 0,
-      "y": 6,
-      "type": "wall"
-    },
-    
-    {
-      "x": 4,
-      "y": 6,
-      "type": "wall"
-    },
-    {
-      "x": 9,
-      "y": 6,
-      "type": "wall"
-    },
-    
-    
-    {
-      "x": 12,
-      "y": 6,
-      "type": "wall"
-    },
-    {
-      "x": 19,
-      "y": 6,
-      "type": "wall"
-    },
-    {
-      "x": 0,
-      "y": 7,
-      "type": "wall"
-    },
-    {
-      "x": 4,
-      "y": 7,
-      "type": "wall"
-    },
-    
-    {
-      "x": 12,
-      "y": 7,
-      "id": 2,
-      "type": "door"
-    },
-    {
-      "x": 19,
-      "y": 7,
-      "type": "wall"
-    },
-    {
-      "x": 0,
       "y": 8,
       "type": "wall"
     },
     {
-      "x": 4,
+      "x": 13,
       "y": 8,
       "type": "wall"
     },
     {
-      "x": 9,
-      "y": 8,
-      "type": "wall"
-    },
-    
-    {
-      "x": 12,
-      "y": 8,
-      "type": "wall"
-    },
-    {
-      "x": 19,
+      "x": 17,
       "y": 8,
       "type": "wall"
     },
@@ -323,23 +335,17 @@
       "type": "wall"
     },
     {
-      "x": 10,
+      "x": 13,
       "y": 9,
       "type": "wall"
     },
     {
-      "x": 11,
+      "x": 14,
       "y": 9,
       "type": "wall"
     },
     {
-      "x": 12,
-      "y": 9,
-      "type": "wall"
-    },
-    
-    {
-      "x": 19,
+      "x": 17,
       "y": 9,
       "type": "wall"
     },
@@ -349,12 +355,23 @@
       "type": "wall"
     },
     {
-      "x": 9,
+      "x": 3,
       "y": 10,
       "type": "wall"
     },
     {
-      "x": 19,
+      "x": 5,
+      "y": 10,
+      "type": "wall"
+    },
+    {
+      "x": 6,
+      "y": 10,
+      "type": "wall"
+    },
+    
+    {
+      "x": 17,
       "y": 10,
       "type": "wall"
     },
@@ -363,19 +380,13 @@
       "y": 11,
       "type": "wall"
     },
-    
     {
-      "x": 5,
+      "x": 3,
       "y": 11,
       "type": "wall"
     },
     {
       "x": 6,
-      "y": 11,
-      "type": "wall"
-    },
-    {
-      "x": 7,
       "y": 11,
       "type": "wall"
     },
@@ -389,9 +400,18 @@
       "y": 11,
       "type": "wall"
     },
-    
     {
-      "x": 19,
+      "x": 10,
+      "y": 11,
+      "type": "wall"
+    },
+    {
+      "x": 12,
+      "y": 11,
+      "type": "wall"
+    },
+    {
+      "x": 17,
       "y": 11,
       "type": "wall"
     },
@@ -400,9 +420,13 @@
       "y": 12,
       "type": "wall"
     },
-    
     {
-      "x": 11,
+      "x": 3,
+      "y": 12,
+      "type": "wall"
+    },
+    {
+      "x": 9,
       "y": 12,
       "type": "wall"
     },
@@ -412,41 +436,47 @@
       "type": "wall"
     },
     {
-      "x": 13,
+      "x": 17,
       "y": 12,
+      "type": "wall"
+    },
+    {
+      "x": 0,
+      "y": 13,
+      "type": "wall"
+    },
+    {
+      "x": 3,
+      "y": 13,
+      "type": "wall"
+    },
+    {
+      "x": 4,
+      "y": 13,
+      "type": "wall"
+    },
+    {
+      "x": 5,
+      "y": 13,
+      "type": "wall"
+    },
+    {
+      "x": 12,
+      "y": 13,
+      "type": "wall"
+    },
+    {
+      "x": 13,
+      "y": 13,
       "type": "wall"
     },
     {
       "x": 14,
-      "y": 12,
-      "type": "wall"
-    },
-    {
-      "x": 15,
-      "y": 12,
-      "type": "wall"
-    },
-    {
-      "x": 16,
-      "y": 12,
-      "type": "wall"
-    },
-    
-    {
-      "x": 19,
-      "y": 12,
-      "type": "wall"
-    },
-    {
-      "x": 0,
       "y": 13,
       "type": "wall"
     },
-   
-    
-    
     {
-      "x": 19,
+      "x": 17,
       "y": 13,
       "type": "wall"
     },
@@ -456,280 +486,171 @@
       "type": "wall"
     },
     {
-      "x": 9,
-      "y": 7,
-      "id": 3,
-      "type": "door"
-    },
-    
-    {
-      "x": 19,
+      "x": 17,
       "y": 14,
       "type": "wall"
     },
     {
       "x": 0,
       "y": 15,
-      "type": "wall"
-    },
-    
-    
-    {
-      "x": 19,
-      "y": 15,
-      "type": "exit"
-    },
-    {
-      "x": 0,
-      "y": 16,
       "type": "wall"
     },
     {
       "x": 1,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 2,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 3,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 4,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 5,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 6,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 7,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 8,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 9,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 10,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 11,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 12,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 13,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 14,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 15,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 16,
-      "y": 16,
+      "y": 15,
       "type": "wall"
     },
     {
       "x": 17,
-      "y": 16,
-      "type": "wall"
-    },
-    {
-      "x": 18,
-      "y": 16,
-      "type": "wall"
-    },
-    {
-      "x": 19,
-      "y": 16,
-      "type": "wall"
-    },
-    {
-      "x": 1,
-      "y": 11,
-      "type": "switch"
-    },
-    {
-      "x": 1,
-      "y": 2,
-      "type": "weapon"
-    },
-    {
-      "x": 6,
-      "y": 12,
-      "type": "weapon"
-    },
-    {
-      "x": 18,
-      "y": 11,
-      "type": "weapon"
-    },
-    {
-      "x": 12,
-      "y": 13,
-      "type": "potion"
-    },
-    {
-      "x": 10,
-      "y": 6,
-      "type": "treasure"
-    },
-    {
-      "x": 5,
       "y": 15,
-      "type": "weapon"
-    },
-    {
-      "x": 11,
-      "y": 7,
-      "type": "treasure"
+      "type": "wall"
     },
     
-    {
-      "x": 1,
-      "y": 15,
-      "id": 2,
-      "type": "key"
-    },
-    {
-      "x": 11,
-      "y": 1,
-      "type": "potion"
-    },
-    {
-      "x": 1,
-      "y": 6,
-      "id": 1,
-      "type": "key"
-    },
-    {
-      "x": 1,
-      "y": 6,
-      "id": 3,
-      "type": "key"
-    },
-    {
-      "x": 10,
-      "y": 8,
-      "type": "treasure"
-    },
-    {
-      "x": 6,
-      "y": 1,
-      "type": "landmine"
-    },
-    {
-      "x": 8,
-      "y": 1,
-      "type": "landmine"
-    },
     
-    {
-      "x": 1,
-      "y": 13,
-      "type": "boulder"
-    },
     {
       "x": 13,
-      "y": 9,
+      "y": 12,
+      "type": "exit"
+    },
+    
+    {
+      "x": 11,
+      "y": 14,
+      "type": "switch"
+    },
+    
+    {
+      "x": 9,
+      "y": 14,
+      "type": "switch"
+    },
+    
+    {
+      "x": 1,
+      "y": 8,
+      "type": "landmine"
+    },
+    {
+      "x": 7,
+      "y": 10,
+      "type": "treasure"
+    },
+    {
+      "x": 11,
+      "y": 10,
+      "type": "potion"
+    },
+    {
+      "x": 9,
+      "y": 13,
       "type": "boulder"
     },
     {
-      "x": 17,
-      "y": 12,
-      "id": 1,
-      "type": "portal"
+      "x": 11,
+      "y": 13,
+      "type": "boulder"
     },
     {
-      "x": 1,
-      "y": 5,
-      "id": 1,
-      "type": "portal"
+      "x": 2,
+      "y": 1,
+      "type": "portal",
+      "id": 0
     },
- 
+    {
+      "x": 10,
+      "y": 10,
+      "type": "portal",
+      "id": 0
+    },
+    
     {
       "x": 1,
       "y": 1,
       "type": "player"
     },
     {
-      "x": 11,
-      "y": 8,
-      "type": "dragon"
-    },
-    {
-      "x": 10,
-      "y": 7,
-      "type": "dragon"
-    },
-    {
-      "x": 6,
-      "y": 4,
-      "type": "ghost"
-    },
-    {
-      "x": 12,
-      "y": 4,
-      "type": "ghost"
-    },
-    {
-      "x": 16,
-      "y": 13,
-      "type": "dragon"
-    },
-    {
-      "x": 11,
-      "y": 6,
-      "type": "dragon"
-    },
-    {
-      "x": 16,
-      "y": 14,
-      "type": "enemy"
-    },
-    {
       "x": 1,
-      "y": 14,
-      "type": "enemy"
+      "y": 10,
+      "type": "dragon"
     },
     {
-      "x": 6,
-      "y": 14,
+      "x": 3,
+      "y": 5,
       "type": "enemy"
     }
   ],

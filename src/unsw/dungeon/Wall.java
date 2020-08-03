@@ -11,9 +11,6 @@ public class Wall extends Entity implements Collider {
     */
     @Override
     public void handleCollision(Moveable m) {
-        if (m instanceof Ghost) {
-            // Ghost's can move through walls.
-            m.move(m.getDirection());
-        }
+        return;
     }    
 }
