@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
@@ -85,7 +84,7 @@ public class TestPortal {
     @DisplayName("testing player collision with a multiple portals")
     class TestMultiplePortalCollisions {
         Dungeon d;
-        Player player_;
+        Player player;
         JSONObject simpleDungeon = new JSONObject()
                 .put("width", 8)
                 .put("height", 8)
@@ -123,15 +122,15 @@ public class TestPortal {
             DungeonLoader dl = new DungeonTestLoader(simpleDungeon);
             d = dl.load();
             // Put player in the top left corner
-            player_ = new Player(d, 0, 0);
-            d.setPlayer(player_);
+            player = new Player(d, 0, 0);
+            d.setPlayer(player);
             
             // Player at (0,0)
-            player_.tryMoveRight(); // Player at (1,0)
-            player_.tryMoveDown(); // Player at (1,1)
+            player.tryMoveRight(); // Player at (1,0)
+            player.tryMoveDown(); // Player at (1,1)
             // Player should have collided with portal at (1,1) and teleported to (5,5);
-            assertEquals(5, player_.getX());
-            assertEquals(5, player_.getY());
+            assertEquals(5, player.getX());
+            assertEquals(5, player.getY());
             
         }
         
@@ -141,18 +140,18 @@ public class TestPortal {
             DungeonLoader dl = new DungeonTestLoader(simpleDungeon);
             d = dl.load();
             // Put player in the top left corner
-            player_ = new Player(d, 0, 0);
-            d.setPlayer(player_);
+            player = new Player(d, 0, 0);
+            d.setPlayer(player);
             
             // Player at (0,0)
-            player_.tryMoveRight(); // Player at (1,0)
-            player_.tryMoveDown(); // Player at (1,1)
+            player.tryMoveRight(); // Player at (1,0)
+            player.tryMoveDown(); // Player at (1,1)
             // Player should have collided with portal at (1,1) and teleported to (5,5);
-            player_.tryMoveLeft(); // Player should have collided with (4,4) 
-            player_.tryMoveUp(); // and teleported back to (2,2)
+            player.tryMoveLeft(); // Player should have collided with (4,4) 
+            player.tryMoveUp(); // and teleported back to (2,2)
             
-            assertEquals(2, player_.getX());
-            assertEquals(2, player_.getY());
+            assertEquals(2, player.getX());
+            assertEquals(2, player.getY());
             
         }
     }

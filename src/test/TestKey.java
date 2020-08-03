@@ -1,19 +1,17 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-//import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.DungeonTestLoader;
 import unsw.dungeon.DungeonLoader;
+import unsw.dungeon.DungeonTestLoader;
 import unsw.dungeon.Player;
 
 
@@ -24,7 +22,7 @@ public class TestKey {
     @DisplayName("testing player picking up a key")
     class TestWallCollisions {
         Dungeon d;
-        Player player_;
+        Player player;
         
         @BeforeEach
         void createDungeon() {
@@ -49,69 +47,69 @@ public class TestKey {
             DungeonLoader dl = new DungeonTestLoader(simpleDungeon);
             d = dl.load();
             // Put player in the top left corner
-            player_ = new Player(d, 0, 0);
-            d.setPlayer(player_);
+            player = new Player(d, 0, 0);
+            d.setPlayer(player);
         }
 
         @Test
         @DisplayName("check player has picked up key")
         void testKeyCollect() {
             // Player at (0,0)
-            player_.tryMoveRight(); // Player at (1,0)
-            player_.tryMoveRight(); // Player at (2,0)
-            player_.tryMoveDown(); // Player at (2,1)
-            player_.tryMoveDown(); // Player at (2,2)
+            player.tryMoveRight(); // Player at (1,0)
+            player.tryMoveRight(); // Player at (2,0)
+            player.tryMoveDown(); // Player at (2,1)
+            player.tryMoveDown(); // Player at (2,2)
             // Player should have collided with key at (2,2)
-            assert(player_.hasKey());
+            assert(player.hasKey());
 
         }
         
         @Test
         @DisplayName("check player cannot move onto door with no key held")
         void testCannotMoveThroughDoorWithNoKey() {
-            player_.tryMoveRight(); // Player at (1,0)
-            player_.tryMoveDown(); // Player at (1,1)
-            player_.tryMoveDown(); // Player at (1,2)
-            player_.tryMoveDown(); // Player at (1,3)
-            player_.tryMoveRight(); // Player at (2,3)
+            player.tryMoveRight(); // Player at (1,0)
+            player.tryMoveDown(); // Player at (1,1)
+            player.tryMoveDown(); // Player at (1,2)
+            player.tryMoveDown(); // Player at (1,3)
+            player.tryMoveRight(); // Player at (2,3)
             
             //Player should not be able to move down onto door unless they hold key 1
-            assertEquals(1, player_.getX());
-            assertEquals(3, player_.getY());
+            assertEquals(1, player.getX());
+            assertEquals(3, player.getY());
         }
 
         @Test
         @DisplayName("check player can move onto door when correct key held")
         void testCanMoveThroughDoorWithNoKey() {
-            player_.tryMoveRight(); // Player at (1,0)
-            player_.tryMoveRight(); // Player at (2,0)
-            player_.tryMoveDown(); // Player at (2,1)
-            player_.tryMoveDown(); // Player at (2,2)
+            player.tryMoveRight(); // Player at (1,0)
+            player.tryMoveRight(); // Player at (2,0)
+            player.tryMoveDown(); // Player at (2,1)
+            player.tryMoveDown(); // Player at (2,2)
             // Player should have collided with key at (2,2)
-            player_.tryMoveDown(); // Player at (2,3)
+            player.tryMoveDown(); // Player at (2,3)
             //Player should not be able to move down onto door unless they hold key 1
-            assertEquals(2, player_.getX());
-            assertEquals(3, player_.getY());
+            assertEquals(2, player.getX());
+            assertEquals(3, player.getY());
         
         }
         
         @Test
         @DisplayName("check player can move onto door after it is unlocked")
         void testCanMoveThroughDoorAfterUnlocked() {
-            player_.tryMoveRight(); // Player at (1,0)
-            player_.tryMoveRight(); // Player at (2,0)
-            player_.tryMoveDown(); // Player at (2,1)
-            player_.tryMoveDown(); // Player at (2,2)
+            player.tryMoveRight(); // Player at (1,0)
+            player.tryMoveRight(); // Player at (2,0)
+            player.tryMoveDown(); // Player at (2,1)
+            player.tryMoveDown(); // Player at (2,2)
             // Player should have collided with key at (2,2)
-            player_.tryMoveDown(); // Player at (2,3) (through the door)
-            player_.tryMoveLeft(); // Player at (2,2) again
-            player_.tryMoveRight(); // Player back at (2,3) on the door
-            assertEquals(2, player_.getX());
-            assertEquals(3, player_.getY());
-            player_.tryMoveUp();
-            player_.tryMoveDown();
-            assertEquals(2, player_.getX());
-            assertEquals(3, player_.getY());
+            player.tryMoveDown(); // Player at (2,3) (through the door)
+            player.tryMoveLeft(); // Player at (2,2) again
+            player.tryMoveRight(); // Player back at (2,3) on the door
+            assertEquals(2, player.getX());
+            assertEquals(3, player.getY());
+            player.tryMoveUp();
+            player.tryMoveDown();
+            assertEquals(2, player.getX());
+            assertEquals(3, player.getY());
         }
     }
 }

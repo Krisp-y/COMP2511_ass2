@@ -43,12 +43,15 @@ public class MainMenuController extends Controller {
     
     public MainMenuController(String selectedLevel) {
         buttons = new ArrayList<Button>();
-        this.selectedLevel = selectedLevel;
+        this.selectedLevel = selectedLevel;        
     }
     
     @FXML
     public void initialize() {
         selectedLevelText.setText(prettify(selectedLevel));
+        SoundController sc = SoundController.getSC();
+        sc.setBgMusic("src/sounds/main_menu.mp3");
+        sc.playBgMusic();
     }
     
     @FXML
