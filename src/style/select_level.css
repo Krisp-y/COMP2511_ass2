@@ -1,0 +1,64 @@
+@font-face {
+    font-family: 'CompassPro';
+    src: url('../fonts/CompassPro.ttf');
+}
+
+.text {
+    -fx-font-family: "CompassPro";
+    -fx-font-size: 160;
+    -fx-text-fill: white;
+}
+
+.button-lvl1 {
+    -fx-skin: "skins.SelectLevelButtonSkin";
+    -fx-background-image: url("../images/brick_grey.png");
+    -fx-border-color: white;
+    -fx-pref-width: 459;
+    -fx-pref-height: 221;
+    -fx-text-fill: white;
+}
+
+.button-lvl2 {
+    -fx-skin: "skins.SelectLevelButtonSkin";
+    -fx-background-image: url("../images/boulder.png");
+    -fx-border-color: white;
+    -fx-pref-width: 459;
+    -fx-pref-height: 221;
+    -fx-text-fill: white;
+}
+
+.button-lvl3 {
+    -fx-skin: "skins.SelectLevelButtonSkin";
+    -fx-background-image: url("../images/dragon.png");
+    -fx-border-color: white;
+    -fx-pref-width: 459;
+    -fx-pref-height: 221;
+    -fx-text-fill: white;
+}
+
+.button-lvl4 {
+    -fx-skin: "skins.SelectLevelButtonSkin";
+    -fx-background-image: url("../images/Fight_Background_test.png");
+    -fx-border-color: white;
+    -fx-pref-width: 459;
+    -fx-pref-height: 221;
+    -fx-text-fill: white;
+}
+
+.button-lvl5 {
+    -fx-skin: "skins.SelectLevelButtonSkin";
+    -fx-background-image: url("../images/deep_elf_master_archer.png");
+    -fx-border-color: white;
+    -fx-pref-width: 459;
+    -fx-pref-height: 221;
+    -fx-text-fill: white;
+}
+
+.button-lvl6 {
+    -fx-skin: "skins.SelectLevelButtonSkin";
+    -fx-background-image: url("../images/main_menu_bg.PNG");
+    -fx-border-color: white;
+    -fx-pref-width: 459;
+    -fx-pref-height: 221;
+    -fx-text-fill: white;
+}

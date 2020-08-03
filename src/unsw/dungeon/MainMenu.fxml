@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -10,31 +11,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<StackPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../style/main_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane prefHeight="768.0" prefWidth="1024.0" styleClass="background-main" stylesheets="@../../style/main_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane>
-         <children>
-            <GridPane prefHeight="768.0" prefWidth="1024.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
-         </children>
-      </Pane>
-      <StackPane>
+      <StackPane fx:id="backgroundPane" prefHeight="150.0" prefWidth="200.0" styleClass="background" />
+      <StackPane fx:id="mainMenuPane">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Pane prefHeight="363.0" prefWidth="1024.0">
                      <children>
-                        <Text layoutX="275.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="The Dungeon" textAlignment="CENTER" wrappingWidth="473.13671875" />
+                        <Text layoutX="280.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="The Dungeon" textAlignment="CENTER" wrappingWidth="473.13671875" />
+                        <Text fill="WHITE" layoutX="264.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="The Dungeon" textAlignment="CENTER" wrappingWidth="473.13671875" />
                      </children>
                   </Pane>
                   <Pane prefHeight="569.0" prefWidth="1024.0">
@@ -43,12 +30,14 @@
                            <children>
                               <Pane prefHeight="296.0" prefWidth="511.0">
                                  <children>
-                                    <Button fx:id="playGame" layoutX="81.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#startGame" text="Play the Game" textAlignment="CENTER" />
+                                    <Pane layoutX="81.0" layoutY="81.0" prefHeight="80.0" prefWidth="400.0" styleClass="button-bg-pane" />
+                                    <Button fx:id="selectLevel" layoutX="81.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#selectLevel" text="Select Level" textAlignment="CENTER" textFill="WHITE" />
                                  </children>
                               </Pane>
                               <Pane prefHeight="487.0" prefWidth="514.0">
                                  <children>
-                                    <Button layoutX="32.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#quitGame" text="Quit" />
+                                    <Pane layoutX="32.0" layoutY="80.0" prefHeight="80.0" prefWidth="400.0" styleClass="button-bg-pane" />
+                                    <Button fx:id="quitGame" layoutX="32.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#quitGame" text="Quit" textFill="WHITE" />
                                  </children>
                               </Pane>
                            </children>
@@ -57,6 +46,96 @@
                   </Pane>
                </children>
             </VBox>
+         </children>
+      </StackPane>
+      <StackPane fx:id="selectLevelPane" visible="false">
+         <children>
+            <Pane prefHeight="626.0" prefWidth="852.0">
+               <children>
+                  <GridPane layoutX="43.0" layoutY="43.0" prefHeight="683.0" prefWidth="938.0" stylesheets="@../../style/select_level.css">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="156.0" prefWidth="434.0" styleClass="button-lvl1" text="Level 1" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="156.0" prefWidth="434.0" styleClass="button-lvl2" text="Level 2" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="156.0" prefWidth="434.0" styleClass="button-lvl3" text="Level 3" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="156.0" prefWidth="434.0" styleClass="button-lvl4" text="Level 4" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="156.0" prefWidth="434.0" styleClass="button-lvl5" text="Level 5" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="156.0" prefWidth="434.0" styleClass="button-lvl6" text="Level 6" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Pane>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </Pane>
          </children>
       </StackPane>
    </children>
