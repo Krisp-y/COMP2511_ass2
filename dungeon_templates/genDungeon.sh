@@ -126,9 +126,9 @@ processFile() {
                 "E" )
                     entityType="enemy";;
                 "S" )
-                    entityType="sword";;
+                    entityType="weapon";;
                 "I" )
-                    entityType="invincibility";;
+                    entityType="potion";;
                 "X" )
                     entityType="exit";;
                 "T" )

@@ -1,5 +1,5 @@
 {
-  "width": 38,
+  "width": 20,
   "height": 17,
   "entities": [
     {
@@ -125,7 +125,7 @@
     {
       "x": 11,
       "y": 1,
-      "type": "invincibility"
+      "type": "potion"
     },
     {
       "x": 19,
@@ -140,7 +140,7 @@
     {
       "x": 1,
       "y": 2,
-      "type": "sword"
+      "type": "weapon"
     },
     {
       "x": 19,
@@ -464,7 +464,7 @@
     {
       "x": 18,
       "y": 11,
-      "type": "sword"
+      "type": "weapon"
     },
     {
       "x": 19,
@@ -477,14 +477,9 @@
       "type": "wall"
     },
     {
-      "x": 3,
-      "y": 12,
-      "type": "player"
-    },
-    {
       "x": 6,
       "y": 12,
-      "type": "sword"
+      "type": "weapon"
     },
     {
       "x": 11,
@@ -540,12 +535,12 @@
     {
       "x": 7,
       "y": 13,
-      "type": "sword"
+      "type": "weapon"
     },
     {
       "x": 12,
       "y": 13,
-      "type": "invincibility"
+      "type": "potion"
     },
     {
       "x": 16,
@@ -602,12 +597,7 @@
     {
       "x": 5,
       "y": 15,
-      "type": "sword"
-    },
-    {
-      "x": 9,
-      "y": 15,
-      "type": "player"
+      "type": "weapon"
     },
     {
       "x": 19,

@@ -169,6 +169,7 @@ public class DungeonController extends Controller {
                 player.tryMoveLeft();
                 break;
             case RIGHT:
+                System.out.println("here!");
                 player.tryMoveRight();
                 break;
             case ESCAPE:

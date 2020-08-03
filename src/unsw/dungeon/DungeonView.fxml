@@ -110,11 +110,5 @@
             <Button mnemonicParsing="false" onMouseClicked="#quitGame" text="Quit" />
          </children>
       </VBox>
-     
-<<<<<<< HEAD
    </children>
 </StackPane>
-=======
-         </children>
-</StackPane>
->>>>>>> ghost
