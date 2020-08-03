@@ -82,7 +82,6 @@ public class DungeonController extends Controller {
     private Map<BasicGoal, HBox> basicGoalViews;
     private List<EntityView> dynamicEntities;
     
-    private Player player;
     private Dungeon dungeon;
 
     private Timeline tickerTimeline;
@@ -93,7 +92,6 @@ public class DungeonController extends Controller {
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities, 
         Map<Entity, EntityView> entityImageMap) {
         this.dungeon = dungeon;
-        this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
         this.entityImageMap = new HashMap<CollectibleEnum, EntityView>();
         this.inventoryCountMap = new HashMap<CollectibleEnum, Integer>();
@@ -395,7 +393,6 @@ public class DungeonController extends Controller {
         dynamicEntities.add(view);
         squares.getChildren().add(view);
     }
-    
     
     private CollectibleEnum getEntityEnum(Entity e) {
         if (e instanceof Potion) {
