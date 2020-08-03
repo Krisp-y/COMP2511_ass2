@@ -64,7 +64,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         ghostImage = createImage("src/images/ghost2.png");
         landMineImage = createImage("src/images/mine.png");
         fireBallImage = createImage("src/images/fireball.png");
-        dragonImage = createImage("src/images/Dragon.png");
+        dragonImage = createImage("src/images/dragon.png");
             }
     
     private Image createImage(String path) {

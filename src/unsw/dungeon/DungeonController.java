@@ -161,7 +161,7 @@ public class DungeonController extends Controller {
                 pause();
                 break;
             case SPACE:
-                dropMine();
+                player.dropMine();
                 break;
             default:
                 break;
