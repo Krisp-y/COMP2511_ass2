@@ -69,6 +69,7 @@ public class Dungeon implements GoalSubscriber {
     }
 
     public void addEntity(Entity entity) {
+        entity.spawn();
         entities.add(entity);
     }
 
@@ -203,20 +204,6 @@ public class Dungeon implements GoalSubscriber {
         player.subscribeController(dc);
     }
 
-    public static CollectibleEnum getEntityEnum(Entity e) {
-        if (e instanceof Potion) {
-            return CollectibleEnum.POTION;
-        } else if (e instanceof Key) {
-            return CollectibleEnum.KEY;
-        } else if (e instanceof Treasure) {
-            return CollectibleEnum.TREASURE;
-        } else if (e instanceof Weapon) {
-            return CollectibleEnum.WEAPON;
-        }
-
-        return CollectibleEnum.INVALID;
-    }
-
     public List<BasicGoal> getBasicGoals() {
         return basicGoals;
     }
@@ -259,6 +246,13 @@ public class Dungeon implements GoalSubscriber {
             }
         }
         return null;
+    }
+    
+    public void addDynamicEntity(Entity e) {
+        entities.add(e);
+        if (dc != null) {
+            dc.dynamicLoad(e);
+        }
     }
 
 }

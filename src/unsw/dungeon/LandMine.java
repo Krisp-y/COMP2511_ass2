@@ -7,7 +7,6 @@ public class LandMine extends Entity implements Collider{
     public LandMine(int x, int y) {
         super(x, y);
         this.live = false;
-
     }
     
     public boolean getStatus() {
@@ -20,13 +19,23 @@ public class LandMine extends Entity implements Collider{
 
     @Override
     public void handleCollision(Moveable m) {
-        if(m instanceof Player && this.getStatus() == false) {
-            //sort casting of m to player
+        if(m instanceof Player) {
             Player p = (Player)m;
-            p.collectItem(this);
-        } else {
-            //kill player
-
+            p.move(p.getDirection());
+            if (this.getStatus() == false) {
+                //sort casting of m to player
+                p.collectItem(this);
+            } else {
+                p.kill();
+            }
+        }
+        
+        if (m instanceof Enemy) {
+            if (live) {
+                Enemy e = (Enemy) m;
+                e.move(e.getDirection());
+                e.kill();   
+            }
         }
 
     }

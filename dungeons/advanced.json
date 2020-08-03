@@ -637,13 +637,23 @@
       "x": 11,
       "y": 13,
       "type": "boulder"
+    },
+    {
+      "x": 1,
+      "y": 10,
+      "type": "dragon"
+    },
+    {
+      "x": 1,
+      "y": 8,
+      "type": "landmine"
     }
   ],
   "goal-condition": {
     "goal": "OR",
     "subgoals": [
       {
-        "goal": "enemies"
+        "goal": "boulders"
       },
       {
         "goal": "AND",
@@ -652,13 +662,15 @@
             "goal": "exit"
           },
           {
-            "goal": "boulders"
-          },
-          {
-            "goal": "treasure"
-          },
-          {
-            "goal": "enemies"
+            "goal": "OR",
+            "subgoals": [
+              {
+                "goal": "treasure"
+              },
+              {
+                "goal": "enemies"
+              }
+            ]
           }
         ]
       }

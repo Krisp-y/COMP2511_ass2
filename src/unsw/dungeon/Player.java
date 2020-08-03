@@ -12,6 +12,7 @@ public class Player extends Moveable implements Tickable, Collider {
     private List<Entity> inventory;
     private boolean alive;
     private boolean isTeleporting;
+    private boolean isDroppingBomb;
     private DungeonController dc;
 
     /**
@@ -23,6 +24,7 @@ public class Player extends Moveable implements Tickable, Collider {
         super(dungeon, x, y);
         this.inventory = new CopyOnWriteArrayList<>();
         this.alive = true;
+        this.isDroppingBomb = false;
     }   
 
     public void teleport(int x, int y) {
@@ -210,6 +212,7 @@ public class Player extends Moveable implements Tickable, Collider {
         }
 
         if (m instanceof FireBall) {
+            System.out.println("Player collides with fireball");
             FireBall fireBall = (FireBall) m;
             fireBall.move(fireBall.getDirection());
             fireBall.FBplayerCollision(this); // handle the player collision on the enemy side.
@@ -228,15 +231,36 @@ public class Player extends Moveable implements Tickable, Collider {
         return isTeleporting;
     }
     
+    public boolean isDroppingBomb() {
+        return isDroppingBomb;
+    }
+
     public void setTeleporting(boolean isTeleporting) {
         this.isTeleporting = isTeleporting;
     }
     
+    public void setDroppingBomb(boolean isDroppingBomb) {
+        this.isDroppingBomb = isDroppingBomb;
+    }
+
     public void subscribeController(DungeonController dc) {
         this.dc = dc;
     }
 
     public void dropMine() {
-        return;
+        for (Entity e : inventory) {
+            if (e instanceof LandMine) {
+                e.x().set(getX());
+                e.y().set(getY());
+                dungeon.addEntity(e);
+                LandMine lm = (LandMine) e;
+                lm.setStatus(true);
+            }
+        }
+    }
+    
+    public void kill() {
+        dungeon.removeEntity(this);
+        dungeon.endGameLost();
     }
 }

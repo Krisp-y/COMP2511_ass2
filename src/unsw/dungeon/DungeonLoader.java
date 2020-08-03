@@ -98,6 +98,7 @@ public abstract class DungeonLoader {
                 if (g != null) {
                     return g;
                 }
+                entitiesMap.get("enemy").addAll(entitiesMap.get("dragon"));
                 g = new EnemyGoal(dungeon, entitiesMap.get("enemy"));
                 dungeon.addBasicGoal(g);
                 return g;
@@ -234,11 +235,6 @@ public abstract class DungeonLoader {
                 Ghost ghost = new Ghost(dungeon, x, y);
                 onLoad(ghost);
                 entity = ghost;
-                break;
-            case "fireball":
-                FireBall fireball = new FireBall(dungeon, x, y);
-                onLoad(fireball);
-                entity = fireball;
                 break;
             case "dragon":
                 Dragon dragon = new Dragon(dungeon, x, y);

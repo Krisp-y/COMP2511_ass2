@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'CompassPro';
+    src: url('../fonts/CompassPro.ttf');
+}
+
+.text {
+    -fx-font-family: "CompassPro";
+    -fx-font-size: 80;
+}
+
+.button {
+    -fx-skin: "skins.MainMenuButtonSkin";
+    -fx-pref-width: 400;
+    -fx-pref-height: 80;
+}
+.button .text {
+    -fx-font-family: "CompassPro";
+    -fx-font-size: 20;
+}

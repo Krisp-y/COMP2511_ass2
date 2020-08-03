@@ -31,6 +31,13 @@ public abstract class Entity {
         } 
     }
     
+    public void spawn() {
+        if (this.ev != null) {
+            this.ev.spawnUpdate();
+        }
+        
+    }
+    
     public void changeImage() {
         return;
     }

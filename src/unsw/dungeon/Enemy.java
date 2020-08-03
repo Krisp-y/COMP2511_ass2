@@ -31,17 +31,11 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
             if(p.getWeaponHealth() == 0) {
                 p.removeWeapon();
             }
-            isAlive = false;
-            notifySubscribers();
-            dungeon.removeEntity(this);
+            this.kill();
         } else if (p.isInvincible()) { // If the player is invincible from the potion, kill the enemy.
-            notifySubscribers();
-            isAlive = false;
-            dungeon.removeEntity(this);
+            this.kill();
         } else { // Otherwise the player is killed by the enemy.
-            dungeon.removeEntity(p);
-            // System.out.println("Game Ending Collision");
-            dungeon.endGameLost();
+            p.kill(); 
         }
     }
 
@@ -74,5 +68,11 @@ public class Enemy extends Moveable implements GoalPublisher, Tickable, Collider
     
     public boolean isAlive() {
         return isAlive;
+    }
+    
+    public void kill() {
+        notifySubscribers();
+        isAlive = false;
+        dungeon.removeEntity(this);
     }
 }
