@@ -100,7 +100,7 @@ public class DungeonController extends Controller {
 
     @FXML
     public void initialize() {
-        Image ground = new Image((new File("images/dirt_0_new.png")).toURI().toString());
+        Image ground = new Image((new File("images/ground2.png")).toURI().toString());
 
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
@@ -163,6 +163,9 @@ public class DungeonController extends Controller {
                 break;
             case ESCAPE:
                 pause();
+                break;
+            case SPACE:
+                dropMine();
                 break;
             default:
                 break;
