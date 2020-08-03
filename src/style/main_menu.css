@@ -6,35 +6,14 @@
 .text {
     -fx-font-family: "CompassPro";
     -fx-font-size: 80;
-    -fx-text-fill: white;
 }
 
 .button {
     -fx-skin: "skins.MainMenuButtonSkin";
     -fx-pref-width: 400;
     -fx-pref-height: 80;
-    -fx-background-color: transparent;
-    -fx-border-color: white;
-    -fx-border-width: 5; 
 }
 .button .text {
     -fx-font-family: "CompassPro";
     -fx-font-size: 20;
-    -fx-text-fill: white;
-}
-
-.background {
-    -fx-background-image: url('../images/main_menu_bg.PNG');
-    -fx-background-position: center center;
-    -fx-background-repeat: no-repeat;
-    -fx-opacity: 0.6;
-}
-
-.background-main {
-    -fx-background-color: black;
-}
-
-.button-bg-pane {
-    -fx-background-color: white;
-    -fx-opacity:0.2;
 }
