@@ -126,9 +126,9 @@ processFile() {
                 "E" )
                     entityType="enemy";;
                 "S" )
-                    entityType="sword";;
+                    entityType="weapon";;
                 "I" )
-                    entityType="invincibility";;
+                    entityType="potion";;
                 "X" )
                     entityType="exit";;
                 "T" )
@@ -148,7 +148,7 @@ processFile() {
                 "G" )
                     entityType="ghost";;
                 "M" )
-                    entityType="mine";;
+                    entityType="landmine";;
             esac
 
             # If entityType is defined, then place it in the json.
