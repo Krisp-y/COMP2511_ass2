@@ -225,12 +225,13 @@ public class DungeonController extends Controller {
 	            new ImageView(entityImageMap.get(CollectibleEnum.WEAPON).getImage()));
             // Add all the health dots.
             for (int i = 0; i < Dungeon.WEAPON_HEALTH; i++) {
-                weaponStatus.getChildren().add(getImageFromPath("images/fireball.png"));
+                weaponStatus.getChildren().add(getImageFromPath("src/images/dot.png"));
             }
 	        itemStatusVbox.getChildren().add(weaponStatus);
 	    } else {
 	        weaponStatus.getChildren().clear();
 	        itemStatusVbox.getChildren().remove(weaponStatus);
+	        weaponStatus = null;
 	    }
 	}
 
@@ -250,8 +251,8 @@ public class DungeonController extends Controller {
 	        itemStatusVbox.getChildren().add(potionStatus);
 	    } else {
 	        potionStatus.getChildren().clear();
-	        potionStatus = null;
 	        itemStatusVbox.getChildren().remove(potionStatus);
+	        potionStatus = null;
 	    }
 	}
 	

@@ -9,6 +9,12 @@
     -fx-text-fill: white;
 }
 
+.paragraph-text {
+    -fx-font-family: "CompassPro";
+    -fx-font-size: 32;
+    -fx-text-fill: white;
+}
+
 .button {
     -fx-skin: "skins.MainMenuButtonSkin";
     -fx-pref-width: 400;

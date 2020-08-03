@@ -31,6 +31,9 @@ public class MainMenuController extends Controller {
 
     @FXML
     private StackPane mainMenuPane;
+    
+    @FXML
+    private StackPane instructionsPane;
 
     @FXML
     private StackPane backgroundPane;
@@ -39,6 +42,23 @@ public class MainMenuController extends Controller {
 
     public MainMenuController(String selectedLevel) {
         selectedLevel = "level1";
+    }
+    
+    
+    @FXML 
+    public void openInstructions() {
+        instructionsPane.toFront();
+        instructionsPane.setVisible(true);
+        mainMenuPane.setVisible(false);
+        backgroundPane.setVisible(false);
+    }
+    
+    @FXML
+    public void backToMainMenu() {
+        mainMenuPane.toFront();
+        mainMenuPane.setVisible(true);
+        instructionsPane.setVisible(false);
+        backgroundPane.setVisible(true);
     }
 
     @FXML

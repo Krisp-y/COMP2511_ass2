@@ -38,8 +38,10 @@
                   <GridPane fx:id="squares1" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="640.0" prefWidth="640.0">
                      <columnConstraints>
                         <ColumnConstraints />
+                        <ColumnConstraints />
                      </columnConstraints>
                      <rowConstraints>
+                        <RowConstraints />
                         <RowConstraints />
                      </rowConstraints>
                   </GridPane>
@@ -65,35 +67,15 @@
                   </Pane>
                </children>
             </VBox>
-            <Pane id="voidbg" prefHeight="69.0" prefWidth="255.0" style="-fx-border-width: 5; -fx-border-color: grey;" stylesheets="@../../style/block_background.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <StackPane GridPane.rowIndex="1">
                <children>
-                  <Text fill="#f5f0f0" layoutX="87.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status Effects" textAlignment="CENTER" />
-               </children>
-               <GridPane.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </GridPane.margin>
-            </Pane>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-               <children>
-                  <Pane id="voidbg" prefHeight="79.0" prefWidth="242.0" style="-fx-border-width: 5; -fx-border-color: grey;" stylesheets="@../../style/block_background.css">
+                  <Pane prefHeight="69.0" prefWidth="461.0" styleClass="bodybg" stylesheets="@../../style/block_background.css">
                      <children>
-                        <Text fill="#f5f0f0" layoutX="79.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Health" textAlignment="CENTER" />
-                     </children>
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" top="5.0" />
-                     </HBox.margin>
-                  </Pane>
-                  <Pane id="voidbg" prefHeight="79.0" prefWidth="542.0" style="-fx-border-width: 5; -fx-border-color: grey;" stylesheets="@../../style/block_background.css">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                     <children>
-                        <Text fill="#ebe5e5" layoutX="247.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" textAlignment="CENTER" />
-                        <HBox fx:id="inventoryHbox" alignment="CENTER" layoutX="7.0" layoutY="11.0" prefHeight="47.0" prefWidth="521.0" />
+                        <HBox fx:id="inventoryHbox" alignment="CENTER" layoutX="131.0" layoutY="16.0" prefHeight="47.0" prefWidth="521.0" />
                      </children>
                   </Pane>
                </children>
-            </HBox>
+            </StackPane>
          </children>
       </GridPane>
       <VBox fx:id="pauseMenu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="600.0" spacing="30.0" stylesheets="@../../style/pause_menu.css" visible="false">
