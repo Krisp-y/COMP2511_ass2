@@ -48,7 +48,7 @@
                         <VBox fx:id="basicGoalVbox" layoutX="15.0" layoutY="26.0" prefHeight="128.0" prefWidth="197.0" />
                      </children>
                   </Pane>
-                  <Pane fx:id="conjunctionPane" prefHeight="257.0" prefWidth="227.0" styleClass="bodybg" stylesheets="@../../style/block_background.css" />
+                  <Pane id="sidebg" fx:id="conjunctionPane" prefHeight="257.0" prefWidth="227.0" stylesheets="@../../style/block_background.css" />
                   <Pane prefHeight="253.0" prefWidth="227.0" styleClass="bodybg" stylesheets="@../../style/block_background.css">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" StackPane.alignment="CENTER">
@@ -104,7 +104,7 @@
                   </Pane>
                </children>
             </VBox>
-            <Pane prefHeight="69.0" prefWidth="255.0" style="-fx-background-color: blue; -fx-border-width: 5; -fx-border-color: grey;" styleClass="bodybg" stylesheets="@../../style/void_style.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Pane id="voidbg" prefHeight="69.0" prefWidth="255.0" style="-fx-border-width: 5; -fx-border-color: grey;" stylesheets="@../../style/void_style.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Text fill="#f5f0f0" layoutX="87.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status Effects" textAlignment="CENTER" />
                </children>
@@ -114,7 +114,7 @@
             </Pane>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Pane prefHeight="79.0" prefWidth="242.0" style="-fx-background-color: green; -fx-border-width: 5; -fx-border-color: grey;" styleClass="bodybg" stylesheets="@../../style/void_style.css">
+                  <Pane id="voidbg" prefHeight="79.0" prefWidth="242.0" style="-fx-border-width: 5; -fx-border-color: grey;" stylesheets="@../../style/block_background.css">
                      <children>
                         <Text fill="#f5f0f0" layoutX="79.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Health" textAlignment="CENTER" />
                      </children>
@@ -122,7 +122,7 @@
                         <Insets bottom="5.0" left="5.0" top="5.0" />
                      </HBox.margin>
                   </Pane>
-                  <Pane prefHeight="79.0" prefWidth="542.0" style="-fx-border-width: 5; -fx-border-color: grey; -fx-background-color: purple;" styleClass="bodybg" stylesheets="@../../style/void_style.css">
+                  <Pane id="voidbg" prefHeight="79.0" prefWidth="542.0" style="-fx-border-width: 5; -fx-border-color: grey;" stylesheets="@../../style/block_background.css">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>

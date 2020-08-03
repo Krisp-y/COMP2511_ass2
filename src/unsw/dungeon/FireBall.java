@@ -14,11 +14,11 @@ public class FireBall extends Moveable implements Collider {
             if (m.getDirection() == Direction.UP) {
                 this.moveUp();
             } else if (m.getDirection() == Direction.DOWN) {
-                moveDown();
+                this.moveDown();
             } else if (m.getDirection() == Direction.LEFT) {
-                moveLeft();
+                this.moveLeft();
             } else if (m.getDirection() == Direction.RIGHT) {
-                moveRight();
+                this.moveRight();
             }
             //End dragon collision
             return;
