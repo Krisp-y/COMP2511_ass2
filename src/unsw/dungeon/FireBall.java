@@ -1,30 +1,16 @@
 package unsw.dungeon;
 
-public class FireBall extends Moveable implements Collider {
-    public FireBall(Dungeon dungeon, int x, int y) {
+public class FireBall extends Moveable implements Collider, Tickable {
+    private Direction direction;
+    public FireBall(Dungeon dungeon, int x, int y, Direction d) {
         super(dungeon, x, y);
+        this.direction = d;
     }
 
     @Override
     public void handleCollision(Moveable m) {
-        
-        //Move fireball in direction dragon is moving
-        if(m instanceof Dragon) {
-            m.getDirection();
-            if (m.getDirection() == Direction.UP) {
-                this.moveUp();
-            } else if (m.getDirection() == Direction.DOWN) {
-                this.moveDown();
-            } else if (m.getDirection() == Direction.LEFT) {
-                this.moveLeft();
-            } else if (m.getDirection() == Direction.RIGHT) {
-                this.moveRight();
-            }
-            //End dragon collision
-            return;
-        }
-
         if (m instanceof Player) { // If the fireball hits a player
+            System.out.println("Fireball collides with player");
             Player p = (Player) m;
             p.move(p.getDirection());
             FBplayerCollision(p);
@@ -41,5 +27,14 @@ public class FireBall extends Moveable implements Collider {
         }
     }
 
+    @Override
+    public void tick() {
+        int prevx = getX();
+        int prevy = getY();
+        tryMove(direction);
+        if (getX() == prevx && getY() == prevy) {
+            dungeon.removeEntity(this);
+        }
+    }
 }
     

@@ -212,6 +212,7 @@ public class Player extends Moveable implements Tickable, Collider {
         }
 
         if (m instanceof FireBall) {
+            System.out.println("Player collides with fireball");
             FireBall fireBall = (FireBall) m;
             fireBall.move(fireBall.getDirection());
             fireBall.FBplayerCollision(this); // handle the player collision on the enemy side.
@@ -247,7 +248,19 @@ public class Player extends Moveable implements Tickable, Collider {
     }
 
     public void dropMine() {
-
-        return;
+        for (Entity e : inventory) {
+            if (e instanceof LandMine) {
+                e.x().set(getX());
+                e.y().set(getY());
+                dungeon.addEntity(e);
+                LandMine lm = (LandMine) e;
+                lm.setStatus(true);
+            }
+        }
+    }
+    
+    public void kill() {
+        dungeon.removeEntity(this);
+        dungeon.endGameLost();
     }
 }

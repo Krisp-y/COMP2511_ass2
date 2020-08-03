@@ -1,5 +1,12 @@
 package unsw.dungeon;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,6 +17,7 @@ import java.util.Set;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -69,7 +77,8 @@ public class DungeonController extends Controller {
     private Map<CollectibleEnum, Integer> inventoryCountMap;
     private Map<CollectibleEnum, Pane> inventoryViewMap;
     private Map<BasicGoal, HBox> basicGoalViews;
-
+    private List<EntityView> dynamicEntities;
+    
     private Player player;
     private Dungeon dungeon;
 
@@ -87,6 +96,7 @@ public class DungeonController extends Controller {
         this.inventoryCountMap = new HashMap<CollectibleEnum, Integer>();
         this.inventoryViewMap = new HashMap<CollectibleEnum, Pane>();
         this.basicGoalViews = new HashMap<BasicGoal, HBox>();
+        this.dynamicEntities = new ArrayList<EntityView>();
         this.isPaused = false;
         this.tickerTimeline = new Timeline();
         this.dungeonEnd = new Timeline();
@@ -247,26 +257,26 @@ public class DungeonController extends Controller {
 	}
 
 	public void addToInventoryView(Entity e) {
-	    Integer oldcount = inventoryCountMap.get(Dungeon.getEntityEnum(e));
-	    inventoryCountMap.put(Dungeon.getEntityEnum(e), oldcount + 1);
+	    Integer oldcount = inventoryCountMap.get(getEntityEnum(e));
+	    inventoryCountMap.put(getEntityEnum(e), oldcount + 1);
 	    
 	    if (oldcount == 0) {
-	        Pane inventoryItem = createInventoryItem(Dungeon.getEntityEnum(e));
+	        Pane inventoryItem = createInventoryItem(getEntityEnum(e));
 	        inventoryHbox.getChildren().add(inventoryItem);
 	    } else {
-	        updateInventoryItem(Dungeon.getEntityEnum(e), oldcount + 1);
+	        updateInventoryItem(getEntityEnum(e), oldcount + 1);
 	    }
 	}
 
 	public void removeFromInventoryView(Entity e) {
-	    Integer oldcount = inventoryCountMap.get(Dungeon.getEntityEnum(e));
-	    inventoryCountMap.put(Dungeon.getEntityEnum(e), oldcount - 1);
+	    Integer oldcount = inventoryCountMap.get(getEntityEnum(e));
+	    inventoryCountMap.put(getEntityEnum(e), oldcount - 1);
 	    
 	    if (oldcount - 1 ==  0) { // Remove the pane from the inventory view
-	        Pane p = inventoryViewMap.get(Dungeon.getEntityEnum(e));
+	        Pane p = inventoryViewMap.get(getEntityEnum(e));
 	        inventoryHbox.getChildren().remove(p);
 	    } else {
-	        updateInventoryItem(Dungeon.getEntityEnum(e), oldcount - 1);
+	        updateInventoryItem(getEntityEnum(e), oldcount - 1);
 	    }
 	}
 	
@@ -310,7 +320,7 @@ public class DungeonController extends Controller {
 
     private void setupEntityImageMap(Map<Entity, EntityView> entityImageMap_) {
         for (Map.Entry<Entity, EntityView> entry : entityImageMap_.entrySet()) {
-            this.entityImageMap.put(Dungeon.getEntityEnum(entry.getKey()), entry.getValue());
+            this.entityImageMap.put(getEntityEnum(entry.getKey()), entry.getValue());
         }
     }
     
@@ -371,5 +381,31 @@ public class DungeonController extends Controller {
             }
         }
     }
+    
+    public void dynamicLoad(Entity e) {
+        Image image = DungeonControllerLoader.createImage("src/images/dot.png");
+        EntityView view = new EntityView(image);
+        DungeonControllerLoader.track(e, view);
+        dynamicEntities.add(view);
+        squares.getChildren().add(view);
+    }
+    
+    
+    private CollectibleEnum getEntityEnum(Entity e) {
+        if (e instanceof Potion) {
+            return CollectibleEnum.POTION;
+        } else if (e instanceof Key) {
+            return CollectibleEnum.KEY;
+        } else if (e instanceof Treasure) {
+            return CollectibleEnum.TREASURE;
+        } else if (e instanceof Weapon) {
+            return CollectibleEnum.WEAPON;
+        } else if (e instanceof LandMine) {
+            return CollectibleEnum.LANDMINE;
+        }
+        // Undefined behaviour
+        return CollectibleEnum.INVALID;
+    }
+    
 }
 

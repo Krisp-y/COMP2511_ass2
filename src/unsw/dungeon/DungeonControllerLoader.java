@@ -67,7 +67,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         dragonImage = createImage("src/images/dragon.png");
             }
     
-    private Image createImage(String path) {
+   public static Image createImage(String path) {
         return new Image((new File(path)).toURI().toString());
     }
     
@@ -176,7 +176,7 @@ public class DungeonControllerLoader extends DungeonLoader {
      * @param entity
      * @param node
      */
-    private void trackPosition(Entity entity, final Node node) {
+    private static void trackPosition(Entity entity, final Node node) {
         GridPane.setColumnIndex(node, entity.getX());
         GridPane.setRowIndex(node, entity.getY());
         entity.x().addListener(new ChangeListener<Number>() {
@@ -195,7 +195,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         });
     }
     
-    private void track(Entity entity, EntityView view) {
+    public static void track(Entity entity, EntityView view) {
         entity.subsribeView(view);
         trackPosition(entity, view);
     }

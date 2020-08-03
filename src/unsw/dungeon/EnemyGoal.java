@@ -9,7 +9,6 @@ public class EnemyGoal extends BasicGoal {
     
     public EnemyGoal(Dungeon dungeon, List<Entity> enemies) {
         super(dungeon, enemies);
-        System.out.println(enemies);
         this.numDead = 0;
         this.numEnemies = enemies.size();
     }

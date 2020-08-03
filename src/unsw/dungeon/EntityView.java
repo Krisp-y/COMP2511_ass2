@@ -11,13 +11,16 @@ public class EntityView extends ImageView {
     }
     
     public void despawnUpdate() {
-        // changeImage();
         this.setVisible(false);
     }
     
     public void changeDoorImage() {
         Image image = new Image((new File("images/open_door.png")).toURI().toString());
         this.setImage(image);
+    }
+    
+    public void spawnUpdate() {
+        this.setVisible(true);
     }
     
 }
