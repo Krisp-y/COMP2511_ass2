@@ -5,5 +5,6 @@ public enum CollectibleEnum {
     POTION,
     TREASURE,
     WEAPON,
+    LANDMINE,
     INVALID
 }

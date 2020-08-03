@@ -42,14 +42,14 @@
                   <Insets right="5.0" top="5.0" />
                </GridPane.margin>
                <children>
-                  <Pane prefHeight="165.0" prefWidth="227.0" style="-fx-background-color: yellow;">
+                  <Pane prefHeight="165.0" prefWidth="227.0" styleClass="bodybg" stylesheets="@../../style/block_background.css">
                      <children>
                         <Text layoutX="78.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Goals" textAlignment="CENTER" wrappingWidth="70.341796875" />
                         <VBox fx:id="basicGoalVbox" layoutX="15.0" layoutY="26.0" prefHeight="128.0" prefWidth="197.0" />
                      </children>
                   </Pane>
-                  <Pane fx:id="conjunctionPane" prefHeight="257.0" prefWidth="227.0" style="-fx-background-color: orange;" />
-                  <Pane prefHeight="253.0" prefWidth="227.0">
+                  <Pane fx:id="conjunctionPane" prefHeight="257.0" prefWidth="227.0" styleClass="bodybg" stylesheets="@../../style/block_background.css" />
+                  <Pane prefHeight="253.0" prefWidth="227.0" styleClass="bodybg" stylesheets="@../../style/block_background.css">
                      <children>
                         <Text layoutX="78.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Status" textAlignment="CENTER" wrappingWidth="70.341796875" />
                         <VBox fx:id="itemStatusVbox" layoutX="6.0" layoutY="46.0" prefHeight="201.0" prefWidth="211.0" />
@@ -57,9 +57,9 @@
                   </Pane>
                </children>
             </VBox>
-            <Pane prefHeight="69.0" prefWidth="255.0" style="-fx-background-color: blue; -fx-border-width: 5; -fx-border-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Pane prefHeight="69.0" prefWidth="255.0" style="-fx-background-color: blue; -fx-border-width: 5; -fx-border-color: grey;" styleClass="bodybg" stylesheets="@../../style/void_style.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Text layoutX="87.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status Effects" textAlignment="CENTER" />
+                  <Text fill="#f5f0f0" layoutX="87.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status Effects" textAlignment="CENTER" />
                </children>
                <GridPane.margin>
                   <Insets bottom="5.0" right="5.0" top="5.0" />
@@ -67,20 +67,20 @@
             </Pane>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Pane prefHeight="79.0" prefWidth="242.0" style="-fx-background-color: green; -fx-border-width: 5; -fx-border-color: grey;">
+                  <Pane prefHeight="79.0" prefWidth="242.0" style="-fx-background-color: green; -fx-border-width: 5; -fx-border-color: grey;" styleClass="bodybg" stylesheets="@../../style/void_style.css">
                      <children>
-                        <Text layoutX="79.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Health" textAlignment="CENTER" />
+                        <Text fill="#f5f0f0" layoutX="79.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Health" textAlignment="CENTER" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" top="5.0" />
                      </HBox.margin>
                   </Pane>
-                  <Pane prefHeight="79.0" prefWidth="542.0" style="-fx-border-width: 5; -fx-border-color: grey; -fx-background-color: purple;">
+                  <Pane prefHeight="79.0" prefWidth="542.0" style="-fx-border-width: 5; -fx-border-color: grey; -fx-background-color: purple;" styleClass="bodybg" stylesheets="@../../style/void_style.css">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                      <children>
-                        <Text layoutX="247.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" textAlignment="CENTER" />
+                        <Text fill="#ebe5e5" layoutX="247.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" textAlignment="CENTER" />
                         <HBox fx:id="inventoryHbox" alignment="CENTER" layoutX="7.0" layoutY="11.0" prefHeight="47.0" prefWidth="521.0" />
                      </children>
                   </Pane>

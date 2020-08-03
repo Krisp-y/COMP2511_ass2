@@ -15,7 +15,7 @@
             <Image url="@images/main_background.jpg" />
          </image>
       </ImageView>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(main_background.jpg);">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(dungeon_background.jpg);">
          <children>
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="50.0">
                <children>

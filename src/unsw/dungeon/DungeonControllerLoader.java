@@ -40,6 +40,9 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image potionImage;
     private Image weaponImage;
     private Image ghostImage;
+    private Image landMineImage;
+    private Image fireBallImage;
+    private Image dragonImage;
 
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
@@ -59,6 +62,9 @@ public class DungeonControllerLoader extends DungeonLoader {
         potionImage = createImage("src/images/bubbly.png");
         weaponImage = createImage("src/images/greatsword_1_new.png");
         ghostImage = createImage("src/images/ghost2.png");
+        landMineImage = createImage("src/images/mine.png");
+        fireBallImage = createImage("src/images/fireball.png");
+        dragonImage = createImage("src/images/Dragon.png");
             }
     
     private Image createImage(String path) {
@@ -138,7 +144,21 @@ public class DungeonControllerLoader extends DungeonLoader {
         EntityView view = new EntityView(weaponImage);
         addEntity(weapon, view);
     }
+
+    public void onLoad(FireBall fireBall) {
+        EntityView view = new EntityView(fireBallImage);
+        addEntity(fireBall, view);
+    }
+
+    public void onLoad(Dragon dragon) {
+        EntityView view = new EntityView(dragonImage);
+        addEntity(dragon, view);
+    }
     
+    public void onLoad(LandMine landMine) {
+        EntityView view = new EntityView(landMineImage);
+        addEntity(landMine, view);
+    }
     private void addEntity(Entity entity, EntityView view) {
         track(entity, view);
         entities.add(view);
