@@ -163,23 +163,27 @@ public class DungeonController extends Controller {
         }
         switch (event.getCode()) {
             case UP:
-                player.tryMoveUp();
+                dungeon.getPlayer().tryMoveUp();
                 break;
             case DOWN:
-                player.tryMoveDown();
+                dungeon.getPlayer().tryMoveDown();
                 break;
             case LEFT:
-                player.tryMoveLeft();
+                dungeon.getPlayer().tryMoveLeft();
                 break;
             case RIGHT:
+<<<<<<< HEAD
                 System.out.println("here!");
                 player.tryMoveRight();
+=======
+                dungeon.getPlayer().tryMoveRight();
+>>>>>>> 93febb6104613c8f1b77c253724831d5a85743de
                 break;
             case ESCAPE:
                 pause();
                 break;
             case SPACE:
-                player.dropMine();
+                dungeon.getPlayer().dropMine();
                 break;
             default:
                 break;
