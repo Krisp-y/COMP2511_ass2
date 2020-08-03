@@ -247,6 +247,7 @@ public class DungeonController extends Controller {
 	        itemStatusVbox.getChildren().add(potionStatus);
 	    } else {
 	        potionStatus.getChildren().clear();
+	        potionStatus = null;
 	        itemStatusVbox.getChildren().remove(potionStatus);
 	    }
 	}
@@ -383,7 +384,7 @@ public class DungeonController extends Controller {
     }
     
     public void dynamicLoad(Entity e) {
-        Image image = DungeonControllerLoader.createImage("src/images/dot.png");
+        Image image = DungeonControllerLoader.createImage("src/images/fireball.png");
         EntityView view = new EntityView(image);
         DungeonControllerLoader.track(e, view);
         dynamicEntities.add(view);

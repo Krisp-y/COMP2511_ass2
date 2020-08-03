@@ -142,13 +142,13 @@ processFile() {
                 "K" )
                     entityType="key";;
                 "O" )
-                    entityType="portal";;   
+                    entityType="portal";;
                 "Z" )
                     entityType="dragon";;
-                "G" )
-                    entityType="ghost";;
                 "M" )
                     entityType="landmine";;
+                "G" )
+                    entityType="ghost";;
             esac
 
             # If entityType is defined, then place it in the json.
@@ -229,5 +229,4 @@ main() {
 }
 
 main $@
-
 

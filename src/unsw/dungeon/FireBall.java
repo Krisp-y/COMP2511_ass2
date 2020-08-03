@@ -10,7 +10,6 @@ public class FireBall extends Moveable implements Collider, Tickable {
     @Override
     public void handleCollision(Moveable m) {
         if (m instanceof Player) { // If the fireball hits a player
-            System.out.println("Fireball collides with player");
             Player p = (Player) m;
             p.move(p.getDirection());
             FBplayerCollision(p);
