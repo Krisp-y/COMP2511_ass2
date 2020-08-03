@@ -13,6 +13,7 @@ public class Player extends Moveable implements Tickable, Collider {
     private boolean alive;
     private boolean isTeleporting;
     private DungeonController dc;
+    private 
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -207,6 +208,12 @@ public class Player extends Moveable implements Tickable, Collider {
             enemy.move(enemy.getDirection());
             enemy.playerCollision(this); // handle the player collision on the enemy side.
         }
+
+        if (m instanceof FireBall) {
+            FireBall fireBall = (FireBall) m;
+            fireBall.move(fireBall.getDirection());
+            fireBall.FBplayerCollision(this); // handle the player collision on the enemy side.
+        }
     }
     
     public boolean isAlive() {
@@ -227,5 +234,9 @@ public class Player extends Moveable implements Tickable, Collider {
     
     public void subscribeController(DungeonController dc) {
         this.dc = dc;
+    }
+
+    public void dropMine() {
+
     }
 }
