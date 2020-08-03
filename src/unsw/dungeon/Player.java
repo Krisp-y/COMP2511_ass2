@@ -13,7 +13,7 @@ public class Player extends Moveable implements Tickable, Collider {
     private boolean alive;
     private boolean isTeleporting;
     private DungeonController dc;
-    private 
+
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -237,6 +237,6 @@ public class Player extends Moveable implements Tickable, Collider {
     }
 
     public void dropMine() {
-
+        return;
     }
 }

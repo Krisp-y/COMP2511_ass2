@@ -73,5 +73,23 @@ public class DungeonTestLoader extends DungeonLoader {
 
     }
 
+    @Override
+    public void onLoad(LandMine landmine) {
+        return;
+
+    }
+
+    @Override
+    public void onLoad(Dragon dragon) {
+        return;
+
+    }
+
+    @Override
+    public void onLoad(FireBall fireball) {
+        return;
+
+    }
+
 
 }

@@ -219,6 +219,22 @@ public abstract class DungeonLoader {
                 onLoad(ghost);
                 entity = ghost;
                 break;
+            case "fireball":
+                FireBall fireball = new FireBall(dungeon, x, y);
+                onLoad(fireball);
+                entity = fireball;
+                break;
+            case "dragon":
+                Dragon dragon = new Dragon(dungeon, x, y);
+                onLoad(dragon);
+                entity = dragon;
+                break;
+            case "landmine":
+                LandMine landmine = new LandMine(x, y);
+                onLoad(landmine);
+                entity = landmine;
+                break;
+                
         }
         return entity;
     }
@@ -248,4 +264,10 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Weapon potion);
 
     public abstract void onLoad(Ghost ghost);
+
+    public abstract void onLoad(FireBall fireball);
+
+    public abstract void onLoad(Dragon dragon);
+
+    public abstract void onLoad(LandMine landmine);
 }
