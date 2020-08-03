@@ -19,8 +19,8 @@ public class SelectLevelButtonSkin extends ButtonSkin{
         scaleout.setToX(1.2f);
         scaleout.setToY(1.2f);
         control.setOnMouseEntered(e -> {
-            fadeIn.playFromStart();
             scaleout.playFromStart();
+            fadeIn.playFromStart();
         });
 
         final FadeTransition fadeOut = new FadeTransition(Duration.millis(300));
@@ -32,8 +32,8 @@ public class SelectLevelButtonSkin extends ButtonSkin{
         scalein.setToY(0.8f);
         
         control.setOnMouseExited(e -> {
-            fadeOut.playFromStart();
             scalein.playFromStart();
+            fadeOut.playFromStart();
         });
         
         control.setOpacity(0.5);   

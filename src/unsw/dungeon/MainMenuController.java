@@ -54,4 +54,71 @@ public class MainMenuController extends Controller {
         mainMenuPane.setVisible(false);
         backgroundPane.setVisible(false);
     }
+    
+    @FXML
+    public void changeToLevel1() {
+        main.setLevel("level1.json");
+        try {
+            main.changeToDungeon();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    public void changeToLevel2() {
+        main.setLevel("level2.json");
+        try {
+            main.changeToDungeon();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    public void changeToLevel3() {
+        main.setLevel("level3.json");
+        try {
+            main.changeToDungeon();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    public void changeToLevel4() {
+        main.setLevel("level4.json");
+        try {
+            main.changeToDungeon();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    public void changeToLevel5() {
+        main.setLevel("level5.json");
+        try {
+            main.changeToDungeon();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    public void changeToLevel6() {
+        main.setLevel("level6.json");
+        try {
+            main.changeToDungeon();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
 }
