@@ -41,6 +41,9 @@ public class Player extends Moveable implements Tickable, Collider {
         inventory.add(e);
         if (dc != null) {
             dc.addToInventoryView(e);
+            if (e instanceof Key) {
+                dc.highlightDoor()
+            }
         }
         dungeon.removeEntity(e);
     }
